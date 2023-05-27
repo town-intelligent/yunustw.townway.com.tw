@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/localStorage.js"></script>
+    <script type="module" src="/static/js/set_page_info.js"></script>
+    <script type="module" src="/static/js/init.js"></script>
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-xl navbar-light bg-navbar fz-18">
+      <div name="admin_dropdown" class="container-fluid">
+        <a id="index_logo" class="navbar-brand d-none d-md-block my-md-1" href="/index.html">
+          <img class="logo-pc" src="/static/imgs/2nd-home.svg" alt="">
+        </a>
+        <a id="index_logo" class="navbar-brand d-md-none" href="/index.html">
+          <img class="logo-mobile" src="/static/imgs/2nd-home.svg" alt="">
+        </a>
+        <button class="navbar-toggler mr-md-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold active" href="/solution.html">解決方案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
+            </li>
+            <li id="account_status" class="nav-item d-flex align-items-center">
+              <img class="align-top" src="/static/imgs/user.svg" alt=""><a class="nav-link fw-bold px-0" href="/tplanet_signin.html">登入</a><span class="nav-link px-1 align-middle" style="margin-bottom:2px">/</span><a class="nav-link fw-bold px-0" href="/tplanet_signup.html">註冊</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- content -->
+    <div>
+      <div class="jumbotron jumbotron-fluid bg-cover mb-0 bg-img-height-l d-none d-md-block"
+      style="background-image:url(/static/imgs/2nd-home-solution.png); height:350px">
+      </div>
+      <div class="jumbotron jumbotron-fluid bg-cover mb-0 bg-img-height-l d-md-none"
+      style="background-image:url(/static/imgs/2nd-home-solution.png); height:200px">
+      </div>
+      <div class="bg-light py-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-10">
+              <h3 class="text-center fw-bold text-title">透過虛實整合行動方案累積您的社會影響力</h3>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-md-8">
+              <p class="mb-0">T-planet 是量化及視覺化社會影響力的平台，無論您是關注於企業社會責任之企業，或是致力於地方</p>
+              <p class="mb-0">創生的地方組織或新創團隊，都可透過本平台建立合作。 在合作過程中，我們將協助您紀錄數位足</p>
+              <p class="mb-0">跡，並將其量化及視覺化，協助您制定未來的發展方向及思考策略。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <h3 class="text-center fw-bold text-title">T-PLANET architecture</h3>
+            </div>
+          </div>
+          <div class="row mt-md-4 justify-content-center">
+            <div class="col-12 text-center">
+              <img src="/static/imgs/t-planet-architecture.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-light py-5">
+        <div class="container">
+          <div class="row mt-md-4">
+            <div class="col-md-4 mt-3 mt-md-0">
+              <div class="card rounded-0 h-100">
+                <div class="card-body">
+                  <div class="text-center">
+                    <img class="img-fluid" src="/static/imgs/connectivity-and-help.png" alt="">
+                  </div>
+                  <p class="h5 text-title fw-bold text-center mt-4">易於建立跨域合作
+                  </p>
+                  <p class="mt-4">平台連接多樣化專案，涉及不同領域之永續發展目標。透過區塊鏈去中心化的特色，容易建立跨域及跨國的合作。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mt-3 mt-md-0">
+              <div class="card rounded-0 h-100">
+                <div class="card-body">
+                  <div class="text-center">
+                    <img class="img-fluid" src="/static/imgs/combo-chart.png" alt="">
+                  </div>
+                  <p class="h5 text-title fw-bold text-center mt-4">足跡側錄與權重分析
+                  </p>
+                  <p class="mt-4">合作過程的足跡側錄公開透明化，後續可透過量化及視覺化的權重分析，易於做未來的策略評估。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mt-3 mt-md-0">
+              <div class="card rounded-0 h-100">
+                <div class="card-body">
+                  <div class="text-center">
+                    <img class="img-fluid" src="/static/imgs/nft.png" alt="">
+                  </div>
+                  <p class="h5 text-title fw-bold text-center mt-4">紀錄不可竄改
+                  </p>
+                  <p class="mt-4">區塊鏈是適合用來記錄交易，足跡及資產的分散式帳本技術，因其擁有紀錄不可竄改之特性，易於建立透明及可被信任的合作機制。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <footer class="bg-footer">
+      <div class="container-fluid">
+        <div class="row justify-content-center pt-4">
+          <div class="col-lg-9 d-none d-lg-block">
+            <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
+              <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
+              <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
+              <p class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
+              <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
+              <p class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
+              <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="#">隱私權條款</a></p>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4 mb-lg-0">
+            <div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
+              <div>
+                <a class="text-decoration-none" href="#" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
+                  <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- mobile -->
+          <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
+            <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="#">隱私權條款</a></p>
+          </div>
+        </div>
+        <div class="py-4">
+          <div class="text-center">
+            <p class="fw-bold mb-0">Copyright &copy; 2022 SECOND HOME</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

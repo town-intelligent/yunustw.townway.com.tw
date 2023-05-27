@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css" >
+    <link rel="stylesheet" href="/static/css/progress_bar.css">
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/localStorage.js"></script>
+    <script type="module" src="/static/js/plan.js"></script>
+    <!-- <script type="module" src="/static/js/tasks.js"></script> -->
+    <script type="module" src="/static/js/content.js"></script>
+    <script type="module" src="/static/js/set_page_info.js"></script>
+    <script type="module" src="/static/js/init.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@3/dist/inspector.css">
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-xl navbar-light bg-navbar fz-18">
+      <div name="admin_dropdown" class="container-fluid">
+        <a id="index_logo" class="navbar-brand d-none d-md-block my-md-1" href="/index.html">
+          <img class="logo-pc" src="/static/imgs/2nd-home.svg" alt="">
+        </a>
+        <a id="index_logo" class="navbar-brand d-md-none" href="/index.html">
+          <img class="logo-mobile" src="/static/imgs/2nd-home.svg" alt="">
+        </a>
+        <button class="navbar-toggler mr-md-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/solution.html">解決方案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
+            </li>
+            <li id="account_status" class="nav-item d-flex align-items-center">
+              <img class="align-top" src="/static/imgs/user.svg" alt=""><a class="nav-link fw-bold px-0" href="/tplanet_signin.html">登入</a><span class="nav-link px-1 align-middle" style="margin-bottom:2px">/</span><a class="nav-link fw-bold px-0" href="/tplanet_signup.html">註冊</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- content -->
+    <section class="py-4 bg-light">
+      <div class="container">
+        <div class="row mt-3 mt-md-5">
+          <div class="col-md-12">
+            <!-- <div class="d-flex justify-content-center">
+              <iframe width="1110" height="480" src="https://www.youtube.com/embed/5otyOD5n8kM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
+            </div> -->
+          </div>
+        </div>
+        <div class="row justify-content-center mt-4 py-4 bg-white">
+          <div class="col-10">
+            <img id="project_cover" class="img-fluid" src="" alt="">  
+            <div class="row mt-4 pb-4 border-bottom">
+              <div class="col-md-6">
+                <p class="h4 text-title" id="project_name"></p>
+              </div>
+              <div class="col-md-6">
+                <div class="row justify-content-md-end pr-md-3" id="project_sdg_container">
+                </div>
+              </div>
+            </div>
+            <!-- project description -->
+            <div class="row mt-4 border-bottom">
+              <div class="col-md-6">
+                <div class="d-flex flex-column h-100 justify-content-center justify-content-md-start">
+                  <p class="mb-3">計畫期間:<span class="pl-2" id="project_period"></span></p>
+                  <p class="mb-3" id="project_uuid">計畫編號:</p>
+                  <p>
+                    <img class="mr-2" src="/static/imgs/place_marker.svg" alt="" style="width:20px">
+                    <a id="location"></a>
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex flex-column">
+                  <p class="mb-3">永續企業:<span class="pl-2" id="project_a"></span></p>
+                  <p class="mb-3">專案負責人:<span class="pl-2" id="hoster"></span></p>
+                  <p class="mb-3">地方團隊:<span class="pl-2" id="project_b"></span></p>
+                  
+                  <p class="mb-3">電子郵件:<span class="pl-2" id="email"></span></p>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4 pb-4 border-bottom">
+              <div class="col-md-12">
+                <p class="h5 fw-bold">計畫理念</p>
+                <p class="mt-3 mb-2" id="philosophy"></p>
+              </div>
+            </div>
+            <div class="row mt-5 pb-4 border-bottom" id="project_weight_description">
+            </div>
+            <div class="row mt-4 pb-4 border-bottom"> 
+              <div class="col-md-6">
+                <div class="d-md-flex flex-column justify-content-center h-100 ">
+                  <p class="font-weight-bold text-center mb-md-2 text-blue" style="font-size: 96px; font-family: Rozha One;" id="relate_people">0</p>
+                  <p class="text-center small mb-md-2">關係人口</p>
+                  <p class="font-weight-bold text-center mb-md-2 text-blue" style="font-size: 96px; font-family: Rozha One;" id="budget">0</p>
+                  <p class="text-center small">計畫金額</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                  <div class="text-center" id="obj_digital_fp_chart1">
+                    <!-- <img class="w-100" src="/static/imgs/chart_2.jpg" alt="">-->
+                    <p class="text-center small">專案指標累積</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4"> 
+              <div class="col-md-12 mb-3">
+                <p class="h5 fw-bold">成果展現</p>
+              </div>
+              <div id="tasks_container">
+<!--                 <div id="beta_task_container">
+                  <div class="row mt-4">
+                    <div class="col-md-6">
+                      <div class="text-center">
+                        <img class="w-100" src="/static/imgs/product.png" alt="">
+                      </div>
+                    </div>
+                    <div class="col-md-6 mt-4 mt-md-0">
+                      <div class="text-center">
+                        <img class="w-100" src="/static/imgs/project-chart.png" alt="">
+                      </div>
+                      <div class="text-center">
+                        <p>標題</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-4 mb-4">
+                    <div class="col-md-6">
+                      <p class="h5 fw-bold text-title">活動名稱：減塑產品設計</p>
+                      <small>日期：<span>xxxx.xx.xx</span></small>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row mt-4 mt-md-0 justify-content-md-end pr-md-3">
+                        <div class="col-2 col-md-1 pr-0">
+                          <a href="#">
+                            <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
+                          </a>
+                        </div>
+                        <div class="col-2 col-md-1 pr-0">
+                          <a href="#">
+                            <img class="w-100" src="/static/imgs/SDGs_08.jpg" alt="">
+                          </a>
+                        </div>
+                        <div class="col-2 col-md-1 pr-0">
+                          <a href="#">
+                            <img class="w-100" src="/static/imgs/SDGs_11.jpg" alt="">
+                          </a>
+                        </div>
+                        <div class="col-2 col-md-1 pr-0">
+                          <a href="#">
+                            <img class="w-100" src="/static/imgs/SDGs_15.jpg" alt="">
+                          </a>
+                        </div>
+                        <div class="col-2 col-md-1 pr-0">
+                          <a href="#">
+                            <img class="w-100" src="/static/imgs/SDGs_17.jpg" alt="">
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                      <p>
+                        設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念設計概念
+                      </p>
+                    </div>
+                    <div class="col-md-6 mt-4">
+                      <p class="bg-light p-2 text-wrap d-inline-block">
+                        <span class="fw-bold">NFT:</span>
+                        <span class="word-wrap">0xa6794dec66df7d8b69752956df1b28ca93f77cd7</span>
+                      </p>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <!-- <div class="col-md-4">
+                <div class="text-center">
+                  <img class="w-100" src="/static/imgs/product.jpg" alt="">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="h-100 d-flex align-items-center justify-content-center mt-4 mt-md-0 flex-column">
+                  <img class="w-75" src="/static/imgs/chart_2.jpg" alt="">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="d-flex h-100 align-items-center mt-3 mt-md-0">
+                  <div>
+                    <p class="mb-2 h5" style="font-weight: bolder;">活動設計名稱:<span class="pl-2">減塑產品設計</span></p>
+                    <p class="mb-2 h5" style="font-weight: bolder;">日期:<span class="pl-2"></span></p>
+                    <p class="mt-3">設計理念設計理念設計理念設計理念設計理念設計理念設計理念設計理念設計理念設計理念設計理念設計理念</p>
+                    <div>
+                      <img class="mr-2" src="/static/imgs/SDGs_04.jpg" alt="" style="width: 30px">
+                      <img class="mr-2" src="/static/imgs/SDGs_15.jpg" alt="" style="width: 30px">
+                      <img class="mr-2" src="/static/imgs/SDGs_17.jpg" alt="" style="width: 30px">
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                      <p>NFT：<span class="pl-2"></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- footer -->
+    <footer class="bg-footer">
+      <div class="container-fluid">
+        <div class="row justify-content-center pt-4">
+          <div class="col-lg-9 d-none d-lg-block">
+            <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
+              <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
+              <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
+              <p class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
+              <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
+              <p class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
+              <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="#">隱私權條款</a></p>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4 mb-lg-0">
+            <div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
+              <div>
+                <a class="text-decoration-none" href="#" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
+                  <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- mobile -->
+          <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
+            <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="#">隱私權條款</a></p>
+          </div>
+        </div>
+        <div class="py-4">
+          <div class="text-center">
+            <p class="fw-bold mb-0">Copyright &copy; 2022 SECOND HOME</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

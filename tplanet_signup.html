@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+    <script src="/static/js/localStorage.js"></script>
+    <script src="/static/js/config.js"></script>
+    <script type="module" src="/static/js/init.js"></script>
+
+    <script>
+      function onSubmit() {
+        // Check format
+        var password = $("#password").val()
+        var cfm_password = $("#cfm_password").val()
+
+        if (password.length < 8 || cfm_password.length < 8) {
+          document.getElementById("war_msg").innerHTML = "密碼不得少於 8 字元";
+          return;
+        }
+        if (password != cfm_password) {
+          document.getElementById("war_msg").innerHTML = "兩次輸入的密碼不一致";
+          return;
+        }
+
+        var dataJSON = {};
+        dataJSON.username =  $("#username").val();
+        dataJSON.password =  $("#password").val();
+        dataJSON.email =  $("#email").val();
+        $.ajax({
+          url: HOST_URL_TPLANET_DAEMON + "/accounts/signup",
+          type: "POST",
+          crossDomain: true,
+          data:  dataJSON,
+          success: function(returnData) {
+            const obj = JSON.parse(returnData);
+      setLocalStorage("jwt", obj.token);
+            setLocalStorage("username", $("#username").val());
+            console.log("Get JWT from cookie" +  getLocalStorage("jwt"));
+            window.location.replace("/index.html");
+          },
+          error: function(xhr, ajaxOptions, thrownError){
+            console.log(thrownError);
+          }
+        });
+      }
+    </script>
+
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-xl navbar-light bg-navbar fz-18">
+      <div name="admin_dropdown" class="container-fluid">
+        <a id="index_logo" class="navbar-brand d-none d-md-block my-md-1" href="/index.html">
+          <img class="logo-pc" src="/static/imgs/2nd-home.svg" alt="">
+        </a>
+        <a id="index_logo" class="navbar-brand d-md-none" href="/index.html">
+          <img class="logo-mobile" src="/static/imgs/2nd-home.svg" alt="">
+        </a>
+        <button class="navbar-toggler mr-md-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/solution.html">解決方案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link fw-bold align-middle" href="/backend/cms_plan_info.html"><img class="align-sub" src="/static/imgs/edit.svg" style="height:23px" alt=""></a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link fw-bold" href="javascript:void(0)" onclick="logout()"><img class="align-text-top" src="/static/imgs/logout.svg" style="height:25px" alt="">登出</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center my-3">
+        <div class="col-10 text-center h3">註冊</div>
+      </div>
+      <form>
+        <div class="row justify-content-center">
+          <div class="col-10 col-md-2 rounded-lg px-0">
+            <div class="form-group">
+              <input type="email" class="form-control form-control-sm bg-2ndhome" id="email" aria-describedby="emailHelp" placeholder="電子郵件">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm bg-2ndhome" id="username" placeholder="使用者名稱">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control form-control-sm bg-2ndhome" id="password"  placeholder="密碼">
+            </div>
+            <div class="form-group mb-0">
+              <input type="password" class="form-control form-control-sm bg-2ndhome" id="cfm_password" placeholder="確認密碼">
+              <!-- <small class="fz-xs text-danger">密碼不得少於 8 字元</small> -->
+              <small id="war_msg" class="fz-xs text-danger"></small>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+          <div class="col-10 col-md-2 px-0">
+            <div class="d-flex justify-content-between">
+              <a href="/tplanet_forget_pw.html" class="text-dark">忘記密碼？</a>
+              <a href="/tplanet_signup.html" class="ml-auto">建立帳戶</a>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+          <div id="captcha">
+            <!-- <img class="d-none d-md-block" src="https://fakeimg.pl/526x60/?text=安全驗證&font=noto">
+	    <img class="d-md-none" src="https://fakeimg.pl/312x60/?text=安全驗證&font=noto"> -->
+          </div>
+        </div>
+        <!-- <div class="text-center mt-4">
+	        <button type="button" class="btn btn-success" onclick="onSubmit()" >註冊</button>
+        </div> -->
+
+        <div class="row justify-content-center mt-3">
+          <div class="col-10 col-md-2 px-0">
+            <button type="button" class="btn btn-block btn-dark" onclick="onSubmit()">註冊</button>
+          </div>
+        </div>
+      </form>
+      <div class="row justify-content-center align-items-center h-100">
+        <div class=" col-10 col-md-2">
+          <div class="row">
+            <div class="col-5 mt-3 px-0">
+              <hr class="border-sm">
+            </div>
+            <div class="col-2 mt-3 pt-1 px-0 text-center"> 
+              <p class="mb-0 text-dark">或</p>
+            </div>
+            <div class="col-5 mt-3 px-0">
+              <hr class="border-sm">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12 px-0">
+		          <a class="btn btn-block btn-outline-secondary" id="btnGoogleSignIn">
+                <img class="mr-2" src="/static/imgs/google-logo-s.png" alt="">
+                <small class="text-dark">透過 Google 登入</small>
+              </a>
+            </div>
+            <div class="col-12 px-0  mt-3">
+              <a href="" class="btn btn-block btn-outline-secondary" id="btnFbSignIn">
+                <img class="mr-2" src="/static/imgs/fb-logo-s.png" alt="">
+                <small class="text-dark">透過 Facebook 登入</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <div class="container-fluid px-0 mt-4">
+      <div class="bg-cover img-fluid w-100 pt-5" style="background-image: url(/static/imgs/footer-decoration.svg); height: 126px; background-repeat: no-repeat">
+      </div>
+    <footer class="bg-footer" style="position: relative;">
+      <div class="container-fluid">
+        <div class="row justify-content-center pt-4">
+          <div class="col-lg-9 d-none d-lg-block">
+            <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
+              <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
+              <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
+              <p class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
+              <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
+              <p class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
+              <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="#">隱私權條款</a></p>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4 mb-lg-0">
+            <div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
+              <div>
+                <a class="text-decoration-none" href="#" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
+                  <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- mobile -->
+          <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
+            <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="#">隱私權條款</a></p>
+          </div>
+        </div>
+        <div class="py-4">
+          <div class="text-center">
+            <p class="fw-bold mb-0">Copyright &copy; 2022 SECOND HOME</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
