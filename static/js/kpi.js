@@ -102,35 +102,13 @@ export function draw_comm_chart(totalProjectWeight) {
 
 export function set_page_info_kpi() {
   // Get all projects
-  var obj_list_projects = list_plans("forus999@gmail.com", null);
-  var list_project_uuids = obj_list_projects.projects;
-
-  var obj_list_projects_b_type = list_plans("secondhome2023.1@gmail.com", null);
-  var list_project_uuids_b_type = obj_list_projects_b_type.projects;
-
-  var obj_list_projects_c_type = list_plans("ysnp-gov@gmail.com", null);
-  var list_project_uuids_c_type = obj_list_projects_c_type.projects;
-
-  var obj_list_projects_d_type = list_plans("mickeypeng@tpwl.org", null);
-  var list_project_uuids_d_type = obj_list_projects_d_type.projects;
-
-  try {
-    if (list_project_uuids_b_type.length != 0) {
-      list_project_uuids = list_project_uuids.concat(list_project_uuids_b_type);
-    }
-  } catch(e) { console.log(e) }
-
-  try {
-    if (list_project_uuids_c_type.length != 0) {
-      list_project_uuids = list_project_uuids.concat(list_project_uuids_c_type);
-    }
-  } catch(e) { console.log(e) }
-
-  try {
-    if (list_project_uuids_d_type.length != 0) {
-      list_project_uuids = list_project_uuids.concat(list_project_uuids_d_type);
-    }
-  } catch(e) { console.log(e) }
+  var list_project_uuids = [];
+  for (var index = 0; index < SITE_HOSTERS.length; index++) {
+    try {
+      var obj_list_projects = list_plans(SITE_HOSTERS[index], null);
+      list_project_uuids = list_project_uuids.concat(obj_list_projects.projects);
+    } catch(e) { console.log(e) }
+  }
 
   // Page info
   set_page_info_project_list();
@@ -138,7 +116,7 @@ export function set_page_info_kpi() {
   // Get total project weight
   var totalProjectWeight = get_total_project_weight(list_project_uuids);
 
-  // TODO: Set relate people and project counts
+  // Set relate people and project counts
   set_relate_people_and_project_counts(totalProjectWeight, list_project_uuids);
 
   // SDGS
