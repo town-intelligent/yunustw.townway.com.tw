@@ -2,7 +2,7 @@ import { mockup_get } from './mockup.js'
 
 export function set_page_info_contact_us () {
   var form = new FormData();
-  form.append("email", "forus999@gmail.com");
+  form.append("email", SITE_HOSTERS[0]);
 
   var obj_mockup = mockup_get(form)
 

@@ -1,7 +1,6 @@
 function mockup_get() {
   var form = new FormData();
-    // form.append("email", getLocalStorage("email"));
-    form.append("email", "forus999@gmail.com");
+    form.append("email", SITE_HOSTERS[0]);
 
     var settings = {
       "url": HOST_URL_TPLANET_DAEMON + "/mockup/get",
