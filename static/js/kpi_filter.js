@@ -6,8 +6,14 @@ export function set_page_info_kpi_filter() {
   const urlParams = new URLSearchParams(queryString);
   var index_sdg = urlParams.get("sdg")
 
-  var list_plan_uuids = list_plans("forus999@gmail.com", index_sdg);
-  var list_project_uuids = list_plan_uuids.projects;
+  // Get all projects
+  var list_project_uuids = [];
+  for (var index = 0; index < SITE_HOSTERS.length; index++) {
+    try {
+      var obj_list_projects = list_plans(SITE_HOSTERS[index], null);
+      list_project_uuids = list_project_uuids.concat(obj_list_projects.projects);
+    } catch(e) { console.log(e) }
+  }
 
   // Change SDG icon
   var index_sdgs = ("0" + parseInt(parseInt(index_sdg) + 1)).slice(-2);

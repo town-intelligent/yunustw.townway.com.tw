@@ -111,7 +111,7 @@ export function btn_cms_news_submit() {
   }
 
   var form = new FormData();
-  form.append("email", "forus999@gmail.com");
+  form.append("email", SITE_HOSTERS[0]);
   
   try {
     if (DataURIToBlob(document.getElementById("news_banner").src))

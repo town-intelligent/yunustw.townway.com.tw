@@ -97,7 +97,7 @@ $(function () {
     e.preventDefault();
 
     var form = new FormData();
-    form.append("owner", "forus999@gmail.com");
+    form.append("owner", SITE_HOSTERS[0]);
     form.append("name", document.getElementById("name").value);
     form.append("email", document.getElementById("email").value);
     form.append("org", document.getElementById("org").value);
