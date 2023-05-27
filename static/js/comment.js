@@ -1,6 +1,6 @@
 export function comment_list() {
   var dataJSON = {};
-  dataJSON.owner = "forus999@gmail.com";
+  dataJSON.owner = SITE_HOSTERS[0];
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/portal/comment_list",
     type: "POST",

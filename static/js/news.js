@@ -1,7 +1,7 @@
 export function news_list() {
   var resultJSON = {};
   var dataJSON = {};
-  dataJSON.email = "forus999@gmail.com";
+  dataJSON.email = SITE_HOSTERS[0];
 
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/news/news_list",
@@ -47,7 +47,7 @@ export function news_get(uuid) {
 export function news_delete(uuid) {
   var resultJSON = {};
   var dataJSON = {};
-  dataJSON.email = "forus999@gmail.com";
+  dataJSON.email = SITE_HOSTERS[0];
   dataJSON.uuid = uuid;
 
   $.ajax({

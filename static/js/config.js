@@ -4,3 +4,6 @@ HOST_URL_TPLANET_DAEMON = "https://beta-tplanet-backend.townway.com.tw";
 
 // EID
 HOST_URL_EID = "https://beta-eid.townway.com.tw";
+
+// Site hoster
+SITE_HOSTERS = ["damaie@gmail.com"]
