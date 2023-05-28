@@ -1,6 +1,5 @@
 function mockup_get() {
   var form = new FormData();
-  alert(SITE_HOSTERS[0]);
   form.append("email", SITE_HOSTERS[0]);
 
   var settings = {
