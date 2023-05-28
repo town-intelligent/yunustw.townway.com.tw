@@ -36,7 +36,7 @@ function exChange(data) {
   $('#textarea4').text(`${data['twins-description']}`)
 }
 
-// Add_parent_tasks
 $(document).ready (function () {
+  console.log("hello, mockup_get");
   mockup_get();
 })
