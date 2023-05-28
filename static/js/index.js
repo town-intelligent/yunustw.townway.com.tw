@@ -14,6 +14,7 @@ function mockup_get() {
     
     $.ajax(settings).done(function (response) {
       try {
+	console.log(response)
         const obj = JSON.parse(response);
         if (obj.result != false && $.isEmptyObject(obj.description) === false) {
           const data = obj.description;
