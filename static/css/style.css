@@ -111,11 +111,11 @@ html, body {
 }
 
 .bg-navbar {
-    background-color: #FFF38D !important;
+    background-color: #ABCFE9 !important;
 }
 
 .bg-footer {
-    background-color: #FFF38D !important;
+    background-color: #ABCFE9 !important;
 }
 
 .fw-bold{
@@ -123,11 +123,12 @@ html, body {
 }
 
 .logo-pc {
-  width: 320px;
+  width: 200px;
+  height: 100px;
 }
 
 .logo-mobile{
-  width: 150px;
+  width: 100px;
 }
 
 .text-title{
@@ -151,7 +152,7 @@ html, body {
 }
 
 .bg-2ndhome{
-  background-color: #FFF38D;
+  background-color: #ABCFE9;
 }
 
 .align-sub{
@@ -263,8 +264,4 @@ html, body {
 
 .text-verify-date {
   color: #4E4E4E; 
-}
-
-.footer_images:hover {
-  transform: scale(1.05);
 }
