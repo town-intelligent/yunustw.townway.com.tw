@@ -359,22 +359,22 @@ const str_project_block_in_project_page_backup = `<div class="card mb-4 border-3
       <div class="pl-2">
       <!--
         <a href="#" class="stretched-link" style="position: relative; text-decoration: none;">
-          <img style="width:13%" src="/static/imgs/SDGs_01.jpg" alt="">
+          <img style="width:13%" src="/static/imgs/SDGs_01.svg" alt="">
         </a>
         <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-          <img style="width:13%" src="/static/imgs/SDGs_04.jpg" alt="">
+          <img style="width:13%" src="/static/imgs/SDGs_04.svg" alt="">
         </a>
         <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-          <img style="width:13%"  src="/static/imgs/SDGs_06.jpg" alt="">
+          <img style="width:13%"  src="/static/imgs/SDGs_06.svg" alt="">
         </a>
         <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-          <img style="width:13%"  src="/static/imgs/SDGs_09.jpg" alt="">
+          <img style="width:13%"  src="/static/imgs/SDGs_09.svg" alt="">
         </a>
         <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-          <img style="width:13%"  src="/static/imgs/SDGs_11.jpg" alt="">
+          <img style="width:13%"  src="/static/imgs/SDGs_11.svg" alt="">
         </a>
         <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-          <img style="width:13%"  src="/static/imgs/SDGs_13.jpg" alt="">
+          <img style="width:13%"  src="/static/imgs/SDGs_13.svg" alt="">
         </a>
         -->
         SDGS_LIST
@@ -403,22 +403,22 @@ const str_project_block_in_project_page = `<a class="text-dark" href="/cms_proje
         <!--
           <div class="pl-2">
             <a href="#" class="stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%" src="/static/imgs/SDGs_01.jpg" alt="">
+              <img style="width:13%" src="/static/imgs/SDGs_01.svg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%" src="/static/imgs/SDGs_04.jpg" alt="">
+              <img style="width:13%" src="/static/imgs/SDGs_04.svg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%"  src="/static/imgs/SDGs_06.jpg" alt="">
+              <img style="width:13%"  src="/static/imgs/SDGs_06.svg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%"  src="/static/imgs/SDGs_09.jpg" alt="">
+              <img style="width:13%"  src="/static/imgs/SDGs_09.svg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%"  src="/static/imgs/SDGs_11.jpg" alt="">
+              <img style="width:13%"  src="/static/imgs/SDGs_11.svg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%"  src="/static/imgs/SDGs_13.jpg" alt="">
+              <img style="width:13%"  src="/static/imgs/SDGs_13.svg" alt="">
             </a>
             
             
@@ -432,12 +432,12 @@ const str_project_block_in_project_page = `<a class="text-dark" href="/cms_proje
 `
 
 const str_SDG_in_list_project_backup = `<a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-    <img class="pb-1" style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
+    <img class="pb-1" style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.svg" alt="">
   </a>`
 
   const str_SDG_in_list_project = `<div class="col-2 pr-0">
   <p href="#">
-    <img class="w-100" src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
+    <img class="w-100" src="/static/imgs/SDGs_INDEX_SDG.svg" alt="">
   </p>
 </div>`
 
