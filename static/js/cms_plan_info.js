@@ -80,10 +80,12 @@ export function uploadProjectCover() {
     // TODO: Resize to 1 MB
 
     // Upload base64 image file
+    /*
     if (base64Image.length > 1000000) {
       alert("您的圖檔大小需要在 1MB 以下");
       return;
     }
+    */
 
     document.getElementById("btn_ab_project_next").setAttribute("disabled","disabled");
     var obj_project_cover = submitProjectCover(base64Image, uuid);

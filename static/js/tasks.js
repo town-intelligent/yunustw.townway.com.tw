@@ -177,11 +177,13 @@ export function uploadTaskCover(uuid_task) {
   var file = new FileModal("image/*");
   file.onload = function(base64Img){
     // FIXME: Resize to 1 MB
+    /*
     if (base64Img.length > 1000000) {
       alert("您的圖檔大小需要在 1MB 以下");
       console.log(base64Img);
       return;
     }
+    */
     // Submit task cover
     var url_uuid_cover = submitTaskCover(base64Img, uuid_task);
     
