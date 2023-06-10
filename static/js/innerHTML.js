@@ -23,7 +23,7 @@ const str_cms_main_news = `
     <div class="d-flex flex-column h-100 justify-content-end text-white">
       <div class="bg-dark pt-2 px-3 bg-opacity d-flex flex-cloum justify-content-between align-items-center">
         <div>
-          <p class="mb-0 text-shadow">2023</p>
+          <p class="mb-0 text-shadow">PERIOD</p>
           <p class="text-shadow">NEWS_TITLE</p>
         </div>
         <a href="/news_content.html?uuid=NEWS_UUID" class="stretched-link"></a>
@@ -38,7 +38,7 @@ const str_cms_main_news = `
   <div class="img-fluid bg-cover" style="background-image:url(NEWS_COVER); width:100% ;height:288px; background-repeat: no-repeat">
     <div class="d-flex flex-column h-100 justify-content-end text-white">
       <div class="bg-dark pt-2 px-3 bg-opacity">
-          <p class="mb-0 text-shadow">2023</p>
+          <p class="mb-0 text-shadow">PERIOD</p>
           <p class="text-shadow">NEWS_TITLE</p>
       </div>
     </div>
@@ -228,7 +228,7 @@ const str_main_news = `
   <div class="img-fluid bg-cover" style="background-image:url(NEWS_COVER); width:100% ;height:500px; background-repeat: no-repeat">
     <div class="d-flex flex-column h-100 justify-content-end text-white">
       <div class="bg-dark pt-2 pl-3 bg-opacity">
-        <p class="mb-0 text-shadow">2023</p>
+        <p class="mb-0 text-shadow">PERIOD</p>
         <p class="text-shadow">NEWS_TITLE</p>
       </div>
     </div>
@@ -241,7 +241,7 @@ const str_main_news = `
   <div class="img-fluid bg-cover" style="background-image:url(NEWS_COVER); width:100% ;height:288px; background-repeat: no-repeat">
     <div class="d-flex flex-column h-100 justify-content-end text-white">
       <div class="bg-dark pt-2 pl-3 bg-opacity">
-        <p class="mb-0 text-shadow">2023</p>
+        <p class="mb-0 text-shadow">PERIOD</p>
         <p class="text-shadow">NEWS_TITLE</p>
       </div>
     </div>

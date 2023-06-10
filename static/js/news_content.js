@@ -11,6 +11,13 @@ export function set_page_info_news_content() {
 
     document.getElementById("title").innerHTML = obj_news.content.title;
     document.getElementById("description").innerHTML = obj_news.content.description;
+    
+    if (obj_news.content.period != null) {
+      document.getElementById("period").innerHTML = obj_news.content.period;
+    } else {
+      document.getElementById("period").innerHTML = "";
+    }
+
     var obj_banner = document.getElementById("banner");
     obj_banner.style = "background-image: url(" + 
       HOST_URL_TPLANET_DAEMON + obj_news.content.static.banner +
