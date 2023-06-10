@@ -29,6 +29,12 @@ export function set_page_info_news_list() {
     if (index_news == 0) {
       var str_main_news_ffinal = str_main_news.replace("NEWS_TITLE", obj_news.content.title)
       str_main_news_ffinal = str_main_news_ffinal.replace("NEWS_UUID", uuid)
+
+      if (obj_news.content.period != null) {
+        str_main_news_ffinal = str_main_news_ffinal.replace("PERIOD", obj_news.content.period)
+      } else {
+        str_main_news_ffinal = str_main_news_ffinal.replace("PERIOD", "")
+      }
       str_main_news_ffinal = str_main_news_ffinal.replace("NEWS_COVER", HOST_URL_TPLANET_DAEMON + obj_news.content.static.banner)
 
       var obj_main_news = document.createElement("div");
@@ -78,8 +84,12 @@ export function set_page_info_news_list() {
 
     var mb_0 = document.createElement("p");
     mb_0.className = "mb-0 text-shadow";
-    // FIXME
-    mb_0.innerHTML = "2023";
+
+    if (obj_news.content.period != null) {
+      mb_0.innerHTML = obj_news.content.period;
+    } else {
+      mb_0.innerHTML = "";
+    }
 
     var text = document.createElement("p");
     text.className = "text-shadow";
@@ -137,6 +147,12 @@ export function set_page_info_cms_news_list() {
       str_main_news_final = str_main_news_final.replace("NEWS_UUID", uuid)
       str_main_news_final = str_main_news_final.replace("NEWS_COVER", HOST_URL_TPLANET_DAEMON + obj_news.content.static.banner)
 
+      if (obj_news.content.period != null) {
+        str_main_news_final = str_main_news_final.replace("PERIOD", obj_news.content.period)
+      } else {
+        str_main_news_final = str_main_news_final.replace("PERIOD", "")
+      }
+
       var obj_main_news = document.createElement("div");
       obj_main_news.className = "col-md-12 d-none d-md-block";
       obj_main_news.innerHTML = str_main_news_final;
@@ -171,8 +187,12 @@ export function set_page_info_cms_news_list() {
   
       var mb_0 = document.createElement("p");
       mb_0.className = "mb-0 text-shadow";
-      // FIXME
-      mb_0.innerHTML = "2023";
+      
+      if (obj_news.content.period != null) {
+        mb_0.innerHTML = obj_news.content.period;
+      } else {
+        mb_0.innerHTML = "";
+      }
   
       var text = document.createElement("p");
       text.className = "text-shadow";
