@@ -121,8 +121,12 @@ export function btn_cms_news_submit() {
       form.append("banner", DataURIToBlob(document.getElementById("news_banner").src));
   } catch (e) {}
 
-  form.append("title", document.getElementById("news_title").value);
-  form.append("description", document.getElementById("news_description").value);
+  try {
+    form.append("title", document.getElementById("news_title").value);
+    form.append("description", document.getElementById("news_description").value);
+    form.append("news_start", document.getElementById("news_start").value);
+    form.append("news_end", document.getElementById("news_end").value);
+  } catch (e) {}
 
   try {
     if (DataURIToBlob(document.getElementById("news_img_0").src))
@@ -138,7 +142,7 @@ export function btn_cms_news_submit() {
     if (DataURIToBlob(document.getElementById("news_img_2").src))
       form.append("img_2", DataURIToBlob(document.getElementById("news_img_2").src));
   } catch (e) {}
-  
+
   var result_news = news_add(form);
   if (result_news.result == true) {
     alert("上架成功!");
