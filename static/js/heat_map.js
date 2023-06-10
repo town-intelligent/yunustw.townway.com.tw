@@ -68,7 +68,7 @@ export async function set_page_info_heat_map() {
 
       try {
         if (obj_task_weight[key] != "0") { 
-          list_icon_img.push({ src: "/static/imgs/SDGsForMap/SDGs_" +  pad(index_weight) + ".jpg", x: cx += 45, y: 0 , opacity: 1})
+          list_icon_img.push({ src: "/static/imgs/SDGsForMap/SDGs_" +  pad(index_weight) + ".svg", x: cx += 45, y: 0 , opacity: 1})
         }
       } catch (e) { 
         console.log(e);

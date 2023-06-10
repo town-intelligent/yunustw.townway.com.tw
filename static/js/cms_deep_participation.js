@@ -200,13 +200,13 @@ function set_page_in_add_child_task_block(obj_task) {
       obj_a.className = "d-block";
       // obj_a.id = "SDGs_container_" + ;
 
-      // <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
+      // <img class="mr-3" src="/static/imgs/SDGs_04.svg" alt="" style="width:60px">
       var index_sdg = ("0" + index).slice(-2);
       
       var obj_img = document.createElement("img");
       obj_img.id = "target_sdgs_" + index_sdg;
       obj_img.className = "mx-2 mt-3 mb-3 mt-md-0";//" participation-margin mt-md-0 mr-3";
-      obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg";
+      obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".svg";
       
       obj_img.alt = "";
       obj_img.style = "width:135px";
@@ -439,13 +439,13 @@ function set_page_in_add_child_task_block_backup(obj_task) {
       obj_a.className = "d-block";
       // obj_a.id = "SDGs_container_" + ;
 
-      // <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
+      // <img class="mr-3" src="/static/imgs/SDGs_04.svg" alt="" style="width:60px">
       var index_sdg = ("0" + index).slice(-2);
       
       var obj_img = document.createElement("img");
       obj_img.id = "target_sdgs_" + index_sdg;
       obj_img.className = "mx-2 mt-3 mb-3 mt-md-0";//" participation-margin mt-md-0 mr-3";
-      obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg";
+      obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".svg";
       
       obj_img.alt = "";
       obj_img.style = "width:135px";
@@ -831,11 +831,11 @@ $(function () {
       obj_a.className = "d-block";
       // obj_a.id = "SDGs_container_" + ;
 
-      // <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
+      // <img class="mr-3" src="/static/imgs/SDGs_04.svg" alt="" style="width:60px">
       var obj_img = document.createElement("img");
       obj_img.id = "target_sdgs_" + getLocalStorage("target_sdgs");
       obj_img.className = "mx-2 mt-3 mb-3 mt-md-0";//" participation-margin mt-md-0 mr-3";
-      obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".jpg";
+      obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".svg";
       obj_img.alt = "";
       obj_img.style = "width:135px";
 
