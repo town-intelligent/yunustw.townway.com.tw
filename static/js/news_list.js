@@ -157,8 +157,25 @@ export function set_page_info_cms_news_list() {
       obj_main_news.className = "col-md-12 d-none d-md-block";
       obj_main_news.innerHTML = str_main_news_final;
 
-      document.getElementById("main_news").append(obj_main_news);
+      var obj_del = document.createElement("div");
+      obj_del.className = "text-center mb-4";
+      var obj_del_a_href = document.createElement("a");
+      obj_del_a_href.className = "btn btn-danger rounded-pill text-white";
+      obj_del_a_href.style = "width: 100px";
+      obj_del_a_href.onclick = function() {
+        if (confirm("即將刪除 : " + obj_news.content.title) == true) {
+          var obj_delete_result = news_delete(obj_news.content.uuid);
 
+          if (obj_delete_result.result == true) {
+            location.reload();
+          }
+        }
+      };
+      obj_del_a_href.innerHTML = "刪除";
+
+      obj_del.append(obj_del_a_href);
+      obj_main_news.append(obj_del);
+      document.getElementById("main_news").append(obj_main_news);
     } else {
 
       // Create DOMs
@@ -198,10 +215,6 @@ export function set_page_info_cms_news_list() {
       text.className = "text-shadow";
       text.innerHTML = obj_news.content.title;
 
-
-      /* <div class="text-center mb-4">
-        <a href="#" class="btn btn-danger">刪除</a>
-      </div> */
       var obj_del = document.createElement("div");
       obj_del.className = "text-center mb-4";
 
