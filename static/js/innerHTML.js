@@ -27,7 +27,6 @@ const str_cms_main_news = `
           <p class="text-shadow">NEWS_TITLE</p>
         </div>
         <a href="/news_content.html?uuid=NEWS_UUID" class="stretched-link"></a>
-        <a href="#" class="btn btn-danger rounded-pill stretched-link" style="width: 15%; position: relative;">刪除</a>
       </div>
     </div>
   </div>
@@ -249,9 +248,7 @@ const str_main_news = `
   </div>
 </div>
 </div>
-
 `
-
 
 const str_parent_task_block = `
 <div class="row py-3 mb-2 justify-content-center">
