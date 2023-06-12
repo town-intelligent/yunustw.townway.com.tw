@@ -123,11 +123,11 @@ html, body {
 }
 
 .logo-pc {
-  width: 320px;
+  height: 90px;
 }
 
 .logo-mobile{
-  width: 150px;
+  height: 45px;
 }
 
 .text-title{
