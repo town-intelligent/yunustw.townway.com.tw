@@ -1,20 +1,6 @@
 import { news_add } from './news.js'
 import { mockup_upload, mockup_get } from './mockup.js'
 
-function DataURIToBlob(dataURI) {
-  try {
-    const splitDataURI = dataURI.split(',')
-    const byteString = splitDataURI[0].indexOf('base64') >= 0 ? atob(splitDataURI[1]) : decodeURI(splitDataURI[1])
-    const mimeString = splitDataURI[0].split(':')[1].split(';')[0]
-
-    const ia = new Uint8Array(byteString.length)
-    for (let i = 0; i < byteString.length; i++)
-        ia[i] = byteString.charCodeAt(i)
-
-    return new Blob([ia], { type: mimeString })
-  } catch (e) { return null; }
-}
-
 export function set_page_info_cms_add_news() {
   var form = new FormData();
   form.append("email", getLocalStorage("email"));
@@ -78,32 +64,13 @@ export function add_news_img(no) {
   file.show();
 }
 
-export function changeNewsListBanner() {
-  var file = new FileModal("image/*");
-  file.onload = function(base64Img){
+export async function changeNewsListBanner() {
+  var image_src = await upload_image_file(2400, null,"news_banner_image", true);
+  var form = new FormData();
+  form.append("email", getLocalStorage("email"));
+  form.append("news-banner-img", DataURIToBlob(image_src));
 
-    // Preview
-    document.getElementById("news_banner_image").style.backgroundImage =  "url(" + base64Img + ")";
-
-    // Push
-    var result_banner_upload = {};
-    try {
-      var news_banner_image = document.getElementById("news_banner_image").style.backgroundImage.replace('url("', '');
-      news_banner_image = document.getElementById("news_banner_image").style.backgroundImage.replace('")', '');
-      
-      var form = new FormData();
-      form.append("email", getLocalStorage("email"));
-      form.append("news-banner-img", DataURIToBlob(news_banner_image), "news-banner-img.png");
-
-      result_banner_upload = mockup_upload(form);
-
-    } catch (e) {
-      alert(e)
-    }
-
-    alert("上傳成功!");
-  };
-  file.show();
+  var result_banner_upload = mockup_upload(form);
 }
 
 export function btn_cms_news_submit() {
