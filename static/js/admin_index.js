@@ -28,7 +28,7 @@ function mockup_get() {
 
 function exChange(data) {
   $('#Tbanner_image').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['banner-image']})`)
-  
+
   if (`${data['t-planet-img']}`.localeCompare("undefined") === -1) {
     $('#t_planet_img').attr("src",`${HOST_URL_TPLANET_DAEMON}${data['t-planet-img']}`)
   }

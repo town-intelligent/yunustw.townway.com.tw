@@ -17,7 +17,7 @@ export function set_page_info_kpi_filter() {
 
   // Change SDG icon
   var index_sdgs = ("0" + parseInt(parseInt(index_sdg) + 1)).slice(-2);
-  document.getElementById("sdg_icon").src = "/static/imgs/SDGs_" + index_sdgs + ".jpg";
+  document.getElementById("sdg_icon").src = "/static/imgs/SDGs_" + index_sdgs + ".svg";
 
   // Projects
   var obj_project_list = document.getElementById("project_list");
@@ -153,7 +153,7 @@ export function set_page_info_kpi_filter() {
         obj_sdg_img.className = "w-100";
 
         var index_sdg = ("0" + (index_sdgs + 1)).slice(-2);
-        obj_sdg_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg";
+        obj_sdg_img.src = "/static/imgs/SDGs_" + index_sdg + ".svg";
         obj_sdg_img.alt = "";
       
         obj_sdg_div.append(obj_sdg_img);
