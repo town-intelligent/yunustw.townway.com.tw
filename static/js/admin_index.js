@@ -28,14 +28,30 @@ function mockup_get() {
 
 function exChange(data) {
   $('#Tbanner_image').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['banner-image']})`)
-  $('#t_planet_img').attr("src",`${HOST_URL_TPLANET_DAEMON}${data['t-planet-img']}`)
+
+  if (`${data['t-planet-img']}`.localeCompare("undefined") === -1) {
+    $('#t_planet_img').attr("src",`${HOST_URL_TPLANET_DAEMON}${data['t-planet-img']}`)
+  }
+  
   $('#csr_img').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['csr-img']})`)
   $('#sdg_img').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['sdg-img']})`)
   $('#twins_img').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['twins-img']})`)
-  $('#textarea1').val(`${data['t-planet-description']}`)
-  $('#textarea2').val(`${data['csr-description']}`)
-  $('#textarea3').val(`${data['sdg-description']}`)
-  $('#textarea4').val(`${data['twins-description']}`)
+  
+  if (`${data['t-planet-description']}`.localeCompare("undefined") === -1) {
+    $('#textarea1').val(`${data['t-planet-description']}`)
+  }
+
+  if (`${data['csr-description']}`.localeCompare("undefined") === -1) {
+    $('#textarea2').val(`${data['csr-description']}`)
+  }
+
+  if (`${data['sdg-description']}`.localeCompare("undefined") === -1) {
+    $('#textarea3').val(`${data['sdg-description']}`)
+  }
+
+  if (`${data['twins-description']}`.localeCompare("undefined") === -1) {
+    $('#textarea4').val(`${data['twins-description']}`)
+  }
 }
 
 export function mockup_new() {
