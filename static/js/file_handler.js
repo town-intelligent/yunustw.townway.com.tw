@@ -46,7 +46,6 @@ function upload_image_file(width = null, height = null, id_preview = null, backg
     var image = null;
     var scaledBase64Img = null;
     file.onload = function(base64Img) {
-
       // 執行頁面載入特效
       startLoadingAnimation();
 
@@ -85,8 +84,10 @@ function upload_image_file(width = null, height = null, id_preview = null, backg
           if (background == true) {
             document.getElementById(id_preview).style.backgroundImage =  "url(" + scaledBase64Img  + ")";
           } else {
-            document.getElementById(id_preview).appendChild(scaledBase64Img);
+            document.getElementById(id_preview).src = scaledBase64Img;
           }
+          document.getElementById(id_preview).style.width = canvas.width + "px";
+          document.getElementById(id_preview).style.height = canvas.height + "px";
         }
 
         // 解除頁面載入特效
@@ -122,4 +123,18 @@ function showOverlay() {
 function hideOverlay() {
   var overlay = document.getElementById('loading');
   overlay.style.display = 'none';
+}
+
+async function show_loading() {
+  return new Promise((resolve, reject) => {
+    startLoadingAnimation();
+    resolve(true);
+  });
+}
+
+async function stop_loading() {
+  return new Promise((resolve, reject) => {
+    stopLoadingAnimation();
+    resolve(true);
+  });
 }
