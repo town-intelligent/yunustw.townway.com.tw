@@ -274,3 +274,7 @@ section {
 .text-verify-date {
   color: #4E4E4E; 
 }
+
+.footer_images:hover {
+  transform: scale(1.05);
+}

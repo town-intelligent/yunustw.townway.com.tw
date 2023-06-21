@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="/static/css/style.css" >
+    <link rel="stylesheet" href="/static/css/loading.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
     <script src="/static/js/innerHTML.js"></script>
     <script src="/static/js/config.js"></script>
@@ -84,13 +85,23 @@
           </button> -->
         </div>
       </div>
+      
+      <div id="loading">
+        <div id="loading-text">
+          <p>上傳中 ...</p>
+        </div>
+        <div id="loading-spinner">
+          <img src="/static/imgs/loading.png" alt="Loading">
+        </div>
+      </div>
+
       <div class="container">
         <div class="my-4">
           <div class="row justify-content-center">
             <div class="col-10 px-0">
               <p class="bg-2ndhome px-3 p-2">新增專案</p>
               <div class="row">
-                <div class="col-md-6 mt-3">
+                <div class="col-md-6 mt-3 xs-2">
                   <div class="border d-flex flex-column align-items-center justify-content-center h-100">
                     <img id="news_banner" src="/static/imgs/image_icon.svg" width="450" height="350" alt="">
                     <p class="mb-0">上傳照片</p>
@@ -132,8 +143,6 @@
                     </div>
                   </div>
                 </div>
-
-                
                 <div class="form-group col-12 mt-3 mt-md-0">
                   <label for="inputEvent6">專案圖片</label>
                   <div class="row">
@@ -171,53 +180,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="col-md-9">
-              <div class="row">
-                <div class="form-group col-12 mt-3 mt-md-0">
-                  <label for="inputEvent1">專案標題</label>
-                  <input type="text" class="form-control" id="news_title" placeholder="">
-                </div>
-                <div class="form-group col-12 mt-3 mt-md-0">
-                  <label for="inputEvent7">專案內容</label>
-                  <textarea class="form-control" id="news_description" style="resize : none" rows="10"></textarea>
-                </div>
-                <div class="form-group col-12 mt-3 mt-md-0">
-                  <label for="inputEvent6">專案圖片</label>
-                  <div class="row">
-                    <div class="col-md-4 mt-3 mt-md-0">
-                      <div class="card card-button" style="height: 250px;">
-                        <div class="d-flex justify-content-center align-items-center h-100">
-                          <div class="text-center">
-                            <img id="news_img_0" src="/static/imgs/image_icon.svg" alt="" style="width:50px">
-                          </div>
-                        </div>
-                        <a href="#" onclick="add_news_img('0');" class="stretched-link"></a>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mt-3 mt-md-0">
-                      <div class="card card-button" style="height: 250px;">
-                        <div class="d-flex justify-content-center align-items-center h-100">
-                          <div class="text-center">
-                            <img id="news_img_1" src="/static/imgs/image_icon.svg" alt="" style="width:50px">
-                          </div>
-                        </div>
-                        <a href="#" onclick="add_news_img('1');" class="stretched-link"></a>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mt-3 mt-md-0">
-                      <div class="card card-button" style="height: 250px;">
-                        <div class="d-flex justify-content-center align-items-center h-100">
-                          <div class="text-center">
-                            <img id="news_img_2" src="/static/imgs/image_icon.svg" alt="" style="width:50px">
-                          </div>
-                        </div>
-                        <a href="#" onclick="add_news_img('2')"; class="stretched-link"></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
           <div class="text-center mb-4">
             <button onclick="btn_cms_news_submit()" type="button" class="btn btn-dark">確定送出</button>
