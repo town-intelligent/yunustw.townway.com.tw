@@ -37,5 +37,6 @@ function exChange(data) {
 }
 
 $(document).ready (function () {
+  console.log("hello, mockup_get");
   mockup_get();
 })
