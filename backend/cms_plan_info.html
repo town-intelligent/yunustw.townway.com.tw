@@ -12,11 +12,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-
     <link rel="stylesheet" href="/static/css/style.css" >
+    <link rel="stylesheet" href="/static/css/loading.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
     <script src="/static/js/config.js"></script>
     <script src="/static/js/localStorage.js"></script>
@@ -43,7 +42,6 @@
     });
     </script>
   </head>
-
   <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-xl navbar-light bg-navbar fz-18">
@@ -97,6 +95,16 @@
     </div>
     <!-- content -->
     <section>
+
+      <div id="loading">
+        <div id="loading-text">
+          <p>上傳中 ...</p>
+        </div>
+        <div id="loading-spinner">
+          <img src="/static/imgs/loading.png" alt="Loading">
+        </div>
+      </div>
+
       <div class="container">
         <form action="">
           <div class="row mt-5 pt-5 align-items-center justify-content-center">
@@ -104,12 +112,7 @@
               <p class="bg-2ndhome p-2">永續合作封面</p>
             </div>
             <div class="col-12">
-              <div id="coverImg" class="border d-flex flex-column align-items-center justify-content-center" style="height: 300px;">
-                <!--
-                <img src="/static/imgs/image_icon.svg" width="100" height="100" alt="">
-                <a href="#" class="stretched-link"></a>
-                -->
-                
+              <div id="coverImg" class="border d-flex flex-column align-items-center justify-content-center" style="height: 300px;">                
                 <button type="button" class="btn btn-light border-dark" id="btnUploadImg" onclick="uploadProjectCover()">
                   <div id="divUploadImg" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg); width: 100px; height: 100px; background-repeat: no-repeat" ></div>
                 </button>
@@ -131,13 +134,6 @@
             </div>
             <div class="col-12">
               <input id="project_a" class="form-control" type="text" placeholder="請填寫企業名稱">
-	      <!--
-              <div class="form-group mb-0">
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>請選擇帳號</option>
-                </select>
-              </div>
-	      -->
             </div>
           </div>
           <div class="row mt-4 align-items-center">
@@ -146,16 +142,6 @@
             </div>
             <div class="col-12">
               <input id="project_b" class="form-control" type="text" placeholder="請填寫團隊名稱">  
-	      <!--
-              <div class="form-group mb-0">
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>請選擇帳號</option>
-                </select>
-                <div class="mt-3">
-                  <button class="btn btn-block btn-outline-secondary">+</button>
-                </div>
-              </div>
-	      -->
             </div>
           </div>
           <div class="row mt-4 align-items-center">
@@ -200,28 +186,18 @@
             <div class="row mt-4 mb-5 pb-3 justify-content-center">
             <div class="col-md-8">
               <div id="submit_container" class="d-flex justify-content-center">
-		<!--<button class="btn btn-dark d-none d-md-block rounded-pill mr-3" style="width: 15%">檢視</button>-->
-		<button type="submit" id="btn_cms_plan_preview" class="btn btn-dark d-none d-md-block rounded-pill mr-3" style="width: 15%">檢視</button>
+		            <button type="submit" id="btn_cms_plan_preview" class="btn btn-dark d-none d-md-block rounded-pill mr-3" style="width: 15%">檢視</button>
                 <button type="submit" id="btn_ab_project_next" class="btn btn-dark d-none d-md-block rounded-pill mr-3" style="width: 15%">下一步</button>
                 <button type="submit" id="btn_cms_plan_save" class="btn btn-success d-none d-md-block rounded-pill mr-3" style="width: 15%">儲存草稿</button>
               </div>
             </div>
             <div class="col-12">
               <div id="submit_container">
-		<!--<button class="btn btn-dark d-md-none rounded-pill mb-2 w-100">檢視</button>-->
                 <button type="submit" id="btn_cms_plan_preview" class="btn btn-dark d-md-none rounded-pill mb-2 w-100">檢視</button>
                 <button type="submit" id="btn_ab_project_next" class="btn btn-dark d-md-none rounded-pill mb-2 w-100">下一步</button>
                 <button type="submit" id="btn_cms_plan_save" class="btn btn-success d-md-none rounded-pill w-100">儲存草稿</button>
               </div>
             </div>
-          <!-- <div class="row mt-4 mb-5 pb-3">
-            <div class="col-12">
-              <div id="submit_container" class="d-flex justify-content-end">
-		            <button type="submit" id="btn_ab_project_next" class="btn btn-primary d-none d-md-block" style="width: 20%">下一步</button>
-                <button type="submit" id="btn_ab_project_next" class="btn btn-primary btn-block d-md-none">下一步</button>
-              </div>
-            </div>
-          </div> -->
         </form>
       </div>
     </section>

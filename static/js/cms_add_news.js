@@ -1,20 +1,6 @@
 import { news_add } from './news.js'
 import { mockup_upload, mockup_get } from './mockup.js'
 
-function DataURIToBlob(dataURI) {
-  try {
-    const splitDataURI = dataURI.split(',')
-    const byteString = splitDataURI[0].indexOf('base64') >= 0 ? atob(splitDataURI[1]) : decodeURI(splitDataURI[1])
-    const mimeString = splitDataURI[0].split(':')[1].split(';')[0]
-
-    const ia = new Uint8Array(byteString.length)
-    for (let i = 0; i < byteString.length; i++)
-        ia[i] = byteString.charCodeAt(i)
-
-    return new Blob([ia], { type: mimeString })
-  } catch (e) { return null; }
-}
-
 export function set_page_info_cms_add_news() {
   var form = new FormData();
   form.append("email", getLocalStorage("email"));
@@ -31,82 +17,31 @@ export function set_page_info_cms_add_news() {
   $("#news_end").datepicker();
 }
 
-export function uploadNewsCover() {
-  var file = new FileModal("image/*");
-  file.onload = function(base64Img){
-
-    // Preview
-    // document.getElementById("news_banner").style.backgroundImage =  "url(" + base64Img + ")";
-    document.getElementById("news_banner").src = base64Img;
-  };
-  file.show();
+export async function uploadNewsCover() {
+  await upload_image_file(450, null,"news_banner", false);
 }
 
-export function add_news_img(no) {
-  var file = new FileModal("image/*");
-  file.onload = function(base64Img){
-    // Preview
-    var image = new Image();
-    image.src = base64Img;
-    image.onload = function() {
-      // Create canvas
-      var canvas = document.createElement("canvas");
-      var ctx = canvas.getContext("2d");
-      
-      // Resize (294x248)
-      var scale = Math.min(294 / image.width, 248 / image.height);
-      var width = image.width * scale;
-      var height = image.height * scale;
- 
-      // 设置画布尺寸
-      canvas.width = width;
-      canvas.height = height;
-
-      // 在画布上绘制缩放后的图像
-      ctx.drawImage(image, 0, 0, width, height);
-
-      // 将缩放后的图像转为 base64 格式
-      var scaledBase64Img = canvas.toDataURL();
-
-      // 设置缩略图
-      var thumbnail = document.getElementById("news_img_" + no);
-      thumbnail.src = scaledBase64Img;
-      thumbnail.style.width = width + "px";
-      thumbnail.style.height = height + "px";
-    };
-  };
-  file.show();
+export async function add_news_img(no) {
+  await upload_image_file(294, 165,"news_img_" + no, false);
 }
 
-export function changeNewsListBanner() {
-  var file = new FileModal("image/*");
-  file.onload = function(base64Img){
+export async function changeNewsListBanner() {
+  var image_src = await upload_image_file(2400, null,"news_banner_image", true);
+  var form = new FormData();
+  form.append("email", getLocalStorage("email"));
+  form.append("news-banner-img", DataURIToBlob(image_src));
 
-    // Preview
-    document.getElementById("news_banner_image").style.backgroundImage =  "url(" + base64Img + ")";
-
-    // Push
-    var result_banner_upload = {};
-    try {
-      var news_banner_image = document.getElementById("news_banner_image").style.backgroundImage.replace('url("', '');
-      news_banner_image = document.getElementById("news_banner_image").style.backgroundImage.replace('")', '');
-      
-      var form = new FormData();
-      form.append("email", getLocalStorage("email"));
-      form.append("news-banner-img", DataURIToBlob(news_banner_image), "news-banner-img.png");
-
-      result_banner_upload = mockup_upload(form);
-
-    } catch (e) {
-      alert(e)
-    }
-
-    alert("上傳成功!");
-  };
-  file.show();
+  var result_banner_upload = mockup_upload(form);
 }
 
-export function btn_cms_news_submit() {
+function prepare_news_upload() {
+  return new Promise(async (resolve, reject) => {
+    await show_loading();
+    resolve(true);
+  });
+}
+
+export async function btn_cms_news_submit() {
 
   if ("title", document.getElementById("news_title").value == "") {
     alert("請至少填寫新聞標題！");
@@ -143,26 +78,15 @@ export function btn_cms_news_submit() {
       form.append("img_2", DataURIToBlob(document.getElementById("news_img_2").src));
   } catch (e) {}
 
-  var result_news = news_add(form);
-  if (result_news.result == true) {
-    alert("上架成功!");
-    window.location.replace("/backend/cms_news_list.html");
-  } else {
-    alert("上架失敗，請檢查資料欄位!");
-  }
-
-}
-
-/* function news_banner_image_read(input){
-  if(input.files && input.files[0]){
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var url = e.target.result
-       $("#twins_img").css('background-image', `url( ${url})`);
+  prepare_news_upload().then(async function () {
+    var resultJSON =  news_add(form);
+    return resultJSON;
+  }).then(function (resultJSON) {
+    if (resultJSON.result == true) {
+      alert("更新成功");
+      location.reload();
+    } else {
+      alert("更新失敗，請洽系統管理員。");
     }
-    reader.readAsDataURL(input.files[0]);
-  }
-} */
-
-
-// <tr class="bg-light">
+  });
+}
