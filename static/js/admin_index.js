@@ -100,7 +100,7 @@ export async function mockup_new() {
     twins_img = document.getElementById("twins_img").style.backgroundImage.replace('")', '');
     var obj_twins_img = DataURIToBlob(twins_img);
 
-    formData.append("twins-img", obj_twins_img)
+    formData.append("twins-img", obj_twins_img);
   }
 
   formData.append("t-planet-description",t_planet_description)
