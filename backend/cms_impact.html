@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css" >
+    <link rel="stylesheet" href="/static/css/loading.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
     <link rel="stylesheet" href="../static/css/kpi.css">
     <script src="/static/js/config.js"></script>
@@ -95,8 +96,18 @@
     </div>
     <!-- content -->
     <section>
+
+      <div id="loading">
+        <div id="loading-text">
+          <p>上傳中 ...</p>
+        </div>
+        <div id="loading-spinner">
+          <img src="/static/imgs/loading.png" alt="Loading">
+        </div>
+      </div>
+
       <div class="container">
-	<form action="">
+	      <form action="">
         <div class="row mt-5 pt-5 pt-3 align-items-center justify-content-center">
           <div class="col-10 px-0">
             <p class="bg-2ndhome px-3 p-2">選擇計劃總指標</p>
@@ -115,51 +126,6 @@
           </div>
         </div>
         <div id = "div_parent_task"></div>
-        <!--
-        <div class="row h-100">
-          <div class="col-md-6">
-            <div id="coverImg" class="border d-flex align-items-center justify-content-center h-100">
-              mark this line <img src="/static/imgs/image_icon.svg" width="100" height="100" alt="">
-              <button type="button" id="btnUploadImg" onclick="uploadTaskCover()">
-                <div id="divUploadImg" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg); width: 100px; height: 100px; background-repeat: no-repeat" ></div>
-              </button>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <form>
-              <div class="form-row">
-                <div class="form-group col-12 mt-3 mt-md-0">
-                  <label for="inputEvent">活動設計名稱</label>
-                  <input id="parent_task_name_0" type="text" class="form-control" id="inputEvent" placeholder="">
-                </div>
-                <div class="form-group col-6">
-                  <label for="inputDatePicker1">開始日期</label>
-                  <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                    <input type="text" id="parent_task_start_date_0" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
-                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group col-6">
-                  <label for="inputDatePicker2">結束日期</label>
-                  <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                    <input type="text" id="parent_task_due_date_0" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
-                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="textareaIdea">理念傳達</label>
-                <textarea id="parent_task_overview_0" class="form-control" id="textareaIdea" placeholder="" style="resize: none"></textarea>
-              </div>
-	            <button id="btn_cms_plan_add_parent_tasks" class="btn btn-block btn-outline-secondary">新增任務 +</button>
-          </div>
-        </div>
-        -->
         <!-- parent task block -->
         <div class="row mt-5 mb-5 pb-3 justify-content-center">
           <div class="col-md-8 mt-5 d-none d-md-block">
@@ -225,9 +191,4 @@
       </div>
     </footer>
   </body>
-  <!-- <script>
-    function btn() {
-      let name = document.getElementById('UUID_TASK')
-    }
-  </script> -->
 </html>
