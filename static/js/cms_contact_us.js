@@ -1,20 +1,6 @@
 import { comment_list, comment_get } from './comment.js'
 import { mockup_get, mockup_upload } from './mockup.js'
 
-function DataURIToBlob(dataURI) {
-  try {
-    const splitDataURI = dataURI.split(',')
-    const byteString = splitDataURI[0].indexOf('base64') >= 0 ? atob(splitDataURI[1]) : decodeURI(splitDataURI[1])
-    const mimeString = splitDataURI[0].split(':')[1].split(';')[0]
-
-    const ia = new Uint8Array(byteString.length)
-    for (let i = 0; i < byteString.length; i++)
-        ia[i] = byteString.charCodeAt(i)
-
-    return new Blob([ia], { type: mimeString })
-  } catch (e) { return null; }
-}
-
 export function uploadCmsContactUsCover () {
   var file = new FileModal("image/*");
   file.onload = function(base64Img){

@@ -19,9 +19,6 @@ export function add_parent_task_block (obj_task = null) {
       return;
     }
 
-    /* var parent_task_queue = [];
-    add_to_parent_task_queue(parent_task_queue, uuid_child) */
-
     // Replace variable in str_parent_task_block
     var str_parent_task_innetHTML = str_parent_task_block.replaceAll("UUID_TASK", uuid_parent);
     // Replace variable and generate block
@@ -57,7 +54,6 @@ export function add_parent_task_block (obj_task = null) {
     }
     document.getElementById("parent_task_overview_" + obj_task.uuid).value = obj_task.overview;
     // cover
-    // HOST_URL_TPLANET_DAEMON
     var path_cover = HOST_URL_TPLANET_DAEMON + 
     "/static/project/" + uuid + 
     "/tasks/" + obj_task.uuid + "/cover.png";
@@ -118,22 +114,8 @@ function add_sdgs_input(index) {
     obj_div.appendChild(img);
     obj_div.appendChild(obj_textarea);
     obj_sdgs_container.append(obj_div);
-  }
-function add_social_impact_chkbox() {
-  // Load social impact items
-   var cms_plan_list_sdg = getLocalStorage("cms_plan_list_sdg");
-   var list_cms_plan_list_sdg = cms_plan_list_sdg.split(",");
-   for (var index = 0 ; index <17; index++) {
-   if (list_cms_plan_list_sdg[index] == "1") {
-      add_sdgs_input(index + 1);
-      // Check if this page redirect from add task flow
-      var str_weight_description = getLocalStorage("weight_description");
-      if (str_weight_description != "") {
-        add_sdgs_comment(index + 1);
-      }
-    }
-  }
 }
+
 export function set_page_info_cms_impact(uuid) {
   var obj_plan = plan_info(uuid);
   var list_sdgs_input = [];

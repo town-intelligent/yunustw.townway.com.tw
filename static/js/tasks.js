@@ -150,7 +150,32 @@ export function list_children_tasks(task) {
   });
   return dataJSON.task;
 }
-function submitTaskCover(base64Img, uuid_task) {
+
+export async function submitTaskCover(base64Img, uuid_task) {
+  return new Promise((resolve, reject) => {  
+    var resultJSON = {};
+    var dataJSON = {};
+    // dataJSON.email = getLocalStorage("email");
+    dataJSON.uuid = uuid_task;
+    dataJSON.img = base64Img;
+
+    var settings = {
+      url: HOST_URL_TPLANET_DAEMON + "/tasks/push_task_cover",
+      type: "POST",
+      async: true,
+      crossDomain: true,
+      data:  dataJSON,
+    };
+    $.ajax(settings).done(function (response) {
+      resultJSON = JSON.parse(response);
+      resolve(resultJSON); // 在响应解析后解析 Promise
+    }).fail(function (error) {
+      reject(error); // 在发生错误时拒绝 Promise
+    });  
+  });
+} 
+
+/* function submitTaskCover(base64Img, uuid_task) {
   var dataJSON = {};
   // dataJSON.email = getLocalStorage("email");
   dataJSON.uuid = uuid_task;
@@ -165,40 +190,43 @@ function submitTaskCover(base64Img, uuid_task) {
       const obj = JSON.parse(returnData);
     }
   });
-}
+} */
+
 export function onclickuploadTaskCover(uuid) {
   uploadTaskCover(uuid);
 }
-export function uploadTaskCover(uuid_task) {
+
+function prepare_task_cover_upload() {
+  return new Promise(async (resolve, reject) => {
+    await show_loading();
+    resolve(true);
+  });
+}
+
+export async function uploadTaskCover(uuid_task) {
   // Get project uuid
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   var uuid = urlParams.get("uuid")
-  var file = new FileModal("image/*");
-  file.onload = function(base64Img){
-    // FIXME: Resize to 1 MB
-    /*
-    if (base64Img.length > 1000000) {
-      alert("您的圖檔大小需要在 1MB 以下");
-      console.log(base64Img);
-      return;
+
+  // Preview
+  await upload_image_file(443, 300, "coverImg_" + uuid_task, true);
+
+  prepare_task_cover_upload().then(async function () {
+    var coverImg = document.getElementById( "coverImg_" + uuid_task).style.backgroundImage.replace('url("', '');
+    coverImg = coverImg.replace('")', '');
+
+    var resultJSON = submitTaskCover(coverImg, uuid_task);
+
+    return resultJSON;
+  }).then(async function (resultJSON) {
+    if (resultJSON.result == "true") {
+      alert("更新成功");
+    } else {
+      alert("更新失敗，請洽系統管理員。");
     }
-    */
-    // Submit task cover
-    var url_uuid_cover = submitTaskCover(base64Img, uuid_task);
-    
-    // Update task cover
-    document.getElementById("divUploadImg_" + uuid_task).style.backgroundImage =  "";
-    document.getElementById("btnUploadImg_" + uuid_task).style.display = "none";
-    document.getElementById("coverImg_" + uuid_task).style.backgroundImage =  "url(" + base64Img + ")";
-    document.getElementById("coverImg_" + uuid_task).style.backgroundRepeat = "no-repeat";
-    document.getElementById("coverImg_" + uuid_task).style.backgroundSize = "100% 100%";
-    var oDiv = document.getElementById("coverImg_" + uuid_task);
-    oDiv.onclick = function() {
-      onclickuploadTaskCover(uuid_task);
-    }
-  };
-  file.show();
+    stop_loading();
+  });
 }
 
 export function child_task_submit(page){
