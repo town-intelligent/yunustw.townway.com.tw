@@ -78,6 +78,7 @@ export async function mockup_new() {
   if (document.getElementById("t_planet_img").src.includes("data:") == true) {
     formData.append("t-planet-img", DataURIToBlob(document.getElementById("t_planet_img").src));
   }
+}
 
   if (document.getElementById("csr_img").style.backgroundImage.includes("data:") == true) {
     var csr_img = document.getElementById("csr_img").style.backgroundImage.replace('url("', '');
@@ -86,6 +87,7 @@ export async function mockup_new() {
 
     formData.append("csr-img", obj_csr_img)
   }
+}
 
   if (document.getElementById("sdg_img").style.backgroundImage.includes("data:") == true) {
     var sdg_img = document.getElementById("sdg_img").style.backgroundImage.replace('url("', '');
@@ -94,6 +96,7 @@ export async function mockup_new() {
 
     formData.append("sdg-img", obj_sdg_img)
   }
+}
 
   if (document.getElementById("twins_img").style.backgroundImage.includes("data:") == true) {
     var twins_img = document.getElementById("twins_img").style.backgroundImage.replace('url("', '');
@@ -102,6 +105,7 @@ export async function mockup_new() {
 
     formData.append("twins-img", obj_twins_img)
   }
+}
 
   formData.append("t-planet-description",t_planet_description)
   formData.append("csr-description ",csr_description)
