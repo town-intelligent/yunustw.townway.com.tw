@@ -163,6 +163,8 @@ $(document).ready (function () {
 
   $("#store").on("click", function(e) {
     e.preventDefault();
+    // update the textarea value
+    update_ckeditor_data();
     mockup_new();
   })
 })
