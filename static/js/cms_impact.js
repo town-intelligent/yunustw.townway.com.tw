@@ -77,6 +77,11 @@ export function add_parent_task_block (obj_task = null) {
       }
     }
   }
+
+  const textareaIds = [
+    ...document.querySelectorAll("textarea[id^='parent_task_overview_']")
+  ].map(item => `#${item.id}`);
+  register_ckeditor(textareaIds);
 }
 function add_sdgs_comment(index, des) {
   // Format index
