@@ -3,7 +3,7 @@ const ab_project_submit_pages = ["ab_plan_info.html", "ab_project_planning.html"
 function plan_submit() {
   // Check required field and save to JSON struct
   var dataJSON = {};
-  dataJSON.email = getLocalStorage("email"); 
+  dataJSON.email = getLocalStorage("email");
   dataJSON.name = getLocalStorage("ab_project_name");
   dataJSON.business_philosophy = getLocalStorage("ab_project_business_philosophy");
   dataJSON.project_start_date = getLocalStorage("ab_project_project_start_date");
@@ -20,7 +20,7 @@ function plan_submit() {
   dataJSON.org = getLocalStorage("ab_project_org");
   dataJSON.tel = getLocalStorage("ab_project_tel");
   dataJSON.list_location = getLocalStorage("ab_project_list_location");
-  
+
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/upload",
     type: "POST",
@@ -54,13 +54,13 @@ function set_local_storage(page) {
     setLocalStorage("ab_project_project_start_date", project_start_date);
     setLocalStorage("ab_project_project_due_date", project_due_date);
     setLocalStorage("ab_project_budget", budget);
-    setLocalStorage("ab_project_relate_people", relate_people); 
+    setLocalStorage("ab_project_relate_people", relate_people);
   }
 
   if (page == "ab_project_planning.html") {
     // Get data
     var list_project_type = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    
+
     for(var index = 1; index <= 9; index++) {
       if (document.getElementById("project_type_" + index.toString()).checked.toString() == "true") {
         list_project_type[index - 1] = 1;
@@ -78,7 +78,7 @@ function set_local_storage(page) {
   if (page == "ab_sdgs_setting.html") {
     // Get data
     var list_sdg = new Array(17).fill(0);
-    
+
     for(var index = 1; index <= 17; index++) {
       if (document.getElementById("sdg_" + index.toString()).checked.toString() == "true") {
         list_sdg[index - 1] = 1;
@@ -86,7 +86,7 @@ function set_local_storage(page) {
     }
 
     var list_sr = [0, 0, 0]
-    
+
     for(var index = 1; index <= 3; index++) {
       if (document.getElementById("sr_" + index.toString()).checked.toString() == "true") {
         list_sr[index - 1] = 1;
@@ -137,7 +137,7 @@ function get_index_page(index) {
 $(function () {
   $("#btn_ab_project_prev").on("click", function(e) {
     e.preventDefault(); // To prevent following the link (optional)
-    
+
     // Get path
     var path = window.location.pathname;
     var page = path.split("/").pop();
@@ -179,7 +179,7 @@ $(function () {
     // Submit
     if (page == "ab_contact_person.html") {
       if (uuid = plan_submit()) {
-        window.location.replace("/backend/ab_cms_project_detail.html?uuid=" + uuid); 
+        window.location.replace("/backend/ab_cms_project_detail.html?uuid=" + uuid);
       }
     }
   });

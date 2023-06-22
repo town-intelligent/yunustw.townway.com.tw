@@ -54,8 +54,8 @@ export function set_page_info_news_list() {
 
       var img_fluid_bg_cover = document.createElement("div");
       img_fluid_bg_cover.className = "img-fluid bg-cover";
-      img_fluid_bg_cover.style = "background-image:url(" + 
-      HOST_URL_TPLANET_DAEMON + obj_news.content.static.banner + 
+      img_fluid_bg_cover.style = "background-image:url(" +
+      HOST_URL_TPLANET_DAEMON + obj_news.content.static.banner +
       "); width:100% ;height:288px; background-repeat: no-repeat";
 
       var d_flex_flex_column = document.createElement("div");
@@ -114,7 +114,7 @@ export function set_page_info_cms_news_list() {
   var obj_news_list = news_list();
   if (obj_news_list.content.length == 0)
         return;
-  
+
   // Revise style
   var index_news = 0;
 
@@ -165,35 +165,35 @@ export function set_page_info_cms_news_list() {
       var col_md_4 = document.createElement("div");
       col_md_4.id = "id_" + obj_news.content.uuid;
       col_md_4.className = "col-md-4";
-  
+
       var mb_4_rounded_0 = document.createElement("div");
       mb_4_rounded_0.className = "mb-4 rounded-0";
-  
+
       var img_fluid_bg_cover_a = document.createElement("a");
       img_fluid_bg_cover_a.href = "/news_content.html?uuid=" + obj_news.content.uuid;
 
       var img_fluid_bg_cover = document.createElement("div");
       img_fluid_bg_cover.className = "img-fluid bg-cover";
-      
-      img_fluid_bg_cover.style = "background-image:url(" + 
-        HOST_URL_TPLANET_DAEMON + obj_news.content.static.banner + 
+
+      img_fluid_bg_cover.style = "background-image:url(" +
+        HOST_URL_TPLANET_DAEMON + obj_news.content.static.banner +
         "); width:100% ;height:288px; background-repeat: no-repeat";
-  
+
       var d_flex_flex_column = document.createElement("div");
       d_flex_flex_column.className = "d-flex flex-column h-100 justify-content-end pl-0 text-white";
 
       var bg_dark_bg_opacity = document.createElement("div");
       bg_dark_bg_opacity.className = "bg-dark pt-2 pl-3 bg-opacity";
-  
+
       var mb_0 = document.createElement("p");
       mb_0.className = "mb-0 text-shadow";
-      
+
       if (obj_news.content.period != null) {
         mb_0.innerHTML = obj_news.content.period;
       } else {
         mb_0.innerHTML = "";
       }
-  
+
       var text = document.createElement("p");
       text.className = "text-shadow";
       text.innerHTML = obj_news.content.title;
@@ -226,11 +226,11 @@ export function set_page_info_cms_news_list() {
       mb_4_rounded_0.append(img_fluid_bg_cover_a);
       col_md_4.append(mb_4_rounded_0);
       col_md_4.append(obj_del);
-  
+
       var obj_news_container = document.getElementById("news_container");
       obj_news_container.append(col_md_4);
-    }  
+    }
     index_news ++;
-  
+
   });
 }

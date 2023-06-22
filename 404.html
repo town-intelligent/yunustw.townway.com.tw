@@ -40,12 +40,12 @@
       }
 
       @-webkit-keyframes animatebottom {
-        from { bottom:-100px; opacity:0 } 
+        from { bottom:-100px; opacity:0 }
         to { bottom:0px; opacity:1 }
       }
 
-      @keyframes animatebottom { 
-        from{ bottom:-100px; opacity:0 } 
+      @keyframes animatebottom {
+        from{ bottom:-100px; opacity:0 }
         to{ bottom:0; opacity:1 }
       }
 
@@ -69,7 +69,7 @@ function transfer() {
   // Get path
   var path = window.location.pathname;
   var task = path.split("/").pop();
-  
+
   if (path.includes("/tasks/")){
     window.location.replace(HOST_URL_EID + "/accounts/signin.html" + "?task=" + task);
   } else { alert("你走錯囉！沒有這個頁面!"); }

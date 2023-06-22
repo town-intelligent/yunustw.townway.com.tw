@@ -92,7 +92,7 @@ function upload_image_file(width = null, height = null, id_preview = null, backg
 
         // 解除頁面載入特效
         stopLoadingAnimation();
-        
+
         // Resolve the promise with the image
         resolve(scaledBase64Img);
       };

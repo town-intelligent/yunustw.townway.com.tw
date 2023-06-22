@@ -34,7 +34,7 @@ export function set_page_info_project_list() {
       str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_DUE", "");
     }
     str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("BUDGET", obj_project.budget);
-    
+
     // Add image
     if (obj_project.img != null && obj_project.img != "") {
       str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_COVER", HOST_URL_TPLANET_DAEMON + obj_project.img);

@@ -54,13 +54,13 @@ export function add_parent_task_block (obj_task = null) {
     }
     document.getElementById("parent_task_overview_" + obj_task.uuid).value = obj_task.overview;
     // cover
-    var path_cover = HOST_URL_TPLANET_DAEMON + 
-    "/static/project/" + uuid + 
+    var path_cover = HOST_URL_TPLANET_DAEMON +
+    "/static/project/" + uuid +
     "/tasks/" + obj_task.uuid + "/cover.png";
     document.getElementById("divUploadImg_" + obj_task.uuid).style.backgroundImage =  "";
     document.getElementById("btnUploadImg_" + obj_task.uuid).style.display = "none";
     document.getElementById("coverImg_" + obj_task.uuid).style.backgroundImage =  "url(" + path_cover + ")";
-    document.getElementById("coverImg_" + obj_task.uuid).style.backgroundRepeat = "no-repeat";    
+    document.getElementById("coverImg_" + obj_task.uuid).style.backgroundRepeat = "no-repeat";
     document.getElementById("coverImg_" + obj_task.uuid).style.backgroundSize = "100% 100%";
     // Onclick
     var oDiv = document.getElementById("coverImg_" + obj_task.uuid);
@@ -71,7 +71,7 @@ export function add_parent_task_block (obj_task = null) {
     // GPS
     if (obj_task.gps == true) {
       try {
-        document.getElementById("gps_flag_" + obj_task.uuid).checked = true;        
+        document.getElementById("gps_flag_" + obj_task.uuid).checked = true;
       } catch (e) {
         console.log(e)
       }
@@ -133,7 +133,7 @@ export function set_page_info_cms_impact(uuid) {
         continue;
       }
       add_sdgs_comment(index, obj_sdgs_comment[index.toString()]);
-    }   
+    }
   }
   // Add parent task block list
   var list_parent_task_uuid = list_plan_tasks(uuid, 1)

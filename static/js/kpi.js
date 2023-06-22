@@ -14,7 +14,7 @@ export function set_page_info_project_counts(uuid_project) {
   for (var index = 1; index < 28; index++) {
     if (weight["sdgs-" + index.toString()] != "0") {
       try {
-        document.getElementById("pc_" + index.toString()).innerText = 
+        document.getElementById("pc_" + index.toString()).innerText =
         parseInt(document.getElementById("pc_" + index.toString()).innerText) + 1;
       } catch (e) { console.log(e) }
     }
@@ -47,14 +47,14 @@ export function get_total_project_weight(list_project_uuids) {
     for (var index = 0; index < list_project_uuids.length; index++) {
       var obj_project = plan_info(list_project_uuids[index]);
       var obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
-  
+
       var weight = {}
       try {
         if (obj_parent_tasks.tasks.length != 0) {
           weight = getProjectWeight(obj_parent_tasks.tasks);
         }
       } catch (e) { console.log(e) }
-  
+
       totalProjectWeight = addWeight(totalProjectWeight, weight)
     }
 
@@ -65,7 +65,7 @@ export function draw_five_chart(totalProjectWeight) {
   // Remove useless weight
   Object.keys(totalProjectWeight).forEach(function(key){
     if (18 > parseInt(key.substring(5,7)) || parseInt(key.substring(5,7)) > 22) {
-      delete totalProjectWeight[key]; 
+      delete totalProjectWeight[key];
     }
   });
 
@@ -76,9 +76,9 @@ export function draw_five_chart(totalProjectWeight) {
 
 export function draw_sdgs_chart(totalProjectWeight) {
   // Remove useless weight
-  Object.keys(totalProjectWeight).forEach(function(key){ 
+  Object.keys(totalProjectWeight).forEach(function(key){
     if (parseInt(key.substring(5,7)) > 17){
-      delete totalProjectWeight[key]; 
+      delete totalProjectWeight[key];
     }
   });
 
@@ -91,7 +91,7 @@ export function draw_comm_chart(totalProjectWeight) {
   // Remove useless weight
   Object.keys(totalProjectWeight).forEach(function(key){
     if (23 > parseInt(key.substring(5,7)) || parseInt(key.substring(5,7)) > 28) {
-      delete totalProjectWeight[key]; 
+      delete totalProjectWeight[key];
     }
   });
 

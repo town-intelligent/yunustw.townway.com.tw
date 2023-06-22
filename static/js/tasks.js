@@ -1,7 +1,7 @@
 
 /* function add_to_parent_task_queue(queue ,uuid) {
   if (getLocalStorage("parent_task_queue") != "") {
-    queue = JSON.parse(getLocalStorage("parent_task_queue")); 
+    queue = JSON.parse(getLocalStorage("parent_task_queue"));
   }
   queue.push(uuid);
   setLocalStorage("parent_task_queue", JSON.stringify(uuid));
@@ -10,8 +10,8 @@ function parent_task_queue(queue, uuid) {
   if (getLocalStorage("parent_task_queue") != "") {
     queue = JSON.parse(getLocalStorage("parent_task_queue"));
     queue = queue.filter(item => item !== uuid);
-    
-    setLocalStorage("parent_task_queue", JSON.stringify(queue));    
+
+    setLocalStorage("parent_task_queue", JSON.stringify(queue));
   }
   return queue;
 } */
@@ -19,7 +19,7 @@ function parent_task_queue(queue, uuid) {
 export function add_to_child_task_queue(uuid) {
   var queue = [];
   if (getLocalStorage("child_task_queue") != "") {
-    queue = JSON.parse(getLocalStorage("child_task_queue")); 
+    queue = JSON.parse(getLocalStorage("child_task_queue"));
   }
   queue.push(uuid);
 
@@ -56,7 +56,7 @@ export function deep_deleted_task(uuid){
     }
   });
 
-  return dataJSON; 
+  return dataJSON;
 }
 
 // function delete_div(obj){
@@ -82,7 +82,7 @@ export function deleted_task(uuid){
       const obj = JSON.parse(returnData);
       dataJSON = obj
       location.reload()
-      
+
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
@@ -152,7 +152,7 @@ export function list_children_tasks(task) {
 }
 
 export async function submitTaskCover(base64Img, uuid_task) {
-  return new Promise((resolve, reject) => {  
+  return new Promise((resolve, reject) => {
     var resultJSON = {};
     var dataJSON = {};
     // dataJSON.email = getLocalStorage("email");
@@ -171,9 +171,9 @@ export async function submitTaskCover(base64Img, uuid_task) {
       resolve(resultJSON); // 在响应解析后解析 Promise
     }).fail(function (error) {
       reject(error); // 在发生错误时拒绝 Promise
-    });  
+    });
   });
-} 
+}
 
 /* function submitTaskCover(base64Img, uuid_task) {
   var dataJSON = {};
@@ -239,10 +239,10 @@ export function child_task_submit(page){
     const urlParams = new URLSearchParams(queryString);
     var uuid = urlParams.get("uuid")
     var task = urlParams.get("task")
-    
+
     var child_task_queue = JSON.parse(getLocalStorage("child_task_queue"));
 
-    for (var index_child_task = 0; index_child_task < child_task_queue.length; index_child_task++) { 
+    for (var index_child_task = 0; index_child_task < child_task_queue.length; index_child_task++) {
       var list_target_sdgs = [];
       var list_tasks = [];
 
@@ -252,7 +252,7 @@ export function child_task_submit(page){
           continue;
         }
         // Get SDGs tasks
-        var dataJSON = {}; 
+        var dataJSON = {};
         dataJSON.sdg = index;
         dataJSON.des = document.getElementById("target_sdgs_" + index_sdg).value;
         list_tasks.push(JSON.stringify(dataJSON));
@@ -265,17 +265,17 @@ export function child_task_submit(page){
       // Task submit ...
       var list_target_sdgs = getLocalStorage("list_target_sdgs");
       var obj_list_target_sdgs = JSON.parse(list_target_sdgs);
-  
+
       /* if (obj_list_target_sdgs.length <= 1) {
         alert("您忘記新增權重了！");
         return false;
       } */
-  
+
       var form = new FormData();
       // Add params cms_deep_participation.html
       var type = 3;
       form.append("task", child_task_queue[index_child_task]);
-      
+
       form.append("name", document.getElementById("name_" + child_task_queue[index_child_task]).value);
       form.append("task_start_date", document.getElementById("task_start_date_" + child_task_queue[index_child_task]).value);
       form.append("task_due_date", document.getElementById("task_due_date_" + child_task_queue[index_child_task]).value);
@@ -294,7 +294,7 @@ export function child_task_submit(page){
         if ("A" == element.tagName){
           var list_sdgs_icon_container = element.childNodes;
           list_sdgs_icon_container.forEach(element => {
-            
+
             var sdg = parseInt(element.id.replace("target_sdgs_",""));
             var dataJSON = {"sdg":sdg.toString(), "des":""};
             list_tasks.push(JSON.stringify(dataJSON));

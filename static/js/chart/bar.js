@@ -4,7 +4,7 @@ export function draw_bar(element_id, obj_project_weight, svg_width, svg_height, 
     Object.keys(obj_project_weight).forEach(function(key){
       if (parseInt(obj_project_weight[key]) == 0 || obj_project_weight[key] == "0" || obj_project_weight[key] == null) {
         try {
-          delete obj_project_weight[key]; 
+          delete obj_project_weight[key];
         } catch (e) {console.log(e)}
       }
     });
@@ -36,7 +36,7 @@ export function draw_bar(element_id, obj_project_weight, svg_width, svg_height, 
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
-   
+
   // X axis
   const x = d3.scaleBand()
     .range([ 0, width ])
@@ -55,7 +55,7 @@ export function draw_bar(element_id, obj_project_weight, svg_width, svg_height, 
     .range([ height, 0]); // SVG height
     svg.append("g")
     .call(d3.axisLeft(y));
-    
+
   var setp = height/d3.max(object_values);
   for (var index = 0; index < object_values.length; index++) {
     // Bars
