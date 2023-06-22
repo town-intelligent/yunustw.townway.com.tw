@@ -137,11 +137,11 @@ export function selectComment(element) {
   if (element.checked == true) {
     // Unselect select all checkbox
     document.getElementById("checkboxAll").checked = false;
-    
+
     listCommentVerifiedEmail = listCommentVerifiedEmail.filter(item => item !== element.getAttribute("id"));
     listCommentVerifiedEmail.push(element.getAttribute("id"));
   }
-  
+
   setLocalStorage("commentVerifiedEmail", JSON.stringify(listCommentVerifiedEmail));
 }
 
@@ -149,7 +149,7 @@ export function  selectCommentAll()
 {
   // Get checkbox
   var objCheckboxAll = document.getElementById("checkboxAll");
-  
+
   // Get UUID
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -177,7 +177,7 @@ export function  selectCommentAll()
   if (objCheckboxAll.checked == true) {
     var listCommentVerifiedEmail = [];
     for (var index = 0; index < list_task_comment.length; index++) {
-      var commentEmail = document.getElementById(list_task_comment[index].email);      
+      var commentEmail = document.getElementById(list_task_comment[index].email);
       listCommentVerifiedEmail.push(commentEmail.id);
     }
     setLocalStorage("commentVerifiedEmail", JSON.stringify(listCommentVerifiedEmail));
@@ -221,5 +221,5 @@ export function submitVerifiedTaskComment() {
 
   // Final result
   alert("驗證成功!");
-  window.location.replace("/backend/cms_agent.html"); 
+  window.location.replace("/backend/cms_agent.html");
 }
