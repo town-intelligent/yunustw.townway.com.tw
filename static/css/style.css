@@ -279,3 +279,19 @@ section {
 .footer_images:hover {
   transform: scale(1.05);
 }
+
+.chart-container {
+  height: 450px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .chart-container {
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+  }
+}

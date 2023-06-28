@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://unpkg.com/chart.js@4.3.0/dist/chart.umd.js"></script>
+    <script src="https://unpkg.com/chart.js-plugin-labels-dv@4.0.0/dist/chartjs-plugin-labels.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
@@ -395,21 +397,19 @@
             </div>
           </div>
           <div class="row mt-md-4 justify-content-center">
-            <div id="weight_sdgs" class="col-12 text-center">
-              <!-- <img src="/static/imgs/SDGs-chart.png" alt="" class="img-fluid"> -->
-              <p class="fw-bold">永續發展指標</p>
+            <div class="chart-container col-md-12 text-center">
+              <canvas id="weight_sdgs"></canvas>
             </div>
           </div>
 
           <div class="row mt-md-4 justify-content-center">
-            <div id="weight_five" class="col-md-6 text-center">
-              <!-- <img src="/static/imgs/5-ways-of-life-chart.png" alt="" class="img-fluid"> -->
-              <p class="fw-bold">德智體群美</p>
+            <div class="chart-container col-md-6 text-center">
+              <canvas id="weight_five"></canvas>
             </div>
 
-            <div id="weight_comm" class="col-md-6 text-center">
-              <!-- <img src="/static/imgs/community -development-chart.png" alt="" class="img-fluid"> -->
-              <p class="fw-bold">人文地產景</p>
+
+            <div class="chart-container  col-md-6 text-center">
+              <canvas id="weight_comm"></canvas>
             </div>
 
           </div>

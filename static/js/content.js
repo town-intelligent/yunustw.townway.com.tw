@@ -1,7 +1,7 @@
 import { draws, draws_task_weight_chart } from './app.js'
 import { plan_info, list_plan_tasks, getProjectWeight } from './plan.js'
-import { get_task_info, list_children_tasks } from './tasks.js'
-import { draw_bar } from './chart/bar.js'
+import { getTaskWeight, get_task_info, list_children_tasks } from './tasks.js'
+import { append_chart_container, draw_bar, draw_bar_chart, getMappedSdgData, sdgImages } from './chart/bar.js'
 
 
 export function draw_sdgs_chart(totalProjectWeight, elementID) {
@@ -13,19 +13,40 @@ export function draw_sdgs_chart(totalProjectWeight, elementID) {
   }); */
 
   // Draw
+  var array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"];
+  draw_bar_chart({
+    elementId: elementID,
+    title: "專案指標累積",
+    data: getMappedSdgData(totalProjectWeight),
+    backgroundColor: array_weight_colors,
+    skipZero: true,
+    titlePosition: 'bottom',
+    titleFontSize: 16,
+  });
+}
+
+export function draw_project_chart(uuid, canvasId) {
+  var weight_task = getTaskWeight(uuid);
   var array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"]
-  draw_bar(elementID, totalProjectWeight, 640, 400, array_weight_colors, true, false)
+  draw_bar_chart({
+    elementId: canvasId,
+    title: "永續指標",
+    data: getMappedSdgData(weight_task),
+    backgroundColor: array_weight_colors,
+    skipZero: true,
+    titlePosition: 'bottom',
+    titleFontSize: 16,
+  });
 }
 
 
 function project_weight_chart(obj_project) {
-  var obj_digital_fp_chart1_img = document.createElement("div");
-  obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_project.uuid;
-  document.getElementById("obj_digital_fp_chart1").append(obj_digital_fp_chart1_img);
+  const id = "observablehq-chart-" + obj_project.uuid;
+  append_chart_container("#obj_digital_fp_chart1", id);
 
   var obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
   var weight = getProjectWeight(obj_parent_tasks.tasks);
-  draw_sdgs_chart(weight, "observablehq-chart-" + obj_project.uuid);
+  draw_sdgs_chart(weight, id);
 
   // Draw
   // draws(obj_project.uuid)
@@ -284,20 +305,15 @@ export function set_page_info_content()
 
     var obj_div_img_text_center = document.createElement("div");
     obj_div_img_text_center.className = "text-center";
-    var obj_p_img_text_center = document.createElement("p");
-    obj_p_img_text_center.className = "text-center";
-    obj_p_img_text_center.innerText = "永續指標";
-    obj_div_img_text_center.append(obj_p_img_text_center);
 
     var obj_div_img = document.createElement("div");
     obj_div_img.className = "h-100 d-flex align-items-center justify-content-center mt-4 mt-md-0 flex-column";
     var obj_img = document.createElement("img");
     obj_img.className = "w-100 h-100";
 
-    var obj_digital_fp_chart1_img = document.createElement("div");
-    obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_task.uuid;
+    const chartId = "observablehq-chart-" + obj_task.uuid;
+    append_chart_container($(obj_div_img_root), chartId);
 
-    obj_div_img_root.append(obj_digital_fp_chart1_img);
     obj_div_img_root.append(obj_div_img_text_center);
 
     var obj_col_12 = document.createElement("div");
@@ -377,6 +393,7 @@ export function set_page_info_content()
     obj_tasks_container.append(obj_div_root);
 
     // Draw task weight
-    draws_task_weight_chart(obj_task.uuid)
+
+    draw_project_chart(obj_task.uuid, chartId);
   }
 }
