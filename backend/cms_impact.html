@@ -13,6 +13,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/loading.css" >
@@ -28,6 +29,7 @@
     <script type="module" src="/static/js/tasks.js"></script>
     <script type="module" src="/static/js/plan.js"></script>
     <script type="module" src="/static/js/cms_agent.js"></script>
+    <script src="/static/js/core/editor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script type="module">
@@ -46,6 +48,15 @@
     <script type="module" src="/static/js/set_page_info.js"></script>
     <script type="module" src="/static/js/init.js"></script>
     <script type="module" src="/static/js/cms_impact.js"></script>
+    <script type="module">
+      $(document).ready(function () {
+        const textareaIds = [
+          ...document.querySelectorAll("textarea[id^='sdg_']"),
+          ...document.querySelectorAll("textarea[id^='parent_task_overview_']")
+        ].map(item => `#${item.id}`);
+        register_ckeditor(textareaIds);
+      });
+    </script>
   </head>
   <body>
     <!-- navbar -->

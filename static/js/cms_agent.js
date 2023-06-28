@@ -100,6 +100,7 @@ $(function () {
 $(function () {
   $("form").on("submit", function(e){
     e.preventDefault();
+    update_ckeditor_data();
 
     // Get path
     var path = window.location.pathname;
