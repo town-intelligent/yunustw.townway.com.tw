@@ -69,7 +69,7 @@ export function news_delete(uuid) {
 }
 
 export async function news_add(form) {
-  return new Promise((resolve, reject) => {  
+  return new Promise((resolve, reject) => {
     var resultJSON = {};
     var settings = {
       "url": HOST_URL_TPLANET_DAEMON + "/news/news_create",
@@ -81,12 +81,12 @@ export async function news_add(form) {
       "contentType": false,
       "data": form
     };
-    
+
     $.ajax(settings).done(function (response) {
       resultJSON = JSON.parse(response);
       resolve(resultJSON); // 在响应解析后解析 Promise
     }).fail(function (error) {
       reject(error); // 在发生错误时拒绝 Promise
-    });  
+    });
   });
 }

@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/loading.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
@@ -23,6 +24,7 @@
     <script src="/static/js/accounts.js"></script>
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/permission.js"></script>
+    <script src="/static/js/core/editor.js"></script>
     <script type="module" src="/static/js/cms_agent.js"></script>
     <script type="module" src="/static/js/plan.js"></script>
     <script type="module" src="/static/js/tasks.js"></script>
@@ -39,6 +41,7 @@
     $( function() {
       $("#project_start_date").datepicker();
       $("#project_due_date").datepicker();
+      register_ckeditor(['#philosophy'])
     });
     </script>
   </head>
@@ -55,7 +58,7 @@
         <button class="navbar-toggler mr-md-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -112,7 +115,7 @@
               <p class="bg-2ndhome p-2">永續合作封面</p>
             </div>
             <div class="col-12">
-              <div id="coverImg" class="border d-flex flex-column align-items-center justify-content-center" style="height: 300px;">                
+              <div id="coverImg" class="border d-flex flex-column align-items-center justify-content-center" style="height: 300px;">
                 <button type="button" class="btn btn-light border-dark" id="btnUploadImg" onclick="uploadProjectCover()">
                   <div id="divUploadImg" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg); width: 100px; height: 100px; background-repeat: no-repeat" ></div>
                 </button>
@@ -141,7 +144,7 @@
               <p class="bg-2ndhome p-2">地方團隊</p>
             </div>
             <div class="col-12">
-              <input id="project_b" class="form-control" type="text" placeholder="請填寫團隊名稱">  
+              <input id="project_b" class="form-control" type="text" placeholder="請填寫團隊名稱">
             </div>
           </div>
           <div class="row mt-4 align-items-center">
@@ -151,9 +154,9 @@
             <div class="form-group col-6 mb-0">
               <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                 <input id="project_start_date" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="開始日期"/>
-                
+
                 <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-  		            
+
                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
               </div>
@@ -180,7 +183,7 @@
               <p class="bg-2ndhome p-2">計畫理念</p>
             </div>
             <div class="col-12">
-              <textarea class="form-control" id="philosophy" rows="6" style="resize: none"></textarea>
+              <textarea class="form-control" id="philosophy" rows="6" style="resize: none; height: 158px;"></textarea>
             </div>
           </div>
             <div class="row mt-4 mb-5 pb-3 justify-content-center">

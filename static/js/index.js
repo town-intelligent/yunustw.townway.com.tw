@@ -11,7 +11,7 @@ function mockup_get() {
     "contentType": false,
     "data": form
   };
-    
+
   $.ajax(settings).done(function (response) {
     try {
       console.log(response)
