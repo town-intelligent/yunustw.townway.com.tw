@@ -28,7 +28,7 @@ function verifyToken(token) {
       error: function(xhr, ajaxOptions, thrownError){
         console.log(thrownError);
       }
-    }); 
+    });
     return true;
 }
 

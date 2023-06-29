@@ -39,7 +39,7 @@ export function set_page_info() {
   if (page == "admin_project_verify.html") {
     set_page_info_admin_project_verify(uuid)
   }
-  
+
   if (page == "cms_impact.html") {
     set_page_info_cms_impact(uuid);
   }
@@ -119,7 +119,7 @@ export function set_page_info() {
   if (page == "cms_contact_us_detail.html") {
     set_page_info_cms_contact_us_detail();
   }
-  
+
   if (page == "admin_agent_dashboard.html") {
     set_page_info_admin_agent_dashboard();
   }

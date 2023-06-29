@@ -30,7 +30,7 @@ function randomNumber(min, max) {
 
 export function successCallback(b64, map, obj_task, obj_task_gps) {
   var listeIDLocastion = obj_task_gps.gps.split(",")
-  
+
   // The location of Uluru
   var uluru = { lat: parseFloat(listeIDLocastion[0]), lng: parseFloat(listeIDLocastion[1]) };
 

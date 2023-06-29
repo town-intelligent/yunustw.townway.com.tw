@@ -1,7 +1,7 @@
 import { draws, draws_task_weight_chart } from './app.js'
 import { plan_info, list_plan_tasks, getProjectWeight } from './plan.js'
-import { get_task_info, list_children_tasks } from './tasks.js'
-import { draw_bar } from './chart/bar.js'
+import { getTaskWeight, get_task_info, list_children_tasks } from './tasks.js'
+import { append_chart_container, draw_bar, draw_bar_chart, getMappedSdgData, sdgImages } from './chart/bar.js'
 
 
 export function draw_sdgs_chart(totalProjectWeight, elementID) {
@@ -13,19 +13,40 @@ export function draw_sdgs_chart(totalProjectWeight, elementID) {
   }); */
 
   // Draw
+  var array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"];
+  draw_bar_chart({
+    elementId: elementID,
+    title: "專案指標累積",
+    data: getMappedSdgData(totalProjectWeight),
+    backgroundColor: array_weight_colors,
+    skipZero: true,
+    titlePosition: 'bottom',
+    titleFontSize: 16,
+  });
+}
+
+export function draw_project_chart(uuid, canvasId) {
+  var weight_task = getTaskWeight(uuid);
   var array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"]
-  draw_bar(elementID, totalProjectWeight, 640, 400, array_weight_colors, true, false)
+  draw_bar_chart({
+    elementId: canvasId,
+    title: "永續指標",
+    data: getMappedSdgData(weight_task),
+    backgroundColor: array_weight_colors,
+    skipZero: true,
+    titlePosition: 'bottom',
+    titleFontSize: 16,
+  });
 }
 
 
 function project_weight_chart(obj_project) {
-  var obj_digital_fp_chart1_img = document.createElement("div");
-  obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_project.uuid;
-  document.getElementById("obj_digital_fp_chart1").append(obj_digital_fp_chart1_img);
+  const id = "observablehq-chart-" + obj_project.uuid;
+  append_chart_container("#obj_digital_fp_chart1", id);
 
   var obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
   var weight = getProjectWeight(obj_parent_tasks.tasks);
-  draw_sdgs_chart(weight, "observablehq-chart-" + obj_project.uuid);
+  draw_sdgs_chart(weight, id);
 
   // Draw
   // draws(obj_project.uuid)
@@ -43,11 +64,11 @@ function task_weight_chart(obj_task) {
 function set_location(obj_project) {
   // Location
   var list_location = [];
-  
+
   try {
     list_location = obj_project.location.split(",");
   } catch (e) {}
-  
+
   // Location
   var obj_location = document.getElementById("location");
   for (var index = 0; index < list_location.length; index ++) {
@@ -104,19 +125,19 @@ function add_task_sdgs(obj_task) {
         var obj_img_p = document.createElement("p");
         var obj_img = document.createElement("img");
         obj_img.className = "mr-2";
-        
+
         if (index_sdg < 10) {
-          obj_img.src = "/static/imgs/SDGs_0" + index_sdg + ".jpg"; 
+          obj_img.src = "/static/imgs/SDGs_0" + index_sdg + ".jpg";
         } else {
-          obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg"; 
+          obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg";
         }
-      
+
         obj_img.alt = "";
         obj_img.style = "width: 30px";
-        obj_sdg_div.append(obj_img); 
+        obj_sdg_div.append(obj_img);
       }
     }
-  } 
+  }
 
   return obj_sdg_div;
 }
@@ -146,7 +167,7 @@ function add_project_sdgs_description(obj_project) {
 
       var obj_a = document.createElement("a");
       obj_a.innerHTML = list_weight[key];
-      
+
       var obj_img = document.createElement("img");
       obj_img.className = "mr-3";
       obj_img.style = "width:90px";
@@ -172,7 +193,7 @@ function add_project_sdgs(obj_project) {
   try {
     list_weight = obj_project.weight.split(",");
   } catch (e) {}
-  
+
   for (var index = 0; index < list_weight.length; index++) {
     // Append to DOM
     if (parseInt(list_weight[index]) == 1) {
@@ -184,13 +205,13 @@ function add_project_sdgs(obj_project) {
       // <a href="#">
       var obj_a = document.createElement("p");
       obj_a.href = "#"
-    
+
       // <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
       var obj_img = document.createElement("img");
       obj_img.className = "w-100";
       obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
       obj_img.alt = "";
-    
+
       // Append
       obj_a.append(obj_img);
       obj_div.append(obj_a);
@@ -200,7 +221,7 @@ function add_project_sdgs(obj_project) {
 }
 
 export function set_page_info_content()
-{ 
+{
   // Get path
   var path = window.location.pathname;
 
@@ -214,9 +235,9 @@ export function set_page_info_content()
   // Project data
 
   // Set cover
-  if (obj_project.img != null) { 
-    var path_cover = HOST_URL_TPLANET_DAEMON + 
-    "/static/project/" + uuid + 
+  if (obj_project.img != null) {
+    var path_cover = HOST_URL_TPLANET_DAEMON +
+    "/static/project/" + uuid +
     "/media/cover/cover.png";
     var obj_cover = document.getElementById("project_cover");
     obj_cover.src = path_cover;
@@ -254,14 +275,14 @@ export function set_page_info_content()
 
   for (var index = 0; index < list_tasks.length; index++) {
     var obj_task = get_task_info(list_tasks[index]);
-  
+
     // Task container
-    var obj_div_root = document.createElement("div") 
+    var obj_div_root = document.createElement("div")
     obj_div_root.className = "row mt-4";
-  
+
     var obj_div_product = document.createElement("div")
     obj_div_product.className = "col-md-6";
-  
+
     var obj_div_text_center = document.createElement("div")
     obj_div_text_center.className = "text-center";
 
@@ -276,28 +297,23 @@ export function set_page_info_content()
       var path_cover = HOST_URL_TPLANET_DAEMON + obj_task.thumbnail;
       obj_img_product.src = path_cover;
     }
-    
+
     obj_img_product.alt = "";
 
     var obj_div_img_root = document.createElement("div");
     obj_div_img_root.className =  "col-md-6 mt-4 mt-md-0"
-    
+
     var obj_div_img_text_center = document.createElement("div");
     obj_div_img_text_center.className = "text-center";
-    var obj_p_img_text_center = document.createElement("p");
-    obj_p_img_text_center.className = "text-center";
-    obj_p_img_text_center.innerText = "永續指標";
-    obj_div_img_text_center.append(obj_p_img_text_center);
-    
+
     var obj_div_img = document.createElement("div");
     obj_div_img.className = "h-100 d-flex align-items-center justify-content-center mt-4 mt-md-0 flex-column";
     var obj_img = document.createElement("img");
     obj_img.className = "w-100 h-100";
 
-    var obj_digital_fp_chart1_img = document.createElement("div");
-    obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_task.uuid;
-    
-    obj_div_img_root.append(obj_digital_fp_chart1_img);
+    const chartId = "observablehq-chart-" + obj_task.uuid;
+    append_chart_container($(obj_div_img_root), chartId);
+
     obj_div_img_root.append(obj_div_img_text_center);
 
     var obj_col_12 = document.createElement("div");
@@ -307,7 +323,7 @@ export function set_page_info_content()
     obj_row_1.className = "row mt-3";
     var obj_col_6_1 = document.createElement("div");
     obj_col_6_1.className = "col-md-6";
-    
+
     var obj_col_6_2 = document.createElement("div");
     obj_col_6_2.className = "col-md-6 text-md-right";
 
@@ -339,7 +355,7 @@ export function set_page_info_content()
 
     obj_col_6_1.append(obj_p_name);
     // obj_flex.append(obj_p_name);
-    
+
     if (obj_sdg_div != null) {
       obj_col_6_2.append(obj_sdg_div);
     }
@@ -364,19 +380,20 @@ export function set_page_info_content()
 
     obj_p_nft.append(obj_span_nft);
     obj_p_nft.append(obj_span_nft_hash);
-    
+
     obj_div_text_center.append(obj_img_product);
     obj_div_product.append(obj_div_text_center);
     obj_div_root.append(obj_div_product);
     obj_div_root.append(obj_div_img_root);
     // obj_flex_column.append(obj_div_des);
-    
-    
+
+
     obj_div_root.append(obj_div_des);
     obj_div_root.append(obj_p_nft)
     obj_tasks_container.append(obj_div_root);
 
     // Draw task weight
-    draws_task_weight_chart(obj_task.uuid)
+
+    draw_project_chart(obj_task.uuid, chartId);
   }
 }

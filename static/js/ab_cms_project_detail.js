@@ -15,7 +15,7 @@ function get_project_data(uuid) {
     }
   });
 
-  return project_data;  
+  return project_data;
 }
 
 function init() {

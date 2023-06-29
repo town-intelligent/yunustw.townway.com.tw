@@ -37,7 +37,7 @@ export async function set_page_info_heat_map() {
   if (obj_gps_result.length == 0) {
     return;
   }
-  
+
   // List tasks
   for (var index_task = 0; index_task < obj_gps_result.length; index_task++) {
     // Get tasks info
@@ -45,7 +45,7 @@ export async function set_page_info_heat_map() {
     var obj_task_gps = obj_gps_result[index_task];
     try {
       obj_task = get_task_info(obj_task_gps.uuid_task);
-    } catch (e) { 
+    } catch (e) {
       console.log(e);
     }
 
@@ -53,7 +53,7 @@ export async function set_page_info_heat_map() {
     var obj_task_weight = {};
     try {
       obj_task_weight = JSON.parse(obj_task.content);
-    } catch (e) { 
+    } catch (e) {
       console.log(e) ;
     }
 
@@ -67,14 +67,14 @@ export async function set_page_info_heat_map() {
       index_weight ++;
 
       try {
-        if (obj_task_weight[key] != "0") { 
+        if (obj_task_weight[key] != "0") {
           list_icon_img.push({ src: "/static/imgs/SDGsForMap/SDGs_" +  pad(index_weight) + ".jpg", x: cx += 45, y: 0 , opacity: 1})
         }
-      } catch (e) { 
+      } catch (e) {
         console.log(e);
       }
     }
-    
+
     // Merge image
     await mergeImages(list_icon_img, { width: 400, height: 40}).then(b64 => successCallback(b64, map, obj_task, obj_task_gps));
   }

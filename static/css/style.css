@@ -131,12 +131,12 @@ section {
   font-weight: bold;
 }
 
-// 320
+/* 320 */
 .logo-pc {
   height: 60px;
 }
 
-// 150
+/* 150 */
 .logo-mobile{
   height: 30px;
 }
@@ -269,13 +269,29 @@ section {
 
 .btn-verify {
   background-color: #EBEBEB;
-  color: black; 
+  color: black;
 }
 
 .text-verify-date {
-  color: #4E4E4E; 
+  color: #4E4E4E;
 }
 
 .footer_images:hover {
   transform: scale(1.05);
+}
+
+.chart-container {
+  height: 450px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .chart-container {
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+  }
 }
