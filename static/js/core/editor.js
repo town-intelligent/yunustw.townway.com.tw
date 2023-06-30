@@ -27,7 +27,13 @@ function register_ckeditor(elementIds) {
       const element = document.querySelector(elementId);
       window.ckeditorEditors[elementId] = -1;
 
-      ClassicEditor.create(element)
+      ClassicEditor.create(element, {
+        extraPlugins: [SimpleUploadAdapterPlugin],
+        simpleUpload: {
+          // uploadUrl: HOST_URL_TPLANET_DAEMON
+          uploadUrl: "http://localhost:3000/image/upload"
+        },
+      })
         .then((newEditor) => {
           window.ckeditorEditors[elementId] = newEditor;
           console.log(`editor[${elementId}] registered`);
