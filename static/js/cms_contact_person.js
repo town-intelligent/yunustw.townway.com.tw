@@ -11,7 +11,7 @@ export function set_page_info_cms_contact_person(uuid){
     document.getElementById("tel").value = obj_project.tel;
 
     var list_location = [];
-    
+
     try {
       list_location = obj_project.location.split(",");
     } catch (e) {}
