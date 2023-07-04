@@ -19,7 +19,7 @@ export function set_page_info_admin_project_verify (uuid) {
   }
 
   var list_parent_tasks = [];
-  
+
   if (parseInt(parent) == 1) {
     list_parent_tasks = obj_parent_tasks.tasks;
   } else {
@@ -32,11 +32,11 @@ export function set_page_info_admin_project_verify (uuid) {
   for (var index = 0; index < list_parent_tasks.length; index++) {
     var obj_task = get_task_info(list_parent_tasks[index]);
     var obj_tr = document.createElement("tr");
-    
+
     // Task name and icon
     var obj_td_task_name = document.createElement("td");
     var obj_task_img = document.createElement("img");
-    obj_task_img.style = "float:left; margin-right:30px;" 
+    obj_task_img.style = "float:left; margin-right:30px;"
     obj_task_img.src = "/static/imgs/drag-icon.svg"
 
     var obj_task_name = document.createElement("span");
@@ -49,7 +49,7 @@ export function set_page_info_admin_project_verify (uuid) {
     // Task type
     var obj_td_task_type = document.createElement("td");
     obj_td_task_type.className = "align-middle text-center"
-    
+
     // <button class="btn btn-verify btn-sm rounded-pill">
     var obj_btn_verify = document.createElement("a");
     obj_btn_verify.className = "btn btn-verify btn-sm rounded-pill";
@@ -69,7 +69,7 @@ export function set_page_info_admin_project_verify (uuid) {
     obj_td_task_period.className = "text-verify-date"
     obj_td_task_period.innerHTML = obj_task.period;
 
-    
+
     // Append to tbody
     obj_tr.append(obj_td_task_name);
     obj_tr.append(obj_td_task_type);
