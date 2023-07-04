@@ -32,7 +32,7 @@ $(function () {
     var obj_project = null;
     var form = new FormData();
     if (obj_project = plan_submit(form)) {
-      window.location.replace("/backend/cms_plan_info.html?uuid=" + obj_project.uuid); 
+      window.location.replace("/backend/cms_plan_info.html?uuid=" + obj_project.uuid);
     }
   });
 });
@@ -43,7 +43,7 @@ function get_page_index(page) {
 	    return 3
     }
   }
-  
+
   for (var index = 0; index < cms_project_submit_pages.length; index++) {
     if (page == cms_project_submit_pages[index]) {
       return index
@@ -100,6 +100,9 @@ $(function () {
 $(function () {
   $("form").on("submit", function(e){
     e.preventDefault();
+    if (typeof update_ckeditor_data === "function") {
+      update_ckeditor_data();
+    }
 
     // Get path
     var path = window.location.pathname;
@@ -138,7 +141,7 @@ $(function () {
     plan_submit(form, uuid);
 
     // Parent task submit
-    if (page == "cms_impact.html") {      
+    if (page == "cms_impact.html") {
       // Variables
       var list_parent_tasks = [];
 
@@ -162,7 +165,7 @@ $(function () {
           form.append("uuid", uuid);
           form.append("task", list_parent_tasks[index_task]);
           form.append("email", getLocalStorage("email"));
-          
+
           // name
           form.append("name", document.getElementById("parent_task_name_" + list_parent_tasks[index_task]).value);
 
@@ -171,7 +174,7 @@ $(function () {
 
           // due date
           form.append("task_due_date", document.getElementById("parent_task_due_date_" + list_parent_tasks[index_task]).value);
-          
+
           // overview
           form.append("overview", document.getElementById("parent_task_overview_" + list_parent_tasks[index_task]).value);
 
@@ -181,7 +184,7 @@ $(function () {
           } catch(e) {
             console.log(e);
           }
-        
+
           var obj_task = task_submit(form);
         } catch(e) {
           console.log(e)
@@ -198,8 +201,8 @@ $(function () {
     // Replace page
     var btn_submit = $(this).find("button[type=submit]:focus");
     var id_btn_submit = btn_submit.attr('id');
-    
-    if (id_btn_submit == "btn_ab_project_next") {      
+
+    if (id_btn_submit == "btn_ab_project_next") {
       if (index < cms_project_submit_pages.length - 1) {
         var next_page = get_index_page(index + 1);
         window.location.replace("/backend/" + next_page + param);
@@ -214,7 +217,7 @@ $(function () {
       if (page == "cms_deep_participation.html") {
         window.location.replace("/backend/cms_impact.html" + param);
       }
-      
+
     } else if (id_btn_submit == "btn_cms_plan_save") {
       alert("儲存成功");
     } else if (id_btn_submit == "btn_cms_plan_preview") {
@@ -247,7 +250,7 @@ export function cms_plan_add_parent_tasks(uuid_task) {
   } else {
     var form = new FormData();
     uuid_plan = plan_submit(form, uuid_plan);
-  }    
+  }
   setLocalStorage("uuid_project", uuid_plan);
 
   // Update project
@@ -259,7 +262,7 @@ export function cms_plan_add_parent_tasks(uuid_task) {
   var gps_flag = false;
   try {
     if (document.getElementById("gps_flag_" + uuid_task).checked == true) {
-      gps_flag = true;  
+      gps_flag = true;
     }
   } catch (e) {
     console.log(e)
@@ -275,9 +278,9 @@ export function cms_plan_add_parent_tasks(uuid_task) {
   form.append("task_due_date", document.getElementById("parent_task_due_date_" + uuid_task).value);
   form.append("overview", document.getElementById("parent_task_overview_" + uuid_task).value);
   form.append("gps_flag", gps_flag);
-  
+
   // Task submit
-  var obj_task = task_submit(form); 
+  var obj_task = task_submit(form);
 
   // Redirect to add parent window
   window.location.replace("/backend/cms_missions_display.html?uuid=" + uuid_plan + "&task=" + obj_task.task + "&gps=" + gps_flag);
@@ -375,7 +378,7 @@ $(function () {
     if (getLocalStorage("list_target_sdgs") != "") {
       list_target_sdgs = getLocalStorage("list_target_sdgs").split(",");
     }
-    
+
     list_target_sdgs.push(getLocalStorage("target_sdgs"));
 
     // Get path
@@ -422,7 +425,7 @@ $(function () {
 
       // Append
       obj_div_child.append(obj_input);
-    
+
       obj_div_row.append(obj_img);
       obj_div_row.append(obj_label);
       obj_div_row.append(obj_div_child);
@@ -433,7 +436,7 @@ $(function () {
     if (page == "cms_deep_participation.html") {
       // id = icon_container
       var obj_icon_container = document.getElementById("icon_container");
-      
+
       // <a class="d-block">
       var obj_a = document.createElement("a");
       obj_a.className = "d-block";
@@ -451,7 +454,7 @@ $(function () {
       obj_icon_container.append(obj_a);
     }
     */
-	  
+
     // Finish
     $("#SDGsModal").modal("hide");
   });
@@ -474,26 +477,26 @@ export function set_page_info_cms_agent(uuid){
     var obj_project = plan_info(list_project_uuids[index]);
 
     // <div class="row mt-5 mb-4">
-    var obj_div_root = document.createElement("div"); 
+    var obj_div_root = document.createElement("div");
     obj_div_root.className = "row mt-5 mb-4 d-flex justify-content-around border-bottom";
-    
+
     // <div class="col-12 d-md-none">
-    var obj_div_project_list = document.createElement("div"); 
+    var obj_div_project_list = document.createElement("div");
     obj_div_project_list.className = "col-12 d-md-none";
-    
+
     // <p class="h4">專案列表</p>
     var obj_p_project_list = document.createElement("p");
     obj_p_project_list.className = "bg-2ndhome px-3 p-2";
     obj_p_project_list.innerHTML = "專案列表";
-    
+
     // Append
     obj_div_project_list.append(obj_p_project_list);
     obj_div_root.append(obj_div_project_list);
-    
+
     // <div class="col-md-4 mt-4">
     var obj_div_col_md_4 = document.createElement("div");
     obj_div_col_md_4.className = "col-md-4 mt-4";
-    
+
     // <div class="card mb-4 rounded-0">
     var obj_div_card_md4 = document.createElement("div");
     obj_div_card_md4.className = "card mb-4";
@@ -501,9 +504,9 @@ export function set_page_info_cms_agent(uuid){
     // <a href="#" class="stretched-link"></a>
     var obj_a_href = document.createElement("a");
     obj_a_href.className ="stretched-link";
-    obj_a_href.href = location.protocol + "//" + 
-    window.location.host + 
-    "/backend/cms_project_detail.html?uuid=" + 
+    obj_a_href.href = location.protocol + "//" +
+    window.location.host +
+    "/backend/cms_project_detail.html?uuid=" +
     obj_project.uuid;
     obj_div_card_md4.append(obj_a_href);
 
@@ -516,10 +519,10 @@ export function set_page_info_cms_agent(uuid){
     obj_project_img.className = "card-img-top";
     obj_project_img.style = "height:200px; border-radius: 20px";
     // obj_project_img.style = "background-image:url(/static/imgs/project_img_02.png); width:100% ;height:200px";
-    
-    if (obj_project.img != null) { 
-      var path_cover = HOST_URL_TPLANET_DAEMON + 
-      "/static/project/" + obj_project.uuid + 
+
+    if (obj_project.img != null) {
+      var path_cover = HOST_URL_TPLANET_DAEMON +
+      "/static/project/" + obj_project.uuid +
       "/media/cover/cover.png";
       obj_project_img.src = `${path_cover}`;
     }
@@ -532,7 +535,7 @@ export function set_page_info_cms_agent(uuid){
 
     var obj_div_card_body_project = document.createElement("div");
     obj_div_card_body_project.className = "card-body d-flex flex-column";
-    
+
     // <p class="h5">竹山創生輔導合作計畫</p>
     var obj_p_project_name = document.createElement("p");
     obj_p_project_name.className = "h5";
@@ -578,32 +581,32 @@ export function set_page_info_cms_agent(uuid){
     obj_p_period.append(obj_span_period);
     obj_div_card_body_project.append(obj_p_period);
 
-    // <div class="row mt-3"> 
+    // <div class="row mt-3">
     var obj_sdg_container = document.createElement("div");
     obj_sdg_container.className = "row mt-3";
     obj_sdg_container.style = "gap: 10px";;
 
     var obj_a = document.createElement("a");
     obj_a.href = "#";
-    
+
     var list_sdgs = [];
     try {
       list_sdgs = obj_project.weight.split(",");
     } catch (e) {}
 
     for (var index_sdgs=0; index_sdgs<list_sdgs.length; index_sdgs++){
-      
+
       if (parseInt(list_sdgs[index_sdgs]) != 0) {
         var obj_sdg_div = document.createElement("div");
         obj_sdg_div.className = "col-2 pr-0";
-        
+
         var obj_sdg_img = document.createElement("img");
         obj_sdg_img.className = "w-100";
 
         var index_sdg = ("0" + (index_sdgs + 1)).slice(-2);
         obj_sdg_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg";
         obj_sdg_img.alt = "";
-      
+
         obj_sdg_div.append(obj_sdg_img);
         obj_sdg_container.append(obj_sdg_div);
       }
@@ -630,7 +633,7 @@ export function set_page_info_cms_agent(uuid){
     obj_modal_project_del.setAttribute("role", "dialog");
     var str_project_del_modal_innerHTML = str_project_delete_modal.replaceAll("UUID_PROJECT", obj_project.uuid);
     obj_modal_project_del.innerHTML = str_project_del_modal_innerHTML;
-    
+
     document.body.append(obj_modal_project_management);
     document.body.append(obj_modal_project_del);
 
@@ -654,7 +657,7 @@ export function set_page_info_cms_agent(uuid){
     // <div class="col-md-4">
     var obj_digital_fp_chart1 = document.createElement("div");
     obj_digital_fp_chart1.className = "col-md-8";
-    
+
     // <div class="card h-100 border-0">
     var obj_digital_fp_chart1_card = document.createElement("div");
 
@@ -682,15 +685,15 @@ export function set_page_info_cms_agent(uuid){
     // <div class="col-md-4">
     var obj_div_add_task = document.createElement("div");
     obj_div_add_task.className = "col-md-4";
-    // <div class="card h-100 border-0"> 
+    // <div class="card h-100 border-0">
     var obj_div_add_task_card = document.createElement("div");
     obj_div_add_task_card.className = "card h-100 border-0";
-    // <div class="card-body h-100 d-flex flex-column justify-content-between text-center"> 
+    // <div class="card-body h-100 d-flex flex-column justify-content-between text-center">
     var obj_div_add_task_card_body = document.createElement("div");
     obj_div_add_task_card_body.className = "card-body h-100 d-flex flex-column justify-content-between text-center";
     // <img src="/static/imgs/agent_chart.png" class="card-img-top" alt="">
-    
-    // <div> 
+
+    // <div>
     var obj_div_btn_nt = document.createElement("div");
 
     obj_div_add_task_card_body.append(obj_div_btn_nt);
@@ -712,9 +715,9 @@ export function set_page_info_cms_agent(uuid){
 }
 
 export function showProjectDeleteModel (uuid_project){
-  delete_plan(uuid_project);  
+  delete_plan(uuid_project);
   $("#projectDeleteModel_" + uuid_project).modal("hide");
-  
+
   // Reload page
   location.reload();
 }

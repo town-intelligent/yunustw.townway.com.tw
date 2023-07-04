@@ -1,17 +1,17 @@
 import { plan_info } from './plan.js'
 
 export function set_page_info_cms_plan_info(uuid){
-if (uuid != null) {   
+if (uuid != null) {
     var obj_project = plan_info(uuid);
 
     // Cover
-    if (obj_project.img != null) { 
-      var path_cover = HOST_URL_TPLANET_DAEMON + 
-      "/static/project/" + uuid + 
+    if (obj_project.img != null) {
+      var path_cover = HOST_URL_TPLANET_DAEMON +
+      "/static/project/" + uuid +
       "/media/cover/cover.png";
       document.getElementById("divUploadImg").style.backgroundImage =  "";
       document.getElementById("btnUploadImg").style.display = "none";
-      
+
       var oDiv = document.getElementById("coverImg");
       oDiv.style.backgroundImage = "url(" + path_cover + ")";
       oDiv.style.backgroundRepeat = "no-repeat";
@@ -26,7 +26,7 @@ if (uuid != null) {
     document.getElementById("project_a").value = obj_project.project_a;
     document.getElementById("project_b").value = obj_project.project_b;
     var list_period = [];
-    
+
     try {
       list_period = obj_project.period.split("-");
     } catch (e) {}
@@ -41,7 +41,7 @@ if (uuid != null) {
 }
 
 function submitProjectCover(base64Img, uuid) {
-  return new Promise((resolve, reject) => { 
+  return new Promise((resolve, reject) => {
     var resultJSON = {};
     var dataJSON = {};
     // dataJSON.email = getLocalStorage("email");
@@ -55,7 +55,7 @@ function submitProjectCover(base64Img, uuid) {
       data:  dataJSON,
       success: function(returnData) {
         const obj = JSON.parse(returnData);
-        resolve(obj); 
+        resolve(obj);
       },
       error: function(xhr, ajaxOptions, thrownError){
         reject(thrownError);

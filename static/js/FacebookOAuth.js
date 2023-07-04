@@ -3,7 +3,7 @@ function eIDFacebookLogin(input_token, res) {
 
   // Oauth to eID
   var dataJSON = {};
-  dataJSON.email = res.email 
+  dataJSON.email = res.email
   dataJSON.username = res.username
   dataJSON.token = input_token
   $.ajax({

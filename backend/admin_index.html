@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/loading.css" >
@@ -22,6 +23,7 @@
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/permission.js"></script>
     <script type="module" src="/static/js/init.js"></script>
+    <script src="/static/js/core/editor.js"></script>
     <script type="module">
       import { mockup_new, banner_image_read, t_planet_img_read, csr_img_read, sdg_img_read, twins_img_read } from '/static/js/admin_index.js'
       window.mockup_new = mockup_new;
@@ -30,6 +32,9 @@
       window.csr_img_read = csr_img_read;
       window.sdg_img_read = sdg_img_read;
       window.twins_img_read = twins_img_read;
+      $(document).ready(() => {
+        register_ckeditor(['#textarea1', '#textarea2', '#textarea3', '#textarea4']);
+      });
     </script>
   </head>
 
@@ -46,7 +51,7 @@
         <button class="navbar-toggler mr-md-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -102,7 +107,7 @@
               <p class="bg-2ndhome p-2">平台文案</p>
             </div>
             <div class="col-12">
-              <textarea class="form-control h-100" id="textarea1" style="resize : none" rows="6" placeholder="請輸入文案文字"></textarea>
+              <textarea class="form-control h-100" id="textarea1" style="resize : none; height: 212px;" rows="6" placeholder="請輸入文案文字"></textarea>
             </div>
             <div class="col-12 my-3">
               <div class="img-fluid w-100 bg-contain-center t-planet-img-container">
@@ -117,7 +122,7 @@
           </div>
           <div class="row mt-4 h-100 admin-index-project mx-2">
             <div class="col-md-6 mobil-mb">
-              <textarea class="form-control h-100" id="textarea2" style="resize: none" placeholder="請輸入文案文字"></textarea>
+              <textarea class="form-control h-100" id="textarea2" style="resize: none; height: 300px;" placeholder="請輸入文案文字"></textarea>
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
               <div id="csr_img" class="img-fluid w-100 bg-cover" style="background-image: url(/static/imgs/admin_index_csr.png); height: 300px; background-repeat: no-repeat">
@@ -131,7 +136,7 @@
           </div>
           <div class="row mt-4 h-100 admin-index-project mx-2">
             <div class="col-md-6 mobil-mb">
-              <textarea class="form-control h-100" id="textarea3" style="resize: none" placeholder="請輸入文案文字"></textarea>
+              <textarea class="form-control h-100" id="textarea3" style="resize: none; height: 300px;" placeholder="請輸入文案文字"></textarea>
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
               <div id="sdg_img" class="img-fluid w-100 bg-cover" style="background-image: url(/static/imgs/admin_index_sdgs.png); height: 300px; background-repeat: no-repeat">
@@ -145,7 +150,7 @@
           </div>
           <div class="row mt-4 h-100 admin-index-project mx-2">
             <div class="col-md-6 mobil-mb">
-              <textarea class="form-control h-100" id="textarea4" style="resize: none" placeholder="請輸入文案文字"></textarea>
+              <textarea class="form-control h-100" id="textarea4" style="resize: none; height: 300px;" placeholder="請輸入文案文字"></textarea>
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
               <div id="twins_img" class="img-fluid w-100 bg-cover" style="background-image: url(/static/imgs/admin_index_digital_twins.png); height: 300px; background-repeat: no-repeat">

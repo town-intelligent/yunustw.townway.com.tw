@@ -10,7 +10,7 @@ export function draws(id_project) {
   var arr_task_uuid = list_plan_tasks(id_project);//[id_project];
   if (arr_task_uuid.tasks.length == 0)
     return;
-  
+
   var weight_project = getProjectWeight(arr_task_uuid.tasks);
   var input_for_render = convert_project_weight_to_render_json(weight_project);
   const runtime = new Runtime();
