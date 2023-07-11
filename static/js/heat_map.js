@@ -7,7 +7,7 @@ const getProjectUuid = () => {
   const urlParams = new URLSearchParams(queryString);
 
   return urlParams.get("uuid");
-}
+};
 
 const getTasks = (gpsItems) => {
   const tasks = gpsItems.map((gps) => {
@@ -48,25 +48,45 @@ export function gotoHeatmap(next_site) {
   window.location.replace(next_site + "?uuid=" + uuid);
 }
 
+const toDataURL = (url) =>
+  fetch(url)
+    .then((response) => response.blob())
+    .then(
+      (blob) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        })
+    );
+
 const renderer = {
   render: ({ count, position }, stats) => {
     const color =
       count > Math.max(10, stats.clusters.markers.mean) ? "#ff0000" : "#0000ff";
 
-    const svg = window.btoa(`
-        <svg fill="${color}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
-          <circle cx="120" cy="120" opacity=".5" r="80" />
-        </svg>`);
+    const currentSdgs = $("#sdgs-select").val();
+    const currentSdgsImage = sdgsBase64Images[currentSdgs];
+
+    const svg = `
+  <svg fill="${color}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+      <circle cx="120" cy="120" opacity=".5" r="80" />
+    <image href="${currentSdgsImage}" height="100" width="100" x="140" y="75" />
+  </svg>`;
+
+    const svgBase64 = window.btoa(svg);
 
     const marker = new google.maps.Marker({
       icon: {
-        url: `data:image/svg+xml;base64,${svg}`,
+        url: `data:image/svg+xml;charset=utf-8;base64,${svgBase64}`,
         scaledSize: new google.maps.Size(75, 75),
       },
       label: {
         text: String(count),
         color: "rgba(255,255,255,0.9)",
-        fontSize: "12px",
+        fontSize: "14px",
+        fontWeight: "bold",
       },
       position,
       // adjust zIndex to be above other markers
@@ -82,6 +102,7 @@ const tasks = [];
 const markers = [];
 let infowindow = null;
 
+const sdgsBase64Images = {};
 const clearMarkers = () => {
   while (markers.length > 0) {
     markers.pop().setMap(null);
@@ -105,7 +126,7 @@ const addMarkers = (sdgsSelected) => {
       const container = $("<div />", { class: "container" });
       $("<h5 />", { html: task.name }).appendTo(container);
       $("<p />", { html: `日期: ${task.period}` }).appendTo(container);
-      $("<p />", { html: task.overview }).appendTo(container);
+      $("<p />", { html: task.name }).appendTo(container);
 
       const uuid = getProjectUuid();
       $("<p />")
@@ -117,7 +138,6 @@ const addMarkers = (sdgsSelected) => {
           })
         )
         .appendTo(container);
-      // $("<a />", { href: `/content.html?uuid=${task.uuid}`, html: "前往專案" }).appendTo(container);
 
       Object.values(task.sdgs)
         .filter((sdg) => sdg.value > 0)
@@ -153,7 +173,7 @@ const addMarkers = (sdgsSelected) => {
 export async function set_page_info_heat_map() {
   console.log("set_page_info_heat_map");
 
-  const uuid = getProjectUuid()
+  const uuid = getProjectUuid();
   try {
     var obj_project = plan_info(uuid);
     document.getElementById("project_title").innerHTML = obj_project.name;
@@ -199,9 +219,15 @@ export async function set_page_info_heat_map() {
     }
   }
 
+  for (var index = 1; index <= 27; index++) {
+    const key = `sdgs-${index}`;
+    const url = `/static/imgs/SDGsForMap/SDGs_${pad(index)}.jpg`;
+    const base64 = await toDataURL(url);
+    sdgsBase64Images[key] = base64;
+  }
+
   selector.on("change", (e) => {
     const value = $(e.currentTarget).val();
-    console.log(value);
     clearMarkers();
     addMarkers(value);
   });
