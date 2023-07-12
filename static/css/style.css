@@ -331,3 +331,19 @@ section {
     height: 300px;
   }
 }
+
+.project.card {
+  box-shadow: 3px 3px 8px hsl(0, 0%, 70%);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.project.card:hover {
+  opacity: 0.8;
+}
+
+.project .card-img-top {
+  height: 200px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
