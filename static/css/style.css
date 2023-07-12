@@ -120,24 +120,25 @@ section {
 }
 
 .bg-navbar {
-    background-color: #ABCFE9 !important;
+    background-color: #FFF38D !important;
 }
 
 .bg-footer {
-    background-color: #ABCFE9 !important;
+    background-color: #FFF38D !important;
 }
 
 .fw-bold{
   font-weight: bold;
 }
 
+/* 320 */
 .logo-pc {
-  width: 200px;
-  height: 100px;
+  height: 60px;
 }
 
+/* 150 */
 .logo-mobile{
-  width: 100px;
+  height: 30px;
 }
 
 .text-title{
@@ -161,7 +162,7 @@ section {
 }
 
 .bg-2ndhome{
-  background-color: #ABCFE9;
+  background-color: #FFF38D;
 }
 
 .align-sub{
