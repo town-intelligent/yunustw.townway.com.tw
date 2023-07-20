@@ -87,21 +87,22 @@
     </nav>
     <!-- content -->
     <section>
-      <div class="container"> <!-- <div class="container" > -->
-        <div class="row mt-md-5 mb-4"> <!-- <div class="row mt-5 mb-4"> -->
-          <div class="col-md-4 d-none d-md-block">
-            <p class="bg-2ndhome px-3 p-2">專案列表</p> <!-- <div class="col-md-4"> -->
-          </div> <!-- <div class="col-md-4"> -->
-          <div class="col-8 d-none d-md-block"> <!-- <div class="col-8 d-none d-md-block"> -->
-            <p class="bg-2ndhome px-3 p-2">數位足跡</p>
-          </div> <!-- <div class="col-8 d-none d-md-block"> -->
-        </div> <!-- <div class="row mt-5 mb-4"> -->
-        <div class="row mt-3 mb-5">
+      <div class="container">
+        <div class="row mt-md-5 mb-4">
+          <div class="col-md-12 d-none d-md-block mb-4">
+            <h4 class="bg-2ndhome px-5 py-3 m-0 font-weight-normal">專案列表</h4>
+          </div>
           <div class="col-12">
-            <button id="add_c_project" class="btn btn-block btn-outline-secondary">新增永續專案+</button>
+            <button id="add_c_project"
+              class="btn btn-block btn-outline-secondary py-3"
+              style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
+              <i class="fas fa-plus"></i>
+              新增永續專案
+            </button>
           </div>
         </div>
-        <div id="project_list"></div>
+
+        <div id="project_list" class="row"></div>
       </div>
     </section>
     <!-- footer -->

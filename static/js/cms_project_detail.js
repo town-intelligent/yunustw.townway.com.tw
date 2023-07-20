@@ -1,4 +1,4 @@
-import { draw_bar_chart, getMappedSdgData } from './chart/bar.js';
+import { draw_bar_chart, getMappedSdgData, allSdgImages } from './chart/bar.js';
 import { getProjectWeight, list_plan_tasks, plan_info } from './plan.js'
 import { get_task_info } from './tasks.js'
 
@@ -131,13 +131,20 @@ export function set_page_info_cms_project_detail (uuid) {
   const obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
   const weight = getProjectWeight(obj_parent_tasks.tasks);
   const array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"]
-  draw_bar_chart({
+  const chart = draw_bar_chart({
     elementId: "cms_project_detail_chart",
     title: "專案指標累積",
     data: getMappedSdgData(weight),
     backgroundColor: array_weight_colors,
+    images: allSdgImages,
     skipZero: true,
   })
+
+  // sometime missing label when resizing window
+  // use it to force render after window resized
+  $(window).resize(function() {
+    chart.render();
+  });
 
   // Set tasks
   var obj_tasks = list_plan_tasks(uuid ,1);
