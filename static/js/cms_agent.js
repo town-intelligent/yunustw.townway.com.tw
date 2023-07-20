@@ -546,50 +546,58 @@ export function set_page_info_cms_agent(uuid){
 
     const card_body = $('<div />', {
       class: 'card-body d-flex flex-column',
+      style: 'min-height: 300px;',
     })
       .append(
-        $('<h5 />', {
-          class: 'font-weight-bold mb-4',
-          style: 'color: #3E6896; font-size: 25px;',
-          html: obj_project.name,
+        $('<div />', {
+          class: 'flex-grow-1',
         })
+          .append(
+            $('<h5 />', {
+              class: 'font-weight-bold mb-4',
+              style: 'color: #3E6896; font-size: 25px;',
+              html: obj_project.name,
+            })
+          )
+          .append(
+            $('<p />', {
+              class: 'card-text',
+              html: `永續企業: `,
+            })
+              .append(
+                $('<span />', {
+                  class: 'pl-2',
+                  html: obj_project.project_a,
+                })
+              )
+          )
+          .append(
+            $('<p />', {
+              class: 'card-text',
+              html: `地方團隊: `,
+            })
+              .append(
+                $('<span />', {
+                  class: 'pl-2',
+                  html: obj_project.project_b,
+                })
+              )
+          )
+          .append(
+            $('<p />', {
+              class: 'card-text',
+              html: `期間: `,
+            })
+              .append(
+                $('<span />', {
+                  class: 'pl-2',
+                  html: obj_project.period,
+                })
+              )
+          )
       )
       .appendTo($(card_container))
       .get(0);
-
-    $('<p />', {
-      class: 'card-text',
-      html: `永續企業: `,
-    })
-      .append(
-        $('<span />', {
-          class: 'pl-2',
-          html: obj_project.project_a,
-        })
-      ).appendTo($(card_body));
-
-    $('<p />', {
-      class: 'card-text',
-      html: `地方團隊: `,
-    })
-      .append(
-        $('<span />', {
-          class: 'pl-2',
-          html: obj_project.project_b,
-        })
-      ).appendTo($(card_body));
-
-    $('<p />', {
-      class: 'card-text',
-      html: `期間: `,
-    })
-      .append(
-        $('<span />', {
-          class: 'pl-2',
-          html: obj_project.period,
-        })
-      ).appendTo($(card_body));
-
 
     const sdg_container = $('<div />', {
       class: 'row mt-3',
@@ -602,20 +610,33 @@ export function set_page_info_cms_agent(uuid){
       list_sdgs = obj_project.weight.split(",");
     }
 
-    $.each(list_sdgs, (index) => {
+    list_sdgs = list_sdgs.reduce(
+      (all, value, index) => [...all, ...(value > 0 ? [index] : [])],
+      []
+    );
+
+    const displaySdgsItems = list_sdgs.slice(0, 5);
+    const isReadMore = list_sdgs.length > 5;
+
+    for (const index of displaySdgsItems) {
       const container = $('<div/>', {
         class: 'col-2 pr-0',
       })
 
       const index_sdg = ("0" + (index + 1)).slice(-2);
-      const img = $('<img/>', {
+      $('<img/>', {
         class: 'w-100',
         src: `/static/imgs/SDGs_${index_sdg}.jpg`,
         alt: '',
       }).appendTo(container);
 
       container.appendTo(sdg_container);
-    });
+    };
+
+    if (isReadMore) {
+      $('<p/>', { class: 'col-12 m-0 text-center', html: 'Read more...'}).appendTo(sdg_container);
+    }
+
 
     $('<a />', {
       class: "dropdown-toggle btn btn-dark w-100",
