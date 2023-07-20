@@ -1,4 +1,4 @@
-import { draw_bar_chart, getMappedSdgData, sdgImages } from './chart/bar.js';
+import { draw_bar_chart, getMappedSdgData, allSdgImages } from './chart/bar.js';
 import { getProjectWeight, list_plan_tasks, plan_info } from './plan.js'
 import { get_task_info } from './tasks.js'
 
@@ -136,7 +136,7 @@ export function set_page_info_cms_project_detail (uuid) {
     title: "專案指標累積",
     data: getMappedSdgData(weight),
     backgroundColor: array_weight_colors,
-    images: sdgImages,
+    images: allSdgImages,
     skipZero: true,
   })
 

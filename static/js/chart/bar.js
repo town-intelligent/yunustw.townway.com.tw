@@ -171,6 +171,8 @@ export const commonImages = [
   },
 ];
 
+export const allSdgImages = [...sdgImages, ...fiveImges, ...commonImages];
+
 export const append_chart_container = (element, canvasId) => {
   $(element).append(
     $("<div/>", { class: "chart-container" }).append(
