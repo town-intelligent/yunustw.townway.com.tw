@@ -610,23 +610,28 @@ export function set_page_info_cms_agent(uuid){
       list_sdgs = obj_project.weight.split(",");
     }
 
+    list_sdgs = list_sdgs.reduce(
+      (all, value, index) => [...all, ...(value > 0 ? [index] : [])],
+      []
+    );
+
     const displaySdgsItems = list_sdgs.slice(0, 5);
     const isReadMore = list_sdgs.length > 5;
 
-    $.each(displaySdgsItems, (index) => {
+    for (const index of displaySdgsItems) {
       const container = $('<div/>', {
         class: 'col-2 pr-0',
       })
 
       const index_sdg = ("0" + (index + 1)).slice(-2);
-      const img = $('<img/>', {
+      $('<img/>', {
         class: 'w-100',
         src: `/static/imgs/SDGs_${index_sdg}.jpg`,
         alt: '',
       }).appendTo(container);
 
       container.appendTo(sdg_container);
-    });
+    };
 
     if (isReadMore) {
       $('<p/>', { class: 'col-12 m-0 text-center', html: 'Read more...'}).appendTo(sdg_container);
