@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/loading.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
@@ -23,6 +24,8 @@
     <script src="/static/js/accounts.js"></script>
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/permission.js"></script>
+    <script src="/static/js/core/upload_adapter.js"></script>
+    <script src="/static/js/core/editor.js"></script>
     <script type="module" src="/static/js/cms_agent.js"></script>
     <script type="module" src="/static/js/plan.js"></script>
     <script type="module" src="/static/js/tasks.js"></script>
@@ -39,6 +42,7 @@
     $( function() {
       $("#project_start_date").datepicker();
       $("#project_due_date").datepicker();
+      register_ckeditor(['#philosophy'])
     });
     </script>
   </head>
@@ -176,7 +180,7 @@
               <p class="bg-2ndhome p-2">計畫理念</p>
             </div>
             <div class="col-12">
-              <textarea class="form-control" id="philosophy" rows="6" style="resize: none"></textarea>
+              <textarea class="form-control" id="philosophy" rows="6" style="resize: none; height: 158px;"></textarea>
             </div>
           </div>
             <div class="row mt-4 mb-5 pb-3 justify-content-center">
