@@ -1,4 +1,5 @@
-import { list_plan_tasks, plan_info } from './plan.js'
+import { draw_bar_chart, getMappedSdgData, allSdgImages } from './chart/bar.js';
+import { getProjectWeight, list_plan_tasks, plan_info } from './plan.js'
 import { get_task_info } from './tasks.js'
 
 export function set_page_info_cms_project_detail (uuid) {
@@ -11,11 +12,11 @@ export function set_page_info_cms_project_detail (uuid) {
   // Weight
   var obj_sdg_container = document.getElementById("sdg_container");
   var list_weight = [];
-  
+
   try {
     list_weight = obj_project.weight.split(",");
   } catch (e) {}
-  
+
   for (var index = 0; index < list_weight.length; index++) {
   // Append to DOM
   if (parseInt(list_weight[index]) == 1) {
@@ -29,13 +30,13 @@ export function set_page_info_cms_project_detail (uuid) {
     // var obj_a = document.createElement("a");
     var obj_a = document.createElement("p");
     obj_a.href = "#"
-  
+
     // <img class="w-100" src="/static/imgs/SDGs_04.svg" alt="">
     var obj_img = document.createElement("img");
     obj_img.className = "w-100";
     obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".svg";
     obj_img.alt = "";
-  
+
     // Append
     obj_a.append(obj_img);
     obj_div.append(obj_a);
@@ -43,16 +44,16 @@ export function set_page_info_cms_project_detail (uuid) {
   }
 
   // Period
-  document.getElementById("period_project").innerHTML = obj_project.period; 
+  document.getElementById("period_project").innerHTML = obj_project.period;
   }
 
   // Location
   var list_location = [];
-  
+
   try {
     list_location = obj_project.location.split(",");
   } catch (e) {}
-  
+
   // Location
   var obj_location = document.getElementById("location");
   for (var index = 0; index < list_location.length; index++) {
@@ -70,23 +71,23 @@ export function set_page_info_cms_project_detail (uuid) {
       }
     }
   }
-  
+
   // Unit-A and B
-  var obj_project_a = document.getElementById("project_a"); 
+  var obj_project_a = document.getElementById("project_a");
   obj_project_a.innerHTML = obj_project.project_a;
-  var obj_project_b = document.getElementById("project_b"); 
+  var obj_project_b = document.getElementById("project_b");
   obj_project_b.innerHTML = obj_project.project_b;
 
   // Hoster
-  var obj_hoster = document.getElementById("hoster"); 
+  var obj_hoster = document.getElementById("hoster");
   obj_hoster.innerHTML = obj_project.hoster;
-  
+
   // Email
-  var obj_email = document.getElementById("email"); 
+  var obj_email = document.getElementById("email");
   obj_email.innerHTML = obj_project.email;
-  
+
   // Philosophy
-  var obj_philosophy = document.getElementById("philosophy"); 
+  var obj_philosophy = document.getElementById("philosophy");
   obj_philosophy.innerHTML = obj_project.philosophy;
 
   // SDGs
@@ -126,6 +127,25 @@ export function set_page_info_cms_project_detail (uuid) {
     })
   } catch(e) {}
 
+  // Bar chart
+  const obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
+  const weight = getProjectWeight(obj_parent_tasks.tasks);
+  const array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"]
+  const chart = draw_bar_chart({
+    elementId: "cms_project_detail_chart",
+    title: "專案指標累積",
+    data: getMappedSdgData(weight),
+    backgroundColor: array_weight_colors,
+    images: allSdgImages,
+    skipZero: true,
+  })
+
+  // sometime missing label when resizing window
+  // use it to force render after window resized
+  $(window).resize(function() {
+    chart.render();
+  });
+
   // Set tasks
   var obj_tasks = list_plan_tasks(uuid ,1);
 
@@ -151,12 +171,12 @@ export function set_page_info_cms_project_detail (uuid) {
       </div>
     </div>
     */
-    var obj_div_root = document.createElement("div") 
+    var obj_div_root = document.createElement("div")
     obj_div_root.className = "row mt-4 mt-md-5 mb-3";
-  
+
     var obj_div_product = document.createElement("div")
     obj_div_product.className = "col-md-5";
-  
+
     var obj_img_product = document.createElement("img")
     obj_img_product.className = "img-fluid";
 
@@ -168,9 +188,9 @@ export function set_page_info_cms_project_detail (uuid) {
       var path_cover = HOST_URL_TPLANET_DAEMON + obj_task.thumbnail;
       obj_img_product.src = path_cover;
     }
-    
+
     obj_img_product.alt = "";
-  
+
     var obj_div_qrocde = document.createElement("div")
     obj_div_qrocde.className = "col-md-3 text-center d-md-block align-self-center";
 
@@ -183,7 +203,7 @@ export function set_page_info_cms_project_detail (uuid) {
     });
 
     qrcode.style = "width:100px; height:100px; margin-top:15px;";
-    qrcode.makeCode(location.protocol + "//" + window.location.host + "/tasks/" + obj_task.uuid);    
+    qrcode.makeCode(location.protocol + "//" + window.location.host + "/tasks/" + obj_task.uuid);
 
     var obj_div_des = document.createElement("div")
     obj_div_des.className = "col-md-4 mt-4 mt-md-0";
@@ -197,9 +217,9 @@ export function set_page_info_cms_project_detail (uuid) {
     obj_span_period.innerHTML = obj_task.period;
     var obj_p_idea = document.createElement("p")
     obj_p_idea.className = "small";
-    
+
     obj_p_idea.innerHTML = obj_task.overview;
-    obj_div_qrocde.append(obj_qrcode);	    
+    obj_div_qrocde.append(obj_qrcode);
     obj_div_product.append(obj_img_product);
     obj_div_root.append(obj_div_product);
     obj_div_root.append(obj_div_des);
@@ -216,9 +236,9 @@ export function set_page_info_cms_project_detail (uuid) {
 
   // Set cover
 
-  if (obj_project.img != null) { 
-    var path_cover = HOST_URL_TPLANET_DAEMON + 
-    "/static/project/" + uuid + 
+  if (obj_project.img != null) {
+    var path_cover = HOST_URL_TPLANET_DAEMON +
+    "/static/project/" + uuid +
     "/media/cover/cover.png";
     var obj_cover = document.getElementById("project_cover");
     obj_cover.src = path_cover;
