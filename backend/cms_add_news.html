@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/loading.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
@@ -24,13 +25,24 @@
     <script src="/static/js/accounts.js"></script>
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/permission.js"></script>
+    <script src="/static/js/core/upload_adapter.js"></script>
+    <script src="/static/js/core/editor.js"></script>
     <script type="module" src="/static/js/cms_add_news.js"></script>
     <script type="module">
       import { changeNewsListBanner, uploadNewsCover, add_news_img, btn_cms_news_submit } from '/static/js/cms_add_news.js'
       window.changeNewsListBanner = changeNewsListBanner;
       window.uploadNewsCover = uploadNewsCover;
       window.add_news_img = add_news_img;
-      window.btn_cms_news_submit = btn_cms_news_submit;
+      window.btn_cms_news_submit = function () {
+        // update the textarea value
+        update_ckeditor_data();
+        console.log(document.getElementById("news_description").value)
+        btn_cms_news_submit();
+      };
+
+      $(document).ready(() => {
+        register_ckeditor(['#news_description']);
+      });
     </script>
     <script type="module" src="/static/js/set_page_info.js"></script>
     <script type="module" src="/static/js/init.js"></script>

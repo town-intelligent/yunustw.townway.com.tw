@@ -11,7 +11,7 @@ function mockup_get() {
     "contentType": false,
     "data": form
   };
-    
+
   $.ajax(settings).done(function (response) {
     try {
       console.log(response)
@@ -30,13 +30,13 @@ function exChange(data) {
   $('#csr_img').attr("src",` ${HOST_URL_TPLANET_DAEMON}${data['csr-img']}`)
   $('#sdg_img').attr("src",` ${HOST_URL_TPLANET_DAEMON}${data['sdg-img']}`)
   $('#twins_img').attr("src",` ${HOST_URL_TPLANET_DAEMON}${data['twins-img']}`)
-  $('#textarea1').text(`${data['t-planet-description']}`)
-  $('#textarea2').text(`${data['csr-description']}`)
-  $('#textarea3').text(`${data['sdg-description']}`)
-  $('#textarea4').text(`${data['twins-description']}`)
+
+  $('#textarea1').html(`${data['t-planet-description']}`)
+  $('#textarea2').html(`${data['csr-description']}`)
+  $('#textarea3').html(`${data['sdg-description']}`)
+  $('#textarea4').html(`${data['twins-description']}`)
 }
 
 $(document).ready (function () {
-  console.log("hello, mockup_get");
   mockup_get();
 })
