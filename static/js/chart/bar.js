@@ -171,6 +171,8 @@ export const commonImages = [
   },
 ];
 
+export const allSdgImages = [...sdgImages, ...fiveImges, ...commonImages];
+
 export const append_chart_container = (element, canvasId) => {
   $(element).append(
     $('<div/>', { class: 'chart-container' }).append(
@@ -200,7 +202,11 @@ const filter_zero_item = (data, backgroundColor, images) => {
     }
   }
 
-  return { data: newData, backgroundColor: newBackgroundColor, images: newImages }
+  return {
+    data: newData,
+    backgroundColor: newBackgroundColor,
+    images: newImages,
+  };
 }
 
 const SDG_MAP = {
@@ -230,7 +236,6 @@ export const getMappedSdgData = (data) => {
 
   return newData;
 }
-
 
 export const draw_bar_chart = ({
   elementId,
@@ -309,6 +314,9 @@ export const draw_bar_chart = ({
           text: title,
           font: { size: titleFontSize },
           position: titlePosition,
+  	  padding: {
+            bottom: 50
+          }
         },
         labels: {
           render: "image",
@@ -317,4 +325,6 @@ export const draw_bar_chart = ({
       },
     },
   });
+
+  return chart;
 };
