@@ -77,6 +77,11 @@ export function add_parent_task_block (obj_task = null) {
       }
     }
   }
+
+  const textareaIds = [
+    ...document.querySelectorAll("textarea[id^='parent_task_overview_']")
+  ].map(item => `#${item.id}`);
+  register_ckeditor(textareaIds);
 }
 function add_sdgs_comment(index, des) {
   // Format index
@@ -109,7 +114,7 @@ function add_sdgs_input(index) {
     obj_textarea.id = "sdg_" + index + "_des";
     obj_textarea.className = "form-control ml-3";
     obj_textarea.placeholder = "填寫符合此指標的執行方式";
-    obj_textarea.style = "resize: none";
+    obj_textarea.style = "resize: none; height: 62px;";
     // Append
     obj_div.appendChild(img);
     obj_div.appendChild(obj_textarea);
