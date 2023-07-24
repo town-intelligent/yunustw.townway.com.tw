@@ -347,3 +347,7 @@ section {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.ck.ck-reset.ck-editor.ck-rounded-corners {
+  width: 100% !important;
+}
