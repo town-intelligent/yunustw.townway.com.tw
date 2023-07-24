@@ -293,3 +293,7 @@ section {
     height: 300px;
   }
 }
+
+.ck.ck-reset.ck-editor.ck-rounded-corners {
+  width: 100% !important;
+}
