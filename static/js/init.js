@@ -23,12 +23,35 @@ function logout() {
   });
 }
 
+function set_navbar_animation() {
+  $('.navbar').hover(function() {
+    $('.navbar').removeClass('blur');
+  });
+
+  var lastScrollTop = 0;
+  $(window).scroll(function(){
+    var scrollTop = $(this).scrollTop();
+    // scroll down
+    if (scrollTop > lastScrollTop){
+      $('.navbar').addClass('blur');
+      lastScrollTop = scrollTop;
+      return;
+    }
+
+    // scroll up
+    $('.navbar').removeClass('blur');
+    lastScrollTop = scrollTop;
+  });
+}
+
 function navbar(group) {
+  set_navbar_animation()
+
   // home logo href
   if (group == "200" || group == "201" ) {
-      document.getElementById("index_logo").href = 
+      document.getElementById("index_logo").href =
       "/backend/admin_agent_dashboard.html";
- 
+
     try {
       var obj_account_status = document.getElementById("account_status");
       for (const child of obj_account_status.children) {
@@ -37,11 +60,11 @@ function navbar(group) {
 
       var obj_a = document.createElement("a");
       obj_a.className = "nav-link fw-bold";
-      obj_a.href="javascript:void(0)" 
+      obj_a.href="javascript:void(0)"
       obj_a.onclick= function(e){
         logout()
       }
-    
+
 
       var obj_img = document.createElement("img");
       obj_img.className = "align-text-top";
@@ -52,7 +75,7 @@ function navbar(group) {
       obj_a.append(obj_img);
 
       obj_account_status.append(obj_a);
-    } catch(e) { console.log(e) } 
+    } catch(e) { console.log(e) }
   }
 }
 

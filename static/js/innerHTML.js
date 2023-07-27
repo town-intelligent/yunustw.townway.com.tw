@@ -127,7 +127,7 @@ const str_project_management_modal = `
                       <p class="mt-2 mb-0">熱區圖示</p>
                     </div>
                   </div>
-                  <a href="/backend/heat_map_menu.html?uuid=UUID_PROJECT" class="stretched-link"></a>
+                  <a href="/backend/heat_map.html?uuid=UUID_PROJECT" class="stretched-link"></a>
                 </div>
               </div>
               <div class="col-2">
@@ -186,7 +186,7 @@ const str_project_management_modal = `
                       <p class="mt-2 mb-0">熱區圖示</p>
                     </div>
                   </div>
-                  <a href="/backend/heat_map_menu.html??uuid=UUID_PROJECT" class="stretched-link"></a>
+                  <a href="/backend/heat_map.html??uuid=UUID_PROJECT" class="stretched-link"></a>
                 </div>
               </div>
               <div class="col-6 mt-4">
@@ -195,7 +195,7 @@ const str_project_management_modal = `
                     <div class="text-center">
                       <img src="/static/imgs/del-project.svg" alt="" style="width:50px">
                       <p class="mt-2 mb-0">刪除專案</p>
-                    </div>                    
+                    </div>
                   </div>
                   <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#projectDeleteModel_UUID_PROJECT"></a>
                 </div>
@@ -333,7 +333,7 @@ const str_parent_task_block = `
             </div>
           </div>
         </form>
-      </div> 
+      </div>
     </div>
   </div>
 </div> `
@@ -396,7 +396,7 @@ const str_project_block_in_project_page = `<a class="text-dark" href="/cms_proje
         <p class="card-text">預算: <span class="pl-2">新台幣 BUDGET 元<span></p>
         <a href="/content.html?uuid=PROJECT_UUID" class="stretched-link"></a>
         <div class="row mt-3">
-          
+
         <!--
           <div class="pl-2">
             <a href="#" class="stretched-link" style="position: relative; text-decoration: none;">
@@ -417,8 +417,8 @@ const str_project_block_in_project_page = `<a class="text-dark" href="/cms_proje
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
               <img style="width:13%"  src="/static/imgs/SDGs_13.jpg" alt="">
             </a>
-            
-            
+
+
           </div>
           -->
           SDGS_LIST
@@ -470,12 +470,12 @@ const str_admin_dropdown = `<a class="nav-link d-md-none" href="/backend/message
   <span class="pl-2">登出</span>
 </a>`;
 
-const str_send_mail = `<p>寄件者： 
+const str_send_mail = `<p>寄件者：
 <span>townintelligent@gmail.com</span>
 </p>
-<p>收件者： 
+<p>收件者：
 <span>RECEIVER</span>
 </p>
-<p>主旨： 
+<p>主旨：
 <span>TITLE 邀請</span>
 </p>`;

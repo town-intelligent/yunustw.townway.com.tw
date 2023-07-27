@@ -54,13 +54,13 @@ export function add_parent_task_block (obj_task = null) {
     }
     document.getElementById("parent_task_overview_" + obj_task.uuid).value = obj_task.overview;
     // cover
-    var path_cover = HOST_URL_TPLANET_DAEMON + 
-    "/static/project/" + uuid + 
+    var path_cover = HOST_URL_TPLANET_DAEMON +
+    "/static/project/" + uuid +
     "/tasks/" + obj_task.uuid + "/cover.png";
     document.getElementById("divUploadImg_" + obj_task.uuid).style.backgroundImage =  "";
     document.getElementById("btnUploadImg_" + obj_task.uuid).style.display = "none";
     document.getElementById("coverImg_" + obj_task.uuid).style.backgroundImage =  "url(" + path_cover + ")";
-    document.getElementById("coverImg_" + obj_task.uuid).style.backgroundRepeat = "no-repeat";    
+    document.getElementById("coverImg_" + obj_task.uuid).style.backgroundRepeat = "no-repeat";
     document.getElementById("coverImg_" + obj_task.uuid).style.backgroundSize = "100% 100%";
     // Onclick
     var oDiv = document.getElementById("coverImg_" + obj_task.uuid);
@@ -71,12 +71,17 @@ export function add_parent_task_block (obj_task = null) {
     // GPS
     if (obj_task.gps == true) {
       try {
-        document.getElementById("gps_flag_" + obj_task.uuid).checked = true;        
+        document.getElementById("gps_flag_" + obj_task.uuid).checked = true;
       } catch (e) {
         console.log(e)
       }
     }
   }
+
+  const textareaIds = [
+    ...document.querySelectorAll("textarea[id^='parent_task_overview_']")
+  ].map(item => `#${item.id}`);
+  register_ckeditor(textareaIds);
 }
 function add_sdgs_comment(index, des) {
   // Format index
@@ -109,7 +114,7 @@ function add_sdgs_input(index) {
     obj_textarea.id = "sdg_" + index + "_des";
     obj_textarea.className = "form-control ml-3";
     obj_textarea.placeholder = "填寫符合此指標的執行方式";
-    obj_textarea.style = "resize: none";
+    obj_textarea.style = "resize: none; height: 62px;";
     // Append
     obj_div.appendChild(img);
     obj_div.appendChild(obj_textarea);
@@ -133,7 +138,7 @@ export function set_page_info_cms_impact(uuid) {
         continue;
       }
       add_sdgs_comment(index, obj_sdgs_comment[index.toString()]);
-    }   
+    }
   }
   // Add parent task block list
   var list_parent_task_uuid = list_plan_tasks(uuid, 1)

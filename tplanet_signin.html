@@ -41,7 +41,7 @@
       xfbml      : true,
       version    : 'v2.12'
     });
-    FB.AppEvents.logPageView();   
+    FB.AppEvents.logPageView();
   };
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -50,7 +50,7 @@
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
- 
+
   $(function() {
     $("#btnFbSignIn").click(function() {
       FB.getLoginStatus(function(response) {
@@ -75,7 +75,7 @@
             }
           //FB.login()預設只會回傳基本的授權資料
           //如果想取得額外的授權資料需要另外設定在scope參數裡面
-          //可以設定的授權資料可以參考官方文件          
+          //可以設定的授權資料可以參考官方文件
           }, { scope: 'email' });
         }
       });
@@ -106,12 +106,12 @@
             setLocalStorage("username", obj.username);
             setLocalStorage("email", $("#email").val());
             console.log("Get JWT from cookie" +  getLocalStorage("jwt"));
-            
+
             // TODO, redirect by next
             if (next != null) {
               window.location.replace(next);
             } else {
-              // TODO, redirect by group	  
+              // TODO, redirect by group
               group = get_group($("#email").val());
               if (group == "100") {
                 window.location.replace("/backend/admin_dashboard.html");
@@ -123,7 +123,7 @@
             }
           },
           error: function(xhr, ajaxOptions, thrownError){
-            
+
             var elemWrongPw = document.getElementById("wrong-pw");
             if (elemWrongPw != null) {
               elemWrongPw.style.display = "block";
@@ -150,7 +150,7 @@
         <button class="navbar-toggler mr-md-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -179,7 +179,7 @@
       </div>
     </nav>
     <!-- content -->
-    <div style="flex-grow: 1">
+    <div class="main-content flex-grow-1">
       <div class="container-fluid">
         <div class="row justify-content-center my-3">
           <div class="col-10 text-center h3">登入</div>
@@ -224,7 +224,7 @@
               <div class="col-5 mt-3 px-0">
                 <hr class="border-sm">
               </div>
-              <div class="col-2 mt-3 pt-1 px-0 text-center"> 
+              <div class="col-2 mt-3 pt-1 px-0 text-center">
                 <p class="mb-0 text-dark">或</p>
               </div>
               <div class="col-5 mt-3 px-0">
