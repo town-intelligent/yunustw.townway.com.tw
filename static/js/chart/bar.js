@@ -171,37 +171,43 @@ export const commonImages = [
   },
 ];
 
+export const allSdgImages = [...sdgImages, ...fiveImges, ...commonImages];
+
 export const append_chart_container = (element, canvasId) => {
   $(element).append(
-    $('<div/>', { class: 'chart-container' }).append(
-      $('<canvas/>', { id: canvasId })
+    $("<div/>", { class: "chart-container" }).append(
+      $("<canvas/>", { id: canvasId })
     )
-  )
-}
+  );
+};
 
 const filter_zero_item = (data, backgroundColor, images) => {
-  const newData = {}
-  const newBackgroundColor = []
-  const newImages = []
-  const keys = Object.keys(data)
+  const newData = {};
+  const newBackgroundColor = [];
+  const newImages = [];
+  const keys = Object.keys(data);
   for (const index in keys) {
-    const key = keys[index]
+    const key = keys[index];
     if (data[key] == 0) {
       continue;
     }
 
-    newData[key] = data[key]
+    newData[key] = data[key];
     if (Array.isArray(backgroundColor)) {
-      newBackgroundColor.push(backgroundColor[index])
+      newBackgroundColor.push(backgroundColor[index]);
     }
 
     if (Array.isArray(images)) {
-      newImages.push(images[index])
+      newImages.push(images[index]);
     }
   }
 
-  return { data: newData, backgroundColor: newBackgroundColor, images: newImages }
-}
+  return {
+    data: newData,
+    backgroundColor: newBackgroundColor,
+    images: newImages,
+  };
+};
 
 const SDG_MAP = {
   "sdgs-18": "人",
@@ -214,13 +220,13 @@ const SDG_MAP = {
   "sdgs-25": "體",
   "sdgs-26": "群",
   "sdgs-27": "美",
-}
+};
 
 export const getMappedSdgData = (data) => {
   const keys = Object.keys(data);
   const newData = {};
   for (const key of keys) {
-    const newKey = SDG_MAP[key]
+    const newKey = SDG_MAP[key];
     if (newKey) {
       newData[newKey] = data[key];
     } else {
@@ -229,8 +235,7 @@ export const getMappedSdgData = (data) => {
   }
 
   return newData;
-}
-
+};
 
 export const draw_bar_chart = ({
   elementId,
@@ -242,7 +247,7 @@ export const draw_bar_chart = ({
   xAxisTitle = "指標",
   xAxisDisplay = true,
   skipZero = false,
-  titlePosition = 'top',
+  titlePosition = "top",
   titleFontSize = 24,
   gridlineDisplay = false,
 }) => {
@@ -250,12 +255,13 @@ export const draw_bar_chart = ({
 
   if (skipZero) {
     const filtered = filter_zero_item(data, backgroundColor, images);
-    data = filtered.data
-    backgroundColor = filtered.backgroundColor
-    images = filtered.images
+    data = filtered.data;
+    backgroundColor = filtered.backgroundColor;
+    images = filtered.images;
+    console.log(filtered.images);
   }
 
-  new Chart(ctx, {
+  const chart = new Chart(ctx, {
     type: "bar",
     data: {
       datasets: [
@@ -268,7 +274,6 @@ export const draw_bar_chart = ({
       ],
     },
     options: {
-
       maintainAspectRatio: false,
       elements: {
         bar: {
@@ -309,6 +314,9 @@ export const draw_bar_chart = ({
           text: title,
           font: { size: titleFontSize },
           position: titlePosition,
+          padding: {
+            bottom: 50
+          }
         },
         labels: {
           render: "image",
@@ -317,4 +325,6 @@ export const draw_bar_chart = ({
       },
     },
   });
+
+  return chart;
 };
