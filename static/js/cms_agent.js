@@ -32,7 +32,7 @@ $(function () {
     var obj_project = null;
     var form = new FormData();
     if (obj_project = plan_submit(form)) {
-      window.location.replace("/backend/cms_plan_info.html?uuid=" + obj_project.uuid); 
+      window.location.replace("/backend/cms_plan_info.html?uuid=" + obj_project.uuid);
     }
   });
 });
@@ -43,7 +43,7 @@ function get_page_index(page) {
 	    return 3
     }
   }
-  
+
   for (var index = 0; index < cms_project_submit_pages.length; index++) {
     if (page == cms_project_submit_pages[index]) {
       return index
@@ -141,7 +141,7 @@ $(function () {
     plan_submit(form, uuid);
 
     // Parent task submit
-    if (page == "cms_impact.html") {      
+    if (page == "cms_impact.html") {
       // Variables
       var list_parent_tasks = [];
 
@@ -165,7 +165,7 @@ $(function () {
           form.append("uuid", uuid);
           form.append("task", list_parent_tasks[index_task]);
           form.append("email", getLocalStorage("email"));
-          
+
           // name
           form.append("name", document.getElementById("parent_task_name_" + list_parent_tasks[index_task]).value);
 
@@ -174,7 +174,7 @@ $(function () {
 
           // due date
           form.append("task_due_date", document.getElementById("parent_task_due_date_" + list_parent_tasks[index_task]).value);
-          
+
           // overview
           form.append("overview", document.getElementById("parent_task_overview_" + list_parent_tasks[index_task]).value);
 
@@ -184,7 +184,7 @@ $(function () {
           } catch(e) {
             console.log(e);
           }
-        
+
           var obj_task = task_submit(form);
         } catch(e) {
           console.log(e)
@@ -201,8 +201,8 @@ $(function () {
     // Replace page
     var btn_submit = $(this).find("button[type=submit]:focus");
     var id_btn_submit = btn_submit.attr('id');
-    
-    if (id_btn_submit == "btn_ab_project_next") {      
+
+    if (id_btn_submit == "btn_ab_project_next") {
       if (index < cms_project_submit_pages.length - 1) {
         var next_page = get_index_page(index + 1);
         window.location.replace("/backend/" + next_page + param);
@@ -217,7 +217,7 @@ $(function () {
       if (page == "cms_deep_participation.html") {
         window.location.replace("/backend/cms_impact.html" + param);
       }
-      
+
     } else if (id_btn_submit == "btn_cms_plan_save") {
       alert("儲存成功");
     } else if (id_btn_submit == "btn_cms_plan_preview") {
@@ -254,7 +254,7 @@ export function cms_plan_add_parent_tasks(uuid_task) {
   } else {
     var form = new FormData();
     uuid_plan = plan_submit(form, uuid_plan);
-  }    
+  }
   setLocalStorage("uuid_project", uuid_plan);
 
   // Update project
@@ -266,7 +266,7 @@ export function cms_plan_add_parent_tasks(uuid_task) {
   var gps_flag = false;
   try {
     if (document.getElementById("gps_flag_" + uuid_task).checked == true) {
-      gps_flag = true;  
+      gps_flag = true;
     }
   } catch (e) {
     console.log(e)
@@ -417,7 +417,7 @@ $(function () {
     if (getLocalStorage("list_target_sdgs") != "") {
       list_target_sdgs = getLocalStorage("list_target_sdgs").split(",");
     }
-    
+
     list_target_sdgs.push(getLocalStorage("target_sdgs"));
 
     // Get path
@@ -464,7 +464,7 @@ $(function () {
 
       // Append
       obj_div_child.append(obj_input);
-    
+
       obj_div_row.append(obj_img);
       obj_div_row.append(obj_label);
       obj_div_row.append(obj_div_child);
@@ -475,7 +475,7 @@ $(function () {
     if (page == "cms_deep_participation.html") {
       // id = icon_container
       var obj_icon_container = document.getElementById("icon_container");
-      
+
       // <a class="d-block">
       var obj_a = document.createElement("a");
       obj_a.className = "d-block";
@@ -493,7 +493,7 @@ $(function () {
       obj_icon_container.append(obj_a);
     }
     */
-	  
+
     // Finish
     $("#SDGsModal").modal("hide");
   });
@@ -508,7 +508,7 @@ export function set_page_info_cms_agent(uuid){
   }
 
   const list_project_uuids = list_project_obj.projects;
-  
+
   const obj_project_list = document.getElementById("project_list");
   for (let index = 0; index < list_project_uuids.length; index++) {
     // Get project info
@@ -626,7 +626,7 @@ export function set_page_info_cms_agent(uuid){
       const index_sdg = ("0" + (index + 1)).slice(-2);
       $('<img/>', {
         class: 'w-100',
-        src: `/static/imgs/SDGs_${index_sdg}.jpg`,
+        src: `/static/imgs/SDGs_${index_sdg}.svg`,
         alt: '',
       }).appendTo(container);
 
@@ -679,9 +679,9 @@ export function set_page_info_cms_agent(uuid){
 }
 
 export function showProjectDeleteModel (uuid_project){
-  delete_plan(uuid_project);  
+  delete_plan(uuid_project);
   $("#projectDeleteModel_" + uuid_project).modal("hide");
-  
+
   // Reload page
   location.reload();
 }
