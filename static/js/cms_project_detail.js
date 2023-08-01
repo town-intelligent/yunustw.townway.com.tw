@@ -127,7 +127,8 @@ export function set_page_info_cms_project_detail (uuid) {
     })
   } catch(e) {}
 
-  // Bar chart
+  // FIXME: Bar chart
+/*
   const obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
   const weight = getProjectWeight(obj_parent_tasks.tasks);
   const array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"]
@@ -145,7 +146,7 @@ export function set_page_info_cms_project_detail (uuid) {
   $(window).resize(function() {
     chart.render();
   });
-
+*/
   // Set tasks
   var obj_tasks = list_plan_tasks(uuid ,1);
 
