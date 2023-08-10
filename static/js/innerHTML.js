@@ -257,7 +257,7 @@ const str_parent_task_block = `
       <div class="col-md-6">
         <div id="coverImg_UUID_TASK" class="border d-flex flex-column align-items-center justify-content-center" style="height:300px">
           <button type="button" id="btnUploadImg_UUID_TASK" onclick="uploadTaskCover('UUID_TASK')">
-            <div id="divUploadImg_UUID_TASK" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg);width:100px; height:100px; background-repeat: no-repeat"></div>
+            <div id="divUploadImg_UUID_TASK" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg);width:100px; height:100px; background-repeat: no-repeat; background-size: cover;"></div>
           </button>
         </div>
       </div>
@@ -381,13 +381,12 @@ const str_project_block_in_project_page_backup = `<div class="card mb-4 border-3
 </div>
 `
 
-// FIXME
 const str_project_block_in_project_page = `<a class="text-dark" href="/cms_project_detail.html?uuid=PROJECT_UUID" style="display: block; text-decoration:none">
 
     <div class="card mb-4 kpi-card" style="border-radius: 20px;">
       <div class="d-flex justify-content-center">
         <!-- <div class="img-fluid bg-cover shadow" style="background-repeat: no-repeat; background-position: center center; background-size: cover; background-image:url(PROJECT_COVER); width:100% ;height:200px; border-radius: 18px;"></div> -->
-        <img src="PROJECT_COVER" class="img-fluid bg-cover shadow" style="background-repeat: no-repeat; background-position: center center; background-size: cover; background-image:url(PROJECT_COVER); width:100% ;height:200px; border-radius: 18px;"></div>
+        <div class="img-fluid bg-cover shadow" style="background-repeat: no-repeat; background-position: center center; background-size: cover; background-image:url(PROJECT_COVER); width:100% ;height:200px; border-radius: 18px;"></div>
       </div>
       <div class="card-body d-flex flex-column">
         <p class="h5">PROJECT_NAME</p>
