@@ -332,6 +332,7 @@ section {
 
 .ck.ck-reset.ck-editor.ck-rounded-corners {
   width: 100% !important;
+}
 
 .project.card {
   box-shadow: 3px 3px 8px hsl(0, 0%, 70%);

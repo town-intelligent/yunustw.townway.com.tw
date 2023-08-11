@@ -535,8 +535,6 @@ export function set_page_info_cms_agent(uuid){
     let image_url = null;
     if (obj_project.img != null) {
       image_url = `${HOST_URL_TPLANET_DAEMON}/static/project/${obj_project.uuid}/media/cover/cover.png`;
-    } else {
-      console.log(`null image uuid =  ${obj_project.uuid}`);
     }
 
     $('<div />', {
