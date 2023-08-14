@@ -518,7 +518,6 @@ export function set_page_info_cms_agent(uuid){
     })
       .appendTo($(obj_project_list))
       .get(0);
-
     const card_container = $('<div />', {
       class: 'project card mb-4',
     })
@@ -664,7 +663,6 @@ export function set_page_info_cms_agent(uuid){
         str_project_management_modal.replaceAll("UUID_PROJECT", obj_project.uuid)
       )
      .appendTo("body");
-
     $('<div/>', {
       class: 'modal fade',
       id: "projectDeleteModel_" + obj_project.uuid,

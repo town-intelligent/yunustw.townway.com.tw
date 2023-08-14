@@ -156,24 +156,25 @@ section {
 }
 
 .bg-navbar {
-    background-color: #ABCFE9 !important;
+    background-color: #FFF38D !important;
 }
 
 .bg-footer {
-    background-color: #ABCFE9 !important;
+    background-color: #FFF38D !important;
 }
 
 .fw-bold{
   font-weight: bold;
 }
 
+/* 320 */
 .logo-pc {
-  width: 200px;
   height: 60px;
 }
 
+/* 150 */
 .logo-mobile{
-  width: 100px;
+  height: 30px;
 }
 
 .text-title{
@@ -197,7 +198,7 @@ section {
 }
 
 .bg-2ndhome{
-  background-color: #ABCFE9;
+  background-color: #FFF38D;
 }
 
 .align-sub{
@@ -349,4 +350,9 @@ section {
 
 .ck.ck-reset.ck-editor.ck-rounded-corners {
   width: 100% !important;
+}
+
+#project_cover, [id^="coverImg"] {
+  display: block; /* 将图片元素设置为块级元素 */
+  margin: 0 auto; /* 自动左右外边距以实现水平居中 */
 }
