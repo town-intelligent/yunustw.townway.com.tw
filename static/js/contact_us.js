@@ -31,7 +31,7 @@ $(function () {
 
       list_target_sdgs = JSON.parse(getLocalStorage("list_target_sdgs"));
     }
-    
+
     list_target_sdgs.push(getLocalStorage("target_sdgs"));
     setLocalStorage("list_target_sdgs", JSON.stringify(list_target_sdgs));
 
@@ -45,7 +45,7 @@ $(function () {
     if (page == "contact_us.html") {
       // id = icon_container
       var obj_icon_container = document.getElementById("icon_container");
-      
+
       // <a class="d-block">
       var obj_a = document.createElement("a");
       obj_a.className = "d-block";
@@ -62,7 +62,7 @@ $(function () {
       obj_a.append(obj_img);
       obj_icon_container.append(obj_a);
     }
-	  
+
     // Finish
     $("#SDGsModal").modal("hide");
   });
@@ -105,10 +105,10 @@ $(function () {
     form.append("tel", document.getElementById("tel").value);
     form.append("comment", document.getElementById("comment").value);
     form.append("list_target_sdgs", getLocalStorage("list_target_sdgs"));
-    
+
     // Submit
     var repos = comment_submit(form);
-    
+
     if (repos.result == true)
       alert("您的建議已送出！編號為：" + repos.uuid);
     else

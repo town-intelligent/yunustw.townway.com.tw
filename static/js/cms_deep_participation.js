@@ -64,16 +64,16 @@ function set_page_in_add_child_task_block(obj_task) {
   delete_img.setAttribute("data-toggle", "modal");
   delete_img.setAttribute("style", "width: 150px");
   // style="width: 150px"
-  
+
   delete_img.setAttribute("data-target", "#deleteModal_" + obj_task.uuid);
   delete_img.innerText = "刪除";
 
   del_img_div.append(delete_img);
-  
+
   nav_container.append(input_name);
 
-  label.append(uuid_task);  
-  
+  label.append(uuid_task);
+
   form_nav.append(label);
   form_nav_button.append(del_img_div);
 
@@ -150,7 +150,7 @@ function set_page_in_add_child_task_block(obj_task) {
   try {
     list_period = obj_task.period.split("-");
   } catch (e) {}
-  
+
   if (list_period.length == 2) {
     time_input1.value = list_period[0];
     time_input2.value = list_period[1];
@@ -171,7 +171,7 @@ function set_page_in_add_child_task_block(obj_task) {
 
   icon_btn.dataset.target = "#SDGsModal"
   icon_btn.dataset.toggle = "modal"
-  
+
   icon_btn.onclick= function(e){
     element_id = e.target.parentNode.parentNode.id
     // showSDGsModal()
@@ -182,18 +182,18 @@ function set_page_in_add_child_task_block(obj_task) {
 
   icon_btn_outter.append(icon_btn)
   icon_container.append(icon_btn_outter)
-  
+
   // Get task content
   var str_task_content = obj_task.content;
   var obj_task_content = {}
-  
+
   try {
     obj_task_content = JSON.parse(str_task_content);
   } catch (e) {}
 
-  // SDGs_container 
+  // SDGs_container
   for (var index = 1; index < 28; index++) {
-    if (obj_task_content["sdgs-" + index.toString()] == "1") {    
+    if (obj_task_content["sdgs-" + index.toString()] == "1") {
       // Add SDGs icon
 
       var obj_a = document.createElement("a");
@@ -202,12 +202,12 @@ function set_page_in_add_child_task_block(obj_task) {
 
       // <img class="mr-3" src="/static/imgs/SDGs_04.svg" alt="" style="width:60px">
       var index_sdg = ("0" + index).slice(-2);
-      
+
       var obj_img = document.createElement("img");
       obj_img.id = "target_sdgs_" + index_sdg;
       obj_img.className = "mx-2 mt-3 mb-3 mt-md-0";//" participation-margin mt-md-0 mr-3";
       obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".svg";
-      
+
       obj_img.alt = "";
       obj_img.style = "width:135px";
 
@@ -312,7 +312,7 @@ function set_page_in_add_child_task_block_backup(obj_task) {
   delete_img.setAttribute("data-toggle", "modal");
   delete_img.setAttribute("data-target", "#deleteModal_" + obj_task.uuid);
   delete_img.innerText = "刪除";
-  
+
   nav_container.append(input_name);
   nav_container.append(delete_img);
   label.append(uuid_task);
@@ -389,7 +389,7 @@ function set_page_in_add_child_task_block_backup(obj_task) {
   try {
     list_period = obj_task.period.split("-");
   } catch (e) {}
-  
+
   if (list_period.length == 2) {
     time_input1.value = list_period[0];
     time_input2.value = list_period[1];
@@ -410,7 +410,7 @@ function set_page_in_add_child_task_block_backup(obj_task) {
 
   icon_btn.dataset.target = "#SDGsModal"
   icon_btn.dataset.toggle = "modal"
-  
+
   icon_btn.onclick= function(e){
     element_id = e.target.parentNode.parentNode.id
     // showSDGsModal()
@@ -421,18 +421,18 @@ function set_page_in_add_child_task_block_backup(obj_task) {
 
   icon_btn_outter.append(icon_btn)
   icon_container.append(icon_btn_outter)
-  
+
   // Get task content
   var str_task_content = obj_task.content;
   var obj_task_content = {}
-  
+
   try {
     obj_task_content = JSON.parse(str_task_content);
   } catch (e) {}
 
-  // SDGs_container 
+  // SDGs_container
   for (var index = 1; index < 28; index++) {
-    if (obj_task_content["sdgs-" + index.toString()] == "1") {    
+    if (obj_task_content["sdgs-" + index.toString()] == "1") {
       // Add SDGs icon
 
       var obj_a = document.createElement("a");
@@ -441,12 +441,12 @@ function set_page_in_add_child_task_block_backup(obj_task) {
 
       // <img class="mr-3" src="/static/imgs/SDGs_04.svg" alt="" style="width:60px">
       var index_sdg = ("0" + index).slice(-2);
-      
+
       var obj_img = document.createElement("img");
       obj_img.id = "target_sdgs_" + index_sdg;
       obj_img.className = "mx-2 mt-3 mb-3 mt-md-0";//" participation-margin mt-md-0 mr-3";
       obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".svg";
-      
+
       obj_img.alt = "";
       obj_img.style = "width:135px";
 
@@ -506,7 +506,7 @@ export function set_page_info_cms_deep_participation(){
           break;
     $("#task_start_date_" + index).datepicker();
     $("#task_due_date_" + index).datepicker();
-    
+
 
     index ++;
   }
@@ -539,7 +539,7 @@ export function deep_participation_add_child_task_block(obj_task) {
   var uuid_project = urlParams.get("uuid")
   var uuid_parent = urlParams.get("task")
   var gps = urlParams.get("gps")
-  
+
   var uuid_child = null;
   var task_parent_id = {"task_parent_id":uuid_parent};
 
@@ -550,7 +550,7 @@ export function deep_participation_add_child_task_block(obj_task) {
   form.append("gps_flag", gps);
 
   var obj_task = task_submit(form);
-  
+
   if (obj_task.result == true){
     uuid_child = obj_task.task;
   } else {
@@ -559,7 +559,7 @@ export function deep_participation_add_child_task_block(obj_task) {
   }
 
   add_to_child_task_queue(uuid_child)
-  
+
   let deep_div_parent_task = document.getElementById('deep_div_parent_task')
 
   var outter = document.createElement("div")
@@ -682,7 +682,7 @@ export function deep_participation_add_child_task_block(obj_task) {
     $("#task_start_date_" + uuid_child).timepicker();
     $("#task_due_date_" + uuid_child).timepicker();
   })
-  
+
   time_icon_container.append(time_icon)
   time_icon_outter.append(time_icon_container)
   time_inner.append(time_input1)
@@ -715,7 +715,7 @@ export function deep_participation_add_child_task_block(obj_task) {
 
   icon_btn.dataset.target = "#SDGsModal"
   icon_btn.dataset.toggle = "modal"
-  
+
   icon_btn.onclick= function(e){
     element_id = e.target.parentNode.parentNode.id
     // showSDGsModal()
@@ -772,12 +772,12 @@ export function showDeleteModal (uuid_task) {
   $("#deleteModal").modal("show")
   var delete_uuid = document.querySelector('#delete_uuid')
   delete_uuid.innerText = "確定刪除此活動設計"+ uuid_task + "。"
-  
+
   // Delete task
   deep_deleted_task(uuid_task);
   // Update local storage
   remove_child_task_queue(uuid_task)
-  
+
   location.reload();
 }
 
@@ -804,7 +804,7 @@ export function showSDGsModal(){
 
 $(function () {
   $("#deep_participation_add_child_tasks").on("click",function(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     deep_participation_add_child_task_block()
   })
 
@@ -818,13 +818,13 @@ $(function () {
     if (getLocalStorage("list_target_sdgs") != "") {
       list_target_sdgs = getLocalStorage("list_target_sdgs").split(",");
     }
-    
+
     list_target_sdgs.push(getLocalStorage("target_sdgs"));
 
     // Get path
     var path = window.location.pathname;
     var page = path.split("/").pop();
-        
+
     if (page == "cms_deep_participation.html") {
       var obj_icon_container = document.getElementById(element_id); // 'icon_container_' + uuid
       var obj_a = document.createElement("a");

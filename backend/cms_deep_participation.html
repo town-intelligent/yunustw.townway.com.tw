@@ -54,41 +54,7 @@
   </head>
   <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-xl navbar-light bg-navbar fz-18">
-      <div name="admin_dropdown" class="container-fluid">
-        <a id="index_logo" class="navbar-brand d-none d-md-block my-md-1" href="/index.html">
-          <img class="logo-pc" src="/static/imgs/2nd-home.svg" alt="">
-        </a>
-        <a id="index_logo" class="navbar-brand d-md-none" href="/index.html">
-          <img class="logo-mobile" src="/static/imgs/2nd-home.svg" alt="">
-        </a>
-        <button class="navbar-toggler mr-md-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/index.html">Beyond School </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
-            </li>
-
-            <li class="nav-item d-flex align-items-center">
-              <a class="nav-link fw-bold align-middle" href="#"><img class="align-sub" src="/static/imgs/edit.svg" style="height:23px" alt=""></a>
-            </li>
-            <li class="nav-item d-flex align-items-center">
-              <a class="nav-link fw-bold" href="javascript:void(0)" onclick="logout()"><img class="align-text-top" src="/static/imgs/logout.svg" style="height:25px" alt="">登出</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div id="navbar"></div>
 		<!-- step progress bar -->
 		<div class="contanier pt-3">
 			<ul class="progressbar">
@@ -112,6 +78,206 @@
 					<div class="col-10 px-0 mb-3">
 						<button id="deep_participation_add_child_tasks" class="btn btn-block btn-outline-secondary">+ 新增活動</button>
 					</div>
+
+<!-- 					<ol>
+						<div id = "deep_div_parent_task" class="mb-2"></div>
+					</ol> -->
+
+
+
+					<!-- mockup -->
+<!-- 					<div class="col-10 border-light-gray p-3 bg-white mb-3">
+						<div class="form-row mt-3">
+							<div class="form-group col-md-8 mt-3 mt-md-0">
+								<label for="inputEvent">活動<span>1</span>(uuid:<span>69943982</span>)</label>
+								<input type="text" class="form-control" id="inputEvent" placeholder="請輸入活動名稱">
+							</div>
+							<div class="col-4 d-none d-md-block">
+								<div class="d-flex justify-content-end">
+									<button type="button" class="btn btn-danger rounded-pill" style="width: 150px" data-toggle="modal" data-target="#deleteModal">刪除</button>
+								</div>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="inputDatePicker1">時間</label>
+								<div class="row">
+									<div class="col-6">
+										<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+											<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+											<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+													<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+											<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+											<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+													<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-12">
+								<div class="d-flex text-center flex-wrap justify-content-center">
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_01.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_02.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_03.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_04.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_05.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_06.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_07.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_08.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_09.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_10.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_11.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_12.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_13.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_14.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs-15.png" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_16.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_17.jpg" alt="" style="width:135px">
+									</a>
+									<button type="button" class="btn btn-outline-dark rounded-0 mx-2 mt-3 mb-3 mt-md-0" style="height:135px; width:135px" data-toggle="modal" data-target="#SDGsModal">+</button>
+								</div>
+							</div>
+							<div class="col-12 mt-3 d-md-none">
+								<div class="d-flex justify-content-end">
+									<button type="button" class="btn btn-danger rounded-pill btn-block" data-toggle="modal" data-target="#deleteModal">刪除</button>
+								</div>
+							</div>
+						</div>
+          </div> -->
+					<!-- mockup -->
+
+<!-- 					<div class="col-10 border-light-gray p-3 bg-white mb-3">
+						<div class="form-row mt-3">
+							<div class="form-group col-md-8 mt-3 mt-md-0">
+								<label for="inputEvent">活動<span>1</span>(uuid:<span>69943982</span>)</label>
+								<input type="text" class="form-control" id="inputEvent" placeholder="請輸入活動名稱">
+							</div>
+							<div class="col-4 d-none d-md-block">
+								<div class="d-flex justify-content-end">
+									<button type="button" class="btn btn-danger rounded-pill" style="width: 150px" data-toggle="modal" data-target="#deleteModal">刪除</button>
+								</div>
+							</div>
+							<div class="form-group col-md-8">
+								<label for="inputDatePicker1">時間</label>
+								<div class="row">
+									<div class="col-6">
+										<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+											<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+											<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+													<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+											<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+											<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+													<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-12">
+								<div class="d-flex text-center flex-wrap justify-content-center">
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_01.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_02.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_03.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_04.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_05.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_06.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_07.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_08.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_09.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_10.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_11.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_12.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_13.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_14.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs-15.png" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_16.jpg" alt="" style="width:135px">
+									</a>
+									<a class="d-block" href="#">
+										<img class="mx-2 mt-3 mb-3 mt-md-0" src="/static/imgs/SDGs_17.jpg" alt="" style="width:135px">
+									</a>
+									<button type="button" class="btn btn-outline-dark rounded-0 mx-2 mt-3 mb-3 mt-md-0" style="height:135px; width:135px" data-toggle="modal" data-target="#SDGsModal">+</button>
+								</div>
+							</div>
+							<div class="col-12 mt-3 d-md-none">
+								<div class="d-flex justify-content-end">
+									<button type="button" class="btn btn-danger rounded-pill btn-block" data-toggle="modal" data-target="#deleteModal">刪除</button>
+								</div>
+							</div>
+						</div>
+          </div> -->
 				</div>
 				<div class="row mt-5 mb-5 pb-3 justify-content-center">
           <div class="col-md-8 mt-3 d-none d-md-block">
@@ -133,49 +299,7 @@
 		</div>
 	</section>
 	<!-- footer -->
-	<footer class="bg-footer">
-		<div class="container-fluid">
-			<div class="row justify-content-center pt-4">
-				<div class="col-lg-9 d-none d-lg-block">
-					<div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
-						<p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">Beyond School</a></p>
-						<p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
-
-						<p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
-
-						<p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
-					</div>
-				</div>
-				<div class="col-lg-3 mb-4 mb-lg-0">
-					<div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
-						<div>
-							<a class="text-decoration-none" href="#" target="_blank">
-								<img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
-							</a>
-							<a class="text-decoration-none" href="https://www.facebook.com/hellodamaie" target="_blank">
-								<img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
-							</a>
-
-						</div>
-					</div>
-				</div>
-				<!-- mobile -->
-				<div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
-					<p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">Beyond School</a></p>
-					<p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
-
-					<p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
-
-					<p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
-				</div>
-			</div>
-			<div class="py-4">
-				<div class="text-center">
-					<p class="fw-bold mb-0">Copyright &copy; 2023 Damaie</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<div id="footer"></div>
 	<!-- Modal -->
 		<!-- delete-Modal -->
 		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

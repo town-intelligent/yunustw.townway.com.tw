@@ -51,7 +51,7 @@ export async function btn_cms_news_submit() {
 
   var form = new FormData();
   form.append("email", SITE_HOSTERS[0]);
-  
+
   try {
     if (DataURIToBlob(document.getElementById("news_banner").src))
       form.append("banner", DataURIToBlob(document.getElementById("news_banner").src));
@@ -68,12 +68,12 @@ export async function btn_cms_news_submit() {
     if (DataURIToBlob(document.getElementById("news_img_0").src))
       form.append("img_0", DataURIToBlob(document.getElementById("news_img_0").src));
   } catch (e) {}
-  
+
   try {
     if (DataURIToBlob(document.getElementById("news_img_1").src))
       form.append("img_1", DataURIToBlob(document.getElementById("news_img_1").src));
   } catch (e) {}
-  
+
   try {
     if (DataURIToBlob(document.getElementById("news_img_2").src))
       form.append("img_2", DataURIToBlob(document.getElementById("news_img_2").src));

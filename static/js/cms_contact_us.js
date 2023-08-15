@@ -6,7 +6,7 @@ export function uploadCmsContactUsCover () {
   file.onload = function(base64Img){
 
     // Preview
-    document.getElementById("contact-us-banner-img").style.backgroundImage =  "url(" + base64Img + ")";  
+    document.getElementById("contact-us-banner-img").style.backgroundImage =  "url(" + base64Img + ")";
     // Upload
     try {
       var form = new FormData();
@@ -14,7 +14,7 @@ export function uploadCmsContactUsCover () {
       form.append("contact-us-banner-img", DataURIToBlob(base64Img), "contact-us-banner-img");
 
       var result = mockup_upload(form);
-      
+
     } catch (e) {
       alert(e)
     }
@@ -56,7 +56,7 @@ export function set_page_info_cms_contact_us_detail() {
       obj_img.className = "mr-3";
 
       obj_img.src = "/static/imgs/SDGs_" + obj_comment.sdgs[index] + ".svg"
-      obj_img.alt = ""; 
+      obj_img.alt = "";
       obj_img.style = "width:40px";
 
       obj_a.append(obj_img)
@@ -81,7 +81,7 @@ export function set_page_info_cms_contact_us() {
   }
 
   var list_comments = [];
-  
+
   try {
     var result_comments = comment_list();
     list_comments = result_comments.content;
