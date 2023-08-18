@@ -186,7 +186,7 @@ const str_project_management_modal = `
                       <p class="mt-2 mb-0">熱區圖示</p>
                     </div>
                   </div>
-                  <a href="/backend/heat_map.html?uuid=UUID_PROJECT" class="stretched-link"></a>
+                  <a href="/backend/heat_map.html??uuid=UUID_PROJECT" class="stretched-link"></a>
                 </div>
               </div>
               <div class="col-6 mt-4">
@@ -352,22 +352,16 @@ const str_navbar = `    <nav class="navbar navbar-expand-xl navbar-light bg-navb
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li id="index" class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
       </li>
-      <li id="kpi" class="nav-item">
+      <li class="nav-item">
         <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
       </li>
-      <li id="solution" class="nav-item">
-        <a class="nav-link fw-bold" href="/solution.html">解決方案</a>
-      </li>
-      <li id="news_list" class="nav-item">
+           <li class="nav-item">
         <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
       </li>
-      <li id="contact_us" class="nav-item">
-        <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
-      </li>
-      <li id="account_status" class="nav-item d-flex align-items-center">
+           <li id="account_status" class="nav-item d-flex align-items-center">
         <img class="align-top" src="/static/imgs/user.svg" alt=""><a class="nav-link fw-bold px-0" href="/tplanet_signin.html">登入</a><span class="nav-link px-1 align-middle" style="margin-bottom:2px">/</span><a class="nav-link fw-bold px-0" href="/tplanet_signup.html">註冊</a>
       </li>
     </ul>
@@ -382,7 +376,9 @@ const str_footer = `    <footer class="bg-footer">
       <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
         <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
         <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
+        <p class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
         <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
+        <p class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
         <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
       </div>
     </div>
@@ -411,7 +407,9 @@ const str_footer = `    <footer class="bg-footer">
     <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
       <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
       <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
+      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
       <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
+      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
       <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
     </div>
   </div>
