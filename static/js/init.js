@@ -64,6 +64,7 @@ function set_navbar_animation() {
 
 function navbar(group) {
   add_navbar()
+  add_footer()
   set_navbar_animation()
 
   // home logo href
