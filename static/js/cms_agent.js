@@ -350,7 +350,7 @@ $(function () {
     setLocalStorage("uuid_project", obj_project.uuid);
 
     // Redirect to add parent window
-    window.location.replace("/backend/cms_support_form.html?uuid=" + uuid_task + "&task=" + task);
+    window.location.replace("/backend/cms_support_form.html?uuid=" + obj_project.uuid + "&task=" + task);
   });
 });
 
