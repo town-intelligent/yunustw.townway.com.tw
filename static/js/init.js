@@ -6,6 +6,10 @@ function add_navbar() {
   // Set navbar
   var path = window.location.pathname;
   var page = path.split("/").pop().split(".html")[0]
+
+  if (page === "")
+    page = "index"
+
   var selector = "#" + page;
   $(selector).addClass('active');
 }
@@ -60,9 +64,8 @@ function set_navbar_animation() {
 }
 
 function navbar(group) {
-  add_footer()
   add_navbar()
-
+  add_footer()
   set_navbar_animation()
 
   // home logo href
