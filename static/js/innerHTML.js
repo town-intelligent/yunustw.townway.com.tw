@@ -358,14 +358,8 @@ const str_navbar = `    <nav class="navbar navbar-expand-xl navbar-light bg-navb
       <li id="kpi" class="nav-item">
         <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
       </li>
-      <li id="solution" class="nav-item">
-        <a class="nav-link fw-bold" href="/solution.html">解決方案</a>
-      </li>
       <li id="news_list" class="nav-item">
         <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
-      </li>
-      <li id="contact_us" class="nav-item">
-        <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
       </li>
       <li id="account_status" class="nav-item d-flex align-items-center">
         <img class="align-top" src="/static/imgs/user.svg" alt=""><a class="nav-link fw-bold px-0" href="/tplanet_signin.html">登入</a><span class="nav-link px-1 align-middle" style="margin-bottom:2px">/</span><a class="nav-link fw-bold px-0" href="/tplanet_signup.html">註冊</a>
