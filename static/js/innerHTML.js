@@ -352,16 +352,16 @@ const str_navbar = `    <nav class="navbar navbar-expand-xl navbar-light bg-navb
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
+      <li id="index" class="nav-item">
         <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
       </li>
-      <li class="nav-item">
+      <li id="kpi" class="nav-item">
         <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
       </li>
-           <li class="nav-item">
+      <li id="news_list" class="nav-item">
         <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
       </li>
-           <li id="account_status" class="nav-item d-flex align-items-center">
+      <li id="account_status" class="nav-item d-flex align-items-center">
         <img class="align-top" src="/static/imgs/user.svg" alt=""><a class="nav-link fw-bold px-0" href="/tplanet_signin.html">登入</a><span class="nav-link px-1 align-middle" style="margin-bottom:2px">/</span><a class="nav-link fw-bold px-0" href="/tplanet_signup.html">註冊</a>
       </li>
     </ul>
