@@ -352,7 +352,7 @@ const str_navbar = `    <nav class="navbar navbar-expand-xl navbar-light bg-navb
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
       </li>
       <li class="nav-item">
