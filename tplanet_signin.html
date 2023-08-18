@@ -11,77 +11,22 @@
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
-
     <script src="/static/js/config.js"></script>
+    <script src="/static/js/innerHTML.js"></script>
     <script src="/static/js/localStorage.js"></script>
     <script src="/static/js/accounts.js"></script>
     <script type="module" src="/static/js/init.js"></script>
-
    <script type="text/javascript">
       let CLIENT_ID = "1080674192413-b1vnqslm4gif3p9ntaj4ifl4i572p0bn.apps.googleusercontent.com";
       let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
     </script>
-
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};GoogleClientInit()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-
     <script src="/static/js/GoogleOAuth.js"></script>
-    <script src="/static/js/FacebookOAuth.js"></script>
-
-  <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '597308661353623',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.12'
-    });
-    FB.AppEvents.logPageView();   
-  };
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
- 
-  $(function() {
-    $("#btnFbSignIn").click(function() {
-      FB.getLoginStatus(function(response) {
-        if (response.authResponse) {
-          FB.api('/me',{fields: 'id,name,email'}, function (response) {
-              var access_token = FB.getAuthResponse()['accessToken'];
-              // username, e-mail, token
-              eIDFacebookLogin(access_token, response);
-          });
-        //沒授權過應用程式
-        } else {
-          //呼叫FB.login()請求使用者授權
-          FB.login(function (response) {
-            if (response.authResponse) {
-              FB.api('/me',{fields: 'id,name,email'}, function (response) {
-                //這邊就可以判斷取得資料跟網站使用者資料是否一致
-              var access_token = FB.getAuthResponse()['accessToken'];
-
-              // username, e-mail, token
-              eIDFacebookLogin(access_token, response);
-              });
-            }
-          //FB.login()預設只會回傳基本的授權資料
-          //如果想取得額外的授權資料需要另外設定在scope參數裡面
-          //可以設定的授權資料可以參考官方文件          
-          }, { scope: 'email' });
-        }
-      });
-    });
-  });
-  </script>
 
     <script>
     $(function () {
@@ -106,24 +51,24 @@
             setLocalStorage("username", obj.username);
             setLocalStorage("email", $("#email").val());
             console.log("Get JWT from cookie" +  getLocalStorage("jwt"));
-            
+
             // TODO, redirect by next
             if (next != null) {
               window.location.replace(next);
             } else {
-              // TODO, redirect by group	  
+              // TODO, redirect by group
               group = get_group($("#email").val());
               if (group == "100") {
                 window.location.replace("/backend/admin_dashboard.html");
               } else if (group == "200" || group == "201") {
                 window.location.replace("/backend/admin_agent_dashboard.html");
               } else {
-                window.location.replace("/backend/cms_ab.html");
+                window.location.replace("/index.html");
               }
             }
           },
           error: function(xhr, ajaxOptions, thrownError){
-            
+
             var elemWrongPw = document.getElementById("wrong-pw");
             if (elemWrongPw != null) {
               elemWrongPw.style.display = "block";
@@ -139,47 +84,9 @@
 
   <body class="d-flex flex-column">
     <!-- navbar -->
-    <nav class="navbar navbar-expand-xl navbar-light bg-navbar fz-18">
-      <div name="admin_dropdown" class="container-fluid">
-        <a id="index_logo" class="navbar-brand d-none d-md-block my-md-1" href="/index.html">
-          <img class="logo-pc" src="/static/imgs/2nd-home.svg" alt="">
-        </a>
-        <a id="index_logo" class="navbar-brand d-md-none" href="/index.html">
-          <img class="logo-mobile" src="/static/imgs/2nd-home.svg" alt="">
-        </a>
-        <button class="navbar-toggler mr-md-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/solution.html">解決方案</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
-            </li>
-            <li class="nav-item d-flex align-items-center">
-              <a class="nav-link fw-bold align-middle" href="#"><img class="align-sub" src="/static/imgs/edit.svg" style="height:23px" alt=""></a>
-            </li>
-            <li class="nav-item d-flex align-items-center">
-              <a class="nav-link fw-bold" href="javascript:void(0)" onclick="logout()"><img class="align-text-top" src="/static/imgs/logout.svg" style="height:25px" alt="">登出</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div id="navbar"></div>
     <!-- content -->
-    <div style="flex-grow: 1">
+    <div class="main-content flex-grow-1">
       <div class="container-fluid">
         <div class="row justify-content-center my-3">
           <div class="col-10 text-center h3">登入</div>
@@ -224,7 +131,7 @@
               <div class="col-5 mt-3 px-0">
                 <hr class="border-sm">
               </div>
-              <div class="col-2 mt-3 pt-1 px-0 text-center"> 
+              <div class="col-2 mt-3 pt-1 px-0 text-center">
                 <p class="mb-0 text-dark">或</p>
               </div>
               <div class="col-5 mt-3 px-0">
@@ -238,77 +145,13 @@
                   <small class="text-dark">透過 Google 登入</small>
                 </a>
               </div>
-              <div class="col-12 px-0  mt-3">
-                <a href="" class="btn btn-block btn-outline-secondary" id="btnFbSignIn">
-                  <img class="mr-2" src="/static/imgs/fb-logo-s.png" alt="">
-                  <small class="text-dark">透過 Facebook 登入</small>
-                </a>
-              </div>
             </div>
           </div>
         </div>
-          <!-- <div class="text-center mt-4">
-            <a class="btn btn-success" href="/tplanet_signup.html">
-              建立新帳號
-            </a>
-          </div> -->
         </div>
       </div>
     </div>
     <!-- footer -->
-    <div class="container-fluid px-0 mt-4">
-      <div class="bg-cover img-fluid w-100 pt-5" style="background-image: url(/static/imgs/footer-decoration.svg); height: 126px; background-repeat: no-repeat">
-      </div>
-    <footer class="bg-footer" style="position: relative;">
-      <div class="container-fluid">
-        <div class="row justify-content-center pt-4">
-          <div class="col-lg-9 d-none d-lg-block">
-            <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
-              <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
-              <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
-              <p class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
-              <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
-              <p class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
-              <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
-            </div>
-          </div>
-          <div class="col-lg-3 mb-4 mb-lg-0">
-            <div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
-              <div>
-                <a class="text-decoration-none" href="#" target="_blank">
-                  <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
-                </a>
-                <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
-                  <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
-                </a>
-                <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
-                  <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
-                </a>
-                <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
-                  <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
-                </a>
-                <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
-                  <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- mobile -->
-          <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
-            <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
-          </div>
-        </div>
-        <div class="py-4">
-          <div class="text-center">
-            <p class="fw-bold mb-0">Copyright &copy; 2022 SECOND HOME</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <div id="footer"></div>
   </body>
 </html>

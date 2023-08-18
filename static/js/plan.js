@@ -120,9 +120,9 @@ export function append_plan_submit_data(page, form) {
     form.append("project_due_date", document.getElementById("project_due_date").value);
     form.append("budget", document.getElementById("budget").value);
     form.append("philosophy", document.getElementById("philosophy").value);
-  
+
   } else if (page == "cms_sdgs_setting.html") {
-    
+
     // Get SDGs data
     var list_sdg = new Array(27).fill(0);
     for(var index = 1; index <= 17; index++) {
@@ -141,24 +141,30 @@ export function append_plan_submit_data(page, form) {
     // Set local storage
     form.append("list_sdg", list_sdg);
   } else if (page == "cms_impact.html") {
+
+
+    const textareaIds = [
+      ...document.querySelectorAll("textarea[id^='sdg_']"),
+      ...document.querySelectorAll("textarea[id^='parent_task_overview_']")
+    ].map(item => `#${item.id}`);
+    register_ckeditor(textareaIds);
+
     var dataJSON = {};
     for (var index = 0 ; index <17; index++) {
-      // Append to JSON 
+      // Append to JSON
       if (document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des") == null) {
         continue;
       }
-	    dataJSON[index] = document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des").value;
-      
+	    dataJSON[index] = document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des").innerText;
     }
 
     // Additional SDGs data
     for (var index = 17 ; index <=27; index++) {
-      // Append to JSON 
+      // Append to JSON
       if (document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des") == null) {
         continue;
       }
-	    dataJSON[index] = document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des").value;
-      
+	    dataJSON[index] = document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des").innerText;
     }
 
     // {"0":"透過深度參與豐富指標","11":"定期聚板相關市集","14":"社區友善農業的產銷創生解方"}
@@ -230,7 +236,7 @@ export function getProjectWeight(list_task_UUIDs) {
 export function delete_plan(uuid) {
   var dataJSON = {};
   dataJSON.uuid = uuid;
-  
+
   var resultJSON = {};
 
   $.ajax({

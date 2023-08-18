@@ -27,15 +27,15 @@ function mockup_get() {
 
 function exChange(data) {
   $('#Tbanner_image').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['banner-image']})`)
-  
+
   if (`${data['t-planet-img']}`.localeCompare("undefined") === -1) {
     $('#t_planet_img').attr("src",`${HOST_URL_TPLANET_DAEMON}${data['t-planet-img']}`)
   }
-  
+
   $('#csr_img').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['csr-img']})`)
   $('#sdg_img').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['sdg-img']})`)
   $('#twins_img').css("background-image",`url( ${HOST_URL_TPLANET_DAEMON}${data['twins-img']})`)
-  
+
   if (`${data['t-planet-description']}`.localeCompare("undefined") === -1) {
     $('#textarea1').val(`${data['t-planet-description']}`)
   }
@@ -51,6 +51,7 @@ function exChange(data) {
   if (`${data['twins-description']}`.localeCompare("undefined") === -1) {
     $('#textarea4').val(`${data['twins-description']}`)
   }
+  register_ckeditor(['#textarea1', '#textarea2', '#textarea3', '#textarea4']);
 }
 
 function prepare_mockup_upload() {
@@ -60,7 +61,7 @@ function prepare_mockup_upload() {
   });
 }
 
-export async function mockup_new() {    
+export async function mockup_new() {
   const t_planet_description = document.querySelector('#textarea1').value;
   const csr_description = document.querySelector('#textarea2').value;
   const sdg_description = document.querySelector('#textarea3').value;
@@ -108,7 +109,7 @@ export async function mockup_new() {
   formData.append("sdg-description",sdg_description)
   formData.append("twins-description",twins_description)
   formData.append("email",  getLocalStorage("email"));
-  
+
   prepare_mockup_upload().then(async function () {
     var resultJSON =  mockup_upload(formData);
     return resultJSON;
@@ -121,25 +122,25 @@ export async function mockup_new() {
     }
   });
 }
-  
+
 export function banner_image_read(){
-  upload_image_file(2400, null, "Tbanner_image", true) 
+  upload_image_file(2400, null, "Tbanner_image", true)
 }
 
 export function t_planet_img_read() {
-  upload_image_file(null, null, "t_planet_img", false) 
+  upload_image_file(null, null, "t_planet_img", false)
 }
 
 export function csr_img_read() {
-  upload_image_file(null, null, "csr_img", true) 
+  upload_image_file(null, null, "csr_img", true)
 }
 
 export function sdg_img_read() {
-  upload_image_file(null, null, "sdg_img", true) 
+  upload_image_file(null, null, "sdg_img", true)
 }
 
 export function twins_img_read() {
-  upload_image_file(null, null, "twins_img", true) 
+  upload_image_file(null, null, "twins_img", true)
 }
 
 // Add_parent_tasks
@@ -160,9 +161,11 @@ $(document).ready (function () {
   $('#twins-img').on("change",function(e){
     twins_img_read(this)
   })
-  
+
   $("#store").on("click", function(e) {
     e.preventDefault();
+    // update the textarea value
+    update_ckeditor_data();
     mockup_new();
   })
 })

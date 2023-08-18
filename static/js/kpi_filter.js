@@ -26,26 +26,26 @@ export function set_page_info_kpi_filter() {
     var obj_project = plan_info(list_project_uuids[index]);
 
     // <div class="row mt-5 mb-4">
-    // var obj_div_root = document.createElement("div"); 
+    // var obj_div_root = document.createElement("div");
     // obj_div_root.className = "row mt-5 mb-4";
-    
+
     // <div class="col-12 d-md-none">
-    // var obj_div_project_list = document.createElement("div"); 
+    // var obj_div_project_list = document.createElement("div");
     // obj_div_project_list.className = "col-md-4"; //"col-12 d-md-none";
-    
+
     // <p class="h4">專案列表</p>
     // var obj_p_project_list = document.createElement("p");
     // obj_p_project_list.className = "h4";
     // obj_p_project_list.innerHTML = "專案列表";
-    
+
     // Append
     // obj_div_project_list.append(obj_p_project_list);
     // obj_div_root.append(obj_div_project_list);
-    
+
     // <div class="col-md-4 mt-4">
     var obj_div_col_md_4 = document.createElement("div");
     obj_div_col_md_4.className = "col-md-4 mt-4";
-    
+
     // <div class="card mb-4 rounded-0">
     var obj_div_card_md4 = document.createElement("div");
     obj_div_card_md4.className = "card mb-4  h-100 rounded-0";
@@ -53,9 +53,9 @@ export function set_page_info_kpi_filter() {
     // <a href="#" class="stretched-link"></a>
     var obj_a_href = document.createElement("a");
     obj_a_href.className ="stretched-link";
-    obj_a_href.href = location.protocol + "//" + 
-    window.location.host + 
-    "/backend/cms_project_detail.html?uuid=" + 
+    obj_a_href.href = location.protocol + "//" +
+    window.location.host +
+    "/backend/cms_project_detail.html?uuid=" +
     obj_project.uuid;
     obj_div_card_md4.append(obj_a_href);
 
@@ -67,12 +67,12 @@ export function set_page_info_kpi_filter() {
     var obj_project_img = document.createElement("div");
     obj_project_img.className = "img-fluid bg-cover";
     // obj_project_img.style = "background-image:url(/static/imgs/project_img_02.png); width:100% ;height:200px";
-    
-    if (obj_project.img != null) { 
-      var path_cover = HOST_URL_TPLANET_DAEMON + 
-      "/static/project/" + obj_project.uuid + 
+
+    if (obj_project.img != null) {
+      var path_cover = HOST_URL_TPLANET_DAEMON +
+      "/static/project/" + obj_project.uuid +
       "/media/cover/cover.png";
-      obj_project_img.style = "background-image:url(" + path_cover + "); width:100% ;height:200px; background-repeat: no-repeat";    
+      obj_project_img.style = "background-image:url(" + path_cover + "); width:100% ;height:200px; background-repeat: no-repeat";
     }
 
     // Append
@@ -83,7 +83,7 @@ export function set_page_info_kpi_filter() {
 
     var obj_div_card_body_project = document.createElement("div");
     obj_div_card_body_project.className = "card-body d-flex flex-column";
-    
+
     // <p class="h5">竹山創生輔導合作計畫</p>
     var obj_p_project_name = document.createElement("p");
     obj_p_project_name.className = "h5";
@@ -131,31 +131,31 @@ export function set_page_info_kpi_filter() {
     obj_p_period.append(obj_span_period);
     obj_div_card_body_project.append(obj_p_period);
 
-    // <div class="row mt-3"> 
+    // <div class="row mt-3">
     var obj_sdg_container = document.createElement("div");
     obj_sdg_container.className = "row mt-3";
     var obj_a = document.createElement("a");
 
     obj_a.href = "#";
-    
+
     var list_sdgs = [];
     try {
       list_sdgs = obj_project.weight.split(",");
     } catch (e) {}
 
     for (var index_sdgs=0; index_sdgs<list_sdgs.length; index_sdgs++){
-      
+
       if (parseInt(list_sdgs[index_sdgs]) != 0) {
         var obj_sdg_div = document.createElement("div");
         obj_sdg_div.className = "col-2 px-2 mt-2";
-        
+
         var obj_sdg_img = document.createElement("img");
         obj_sdg_img.className = "w-100";
 
         var index_sdg = ("0" + (index_sdgs + 1)).slice(-2);
         obj_sdg_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg";
         obj_sdg_img.alt = "";
-      
+
         obj_sdg_div.append(obj_sdg_img);
         obj_sdg_container.append(obj_sdg_div);
       }
@@ -163,7 +163,7 @@ export function set_page_info_kpi_filter() {
     }
 
     /* Append */
-    obj_project_list.append(obj_div_col_md_4);  
+    obj_project_list.append(obj_div_col_md_4);
   }
 
 }

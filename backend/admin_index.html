@@ -5,23 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/loading.css" >
     <link rel="stylesheet" href="/static/css/kpi.css">
     <script src="/static/js/config.js"></script>
+    <script src="/static/js/innerHTML.js"></script>
     <script src="/static/js/localStorage.js"></script>
     <script src="/static/js/file_handler.js"></script>
     <script src="/static/js/accounts.js"></script>
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/permission.js"></script>
     <script type="module" src="/static/js/init.js"></script>
+    <script src="/static/js/core/upload_adapter.js"></script>
+    <script src="/static/js/core/editor.js"></script>
     <script type="module">
       import { mockup_new, banner_image_read, t_planet_img_read, csr_img_read, sdg_img_read, twins_img_read } from '/static/js/admin_index.js'
       window.mockup_new = mockup_new;
@@ -35,45 +39,7 @@
 
   <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-xl navbar-light bg-navbar fz-18">
-      <div name="admin_dropdown" class="container-fluid">
-        <a id="index_logo" class="navbar-brand d-none d-md-block my-md-1" href="/index.html">
-          <img class="logo-pc" src="/static/imgs/2nd-home.svg" alt="">
-        </a>
-        <a id="index_logo" class="navbar-brand d-md-none" href="/index.html">
-          <img class="logo-mobile" src="/static/imgs/2nd-home.svg" alt="">
-        </a>
-        <button class="navbar-toggler mr-md-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/solution.html">解決方案</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
-            </li>
-            <li class="nav-item d-flex align-items-center">
-              <a class="nav-link fw-bold align-middle" href="#"><img class="align-sub" src="/static/imgs/edit.svg" style="height:23px" alt=""></a>
-            </li>
-            <li class="nav-item d-flex align-items-center">
-              <a class="nav-link fw-bold" href="javascript:void(0)" onclick="logout()"><img class="align-text-top" src="/static/imgs/logout.svg" style="height:25px" alt="">登出</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div id="navbar"></div>
     <!-- content -->
     <section>
       <div class="container-fluid px-0 mt-4">
@@ -102,7 +68,7 @@
               <p class="bg-2ndhome p-2">平台文案</p>
             </div>
             <div class="col-12">
-              <textarea class="form-control h-100" id="textarea1" style="resize : none" rows="6" placeholder="請輸入文案文字"></textarea>
+              <textarea class="form-control h-100" id="textarea1" style="resize : none; height: 212px;" rows="6" placeholder="請輸入文案文字"></textarea>
             </div>
             <div class="col-12 my-3">
               <div class="img-fluid w-100 bg-contain-center t-planet-img-container">
@@ -117,7 +83,7 @@
           </div>
           <div class="row mt-4 h-100 admin-index-project mx-2">
             <div class="col-md-6 mobil-mb">
-              <textarea class="form-control h-100" id="textarea2" style="resize: none" placeholder="請輸入文案文字"></textarea>
+              <textarea class="form-control h-100" id="textarea2" style="resize: none; height: 300px;" placeholder="請輸入文案文字"></textarea>
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
               <div id="csr_img" class="img-fluid w-100 bg-cover" style="background-image: url(/static/imgs/admin_index_csr.png); height: 300px; background-repeat: no-repeat">
@@ -131,7 +97,7 @@
           </div>
           <div class="row mt-4 h-100 admin-index-project mx-2">
             <div class="col-md-6 mobil-mb">
-              <textarea class="form-control h-100" id="textarea3" style="resize: none" placeholder="請輸入文案文字"></textarea>
+              <textarea class="form-control h-100" id="textarea3" style="resize: none; height: 300px;" placeholder="請輸入文案文字"></textarea>
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
               <div id="sdg_img" class="img-fluid w-100 bg-cover" style="background-image: url(/static/imgs/admin_index_sdgs.png); height: 300px; background-repeat: no-repeat">
@@ -145,7 +111,7 @@
           </div>
           <div class="row mt-4 h-100 admin-index-project mx-2">
             <div class="col-md-6 mobil-mb">
-              <textarea class="form-control h-100" id="textarea4" style="resize: none" placeholder="請輸入文案文字"></textarea>
+              <textarea class="form-control h-100" id="textarea4" style="resize: none; height: 300px;" placeholder="請輸入文案文字"></textarea>
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
               <div id="twins_img" class="img-fluid w-100 bg-cover" style="background-image: url(/static/imgs/admin_index_digital_twins.png); height: 300px; background-repeat: no-repeat">
@@ -173,56 +139,6 @@
       </div>
     </section>
     <!-- footer -->
-    <footer class="bg-footer">
-      <div class="container-fluid">
-        <div class="row justify-content-center pt-4">
-          <div class="col-lg-9 d-none d-lg-block">
-            <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
-              <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
-              <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
-              <p class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
-              <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
-              <p class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
-              <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
-            </div>
-          </div>
-          <div class="col-lg-3 mb-4 mb-lg-0">
-            <div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
-              <div>
-                <a class="text-decoration-none" href="#" target="_blank">
-                  <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
-                </a>
-                <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
-                  <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
-                </a>
-                <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
-                  <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
-                </a>
-                <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
-                  <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
-                </a>
-                <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
-                  <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- mobile -->
-          <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
-            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
-            <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
-          </div>
-        </div>
-        <div class="py-4">
-          <div class="text-center">
-            <p class="fw-bold mb-0">Copyright &copy; 2022 SECOND HOME</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <div id="footer"></div>
   </body>
 </html>

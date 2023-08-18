@@ -24,7 +24,7 @@ function project_weight_to_sdg_string(str_project_weight, type){
     console.log(e);
     return list_project_weight;
   }
-  
+
   return list_result;
 }
 
