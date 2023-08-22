@@ -55,7 +55,7 @@ export function set_page_info_cms_contact_us_detail() {
       var obj_img = document.createElement("img");
       obj_img.className = "mr-3";
 
-      obj_img.src = "/static/imgs/SDGs_" + obj_comment.sdgs[index] + ".jpg"
+      obj_img.src = "/static/imgs/SDGs_" + obj_comment.sdgs[index] + ".svg"
       obj_img.alt = "";
       obj_img.style = "width:40px";
 
