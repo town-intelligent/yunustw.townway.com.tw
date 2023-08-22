@@ -105,9 +105,9 @@ function add_sdgs_input(index) {
     var obj_div = document.createElement("div");
     obj_div.className = "d-flex mt-2";
     // Create image
-    // <img src="/static/imgs/SDGs_11.jpg" alt="" style="width:60px">
+    // <img src="/static/imgs/SDGs_11.svg" alt="" style="width:60px">
     var img = document.createElement("img");
-    img.src = "/static/imgs/SDGs_" + index + ".jpg";
+    img.src = "/static/imgs/SDGs_" + index + ".svg";
     img.setAttribute("width", "60px");
     img.setAttribute("height", "60px");
     // Create input

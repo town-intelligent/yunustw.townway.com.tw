@@ -124,15 +124,8 @@ export function append_plan_submit_data(page, form) {
   } else if (page == "cms_sdgs_setting.html") {
 
     // Get SDGs data
-    var list_sdg = new Array(27).fill(0);
+    var list_sdg = new Array(17).fill(0);
     for(var index = 1; index <= 17; index++) {
-      if (document.getElementById("sdg_" + index.toString()).checked.toString() == "true") {
-        list_sdg[index - 1] = 1;
-      }
-    }
-
-    // Additional SDGs data
-    for(var index = 17; index <= 27; index++) {
       if (document.getElementById("sdg_" + index.toString()).checked.toString() == "true") {
         list_sdg[index - 1] = 1;
       }
@@ -151,15 +144,6 @@ export function append_plan_submit_data(page, form) {
 
     var dataJSON = {};
     for (var index = 0 ; index <17; index++) {
-      // Append to JSON
-      if (document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des") == null) {
-        continue;
-      }
-	    dataJSON[index] = document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des").innerText;
-    }
-
-    // Additional SDGs data
-    for (var index = 17 ; index <=27; index++) {
       // Append to JSON
       if (document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des") == null) {
         continue;
