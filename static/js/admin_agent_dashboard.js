@@ -1,5 +1,7 @@
 export function set_page_info_admin_agent_dashboard() {
   var email = getLocalStorage("email");
+  var group = getLocalStorage("group");
+  alert(group);
   if (email == "secondhome2023.1@gmail.com" || email == "ysnp-gov@gmail.com" || email == "mickeypeng@tpwl.org") {
     document.getElementById("admin_index").style.display = "none";
     document.getElementById("cms_news_list").style.display = "none";
