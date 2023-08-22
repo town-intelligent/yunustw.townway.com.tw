@@ -39,7 +39,6 @@ export function draw_project_chart(uuid, canvasId) {
   });
 }
 
-
 function project_weight_chart(obj_project) {
   const id = "observablehq-chart-" + obj_project.uuid;
   append_chart_container("#obj_digital_fp_chart1", id);
@@ -127,9 +126,9 @@ function add_task_sdgs(obj_task) {
         obj_img.className = "mr-2";
 
         if (index_sdg < 10) {
-          obj_img.src = "/static/imgs/SDGs_0" + index_sdg + ".jpg";
+          obj_img.src = "/static/imgs/SDGs_0" + index_sdg + ".svg";
         } else {
-          obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg";
+          obj_img.src = "/static/imgs/SDGs_" + index_sdg + ".svg";
         }
 
         obj_img.alt = "";
@@ -171,7 +170,7 @@ function add_project_sdgs_description(obj_project) {
       var obj_img = document.createElement("img");
       obj_img.className = "mr-3";
       obj_img.style = "width:90px";
-      obj_img.src = "/static/imgs/SDGs_" + index + ".jpg";
+      obj_img.src = "/static/imgs/SDGs_" + index + ".svg";
       obj_img.alt = "";
 
       obj_p1.append(obj_img);
@@ -206,10 +205,10 @@ function add_project_sdgs(obj_project) {
       var obj_a = document.createElement("p");
       obj_a.href = "#"
 
-      // <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
+      // <img class="w-100" src="/static/imgs/SDGs_04.svg" alt="">
       var obj_img = document.createElement("img");
       obj_img.className = "w-100";
-      obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
+      obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".svg";
       obj_img.alt = "";
 
       // Append
@@ -393,7 +392,6 @@ export function set_page_info_content()
     obj_tasks_container.append(obj_div_root);
 
     // Draw task weight
-
     draw_project_chart(obj_task.uuid, chartId);
   }
 }

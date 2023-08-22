@@ -434,10 +434,10 @@ $(function () {
       obj_div_row.className = "row align-items-center justify-content-center mt-4";
 
       // Create image
-      // <img class="col-3 col-md-1" src="/static/imgs/SDGs_04.jpg" alt="">
+      // <img class="col-3 col-md-1" src="/static/imgs/SDGs_04.svg" alt="">
       var obj_img = document.createElement("img");
       obj_img.className = "col-3 col-md-1";
-      obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".jpg";
+      obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".svg";
       obj_img.setAttribute("width", "49px");
       obj_img.setAttribute("height", "49px");
 
@@ -453,7 +453,7 @@ $(function () {
       obj_div_child.className = "mt-3 mt-md-0 col-md-10 pl-md-0";
 
       // Create input
-      // <input type="text" class="form-control" placeholder="SDG 15 陸地生態保育，請留下您的支持評論。">
+      // <input type="text" class="form-control" placeholder="SDG 15 熱愛自然，請留下您的支持評論。">
       var obj_input = document.createElement("input");
       obj_input.id = "target_sdgs_" + getLocalStorage("target_sdgs");
       obj_input.type = "text";
@@ -602,7 +602,7 @@ export function set_page_info_cms_agent(uuid){
       const index_sdg = ("0" + (index + 1)).slice(-2);
       $('<img/>', {
         class: 'w-100',
-        src: `/static/imgs/SDGs_${index_sdg}.jpg`,
+        src: `/static/imgs/SDGs_${index_sdg}.svg`,
         alt: '',
       }).appendTo(container);
 

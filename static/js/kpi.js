@@ -1,7 +1,6 @@
 import { list_plans, plan_info, list_plan_tasks, getProjectWeight, addWeight } from './plan.js'
 import { set_page_info_project_list } from './project_list.js'
 import { commonImages, draw_bar, draw_bar_chart, fiveImges, getMappedSdgData, sdgImages } from './chart/bar.js'
-
 export function set_page_info_project_counts(uuid_project) {
   var weight = {};
 
@@ -74,46 +73,14 @@ export function draw_sdgs_chart(totalProjectWeight) {
     }
   });
 
-  const array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"]
+  // Draw
+  const array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A"]
   draw_bar_chart({
     elementId: "weight_sdgs",
-    title: "永續發展指標",
+    title: "美好生活指標",
     data: totalProjectWeight,
     backgroundColor: array_weight_colors,
     images: sdgImages,
-  });
-}
-export function draw_five_chart(totalProjectWeight) {
-  // Remove useless weight
-  Object.keys(totalProjectWeight).forEach(function(key){
-    if (18 > parseInt(key.substring(5,7)) || parseInt(key.substring(5,7)) > 22) {
-      delete totalProjectWeight[key];
-    }
-  });
-
-  draw_bar_chart({
-    elementId: "weight_five",
-    title: "人文地產景",
-    data: getMappedSdgData(totalProjectWeight),
-    backgroundColor: "#0075A1",
-    images: fiveImges,
-  });
-}
-
-export function draw_comm_chart(totalProjectWeight) {
-  // Remove useless weight
-  Object.keys(totalProjectWeight).forEach(function(key){
-    if (23 > parseInt(key.substring(5,7)) || parseInt(key.substring(5,7)) > 28) {
-      delete totalProjectWeight[key];
-    }
-  });
-
-  draw_bar_chart({
-    elementId: "weight_comm",
-    title: "德智體群美",
-    data: getMappedSdgData(totalProjectWeight),
-    backgroundColor: "#28a745",
-    images: commonImages,
   });
 }
 

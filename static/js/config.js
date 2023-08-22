@@ -6,12 +6,12 @@ HOST_URL_TPLANET_DAEMON = "https://tplanet-backend.townway.com.tw";
 HOST_URL_EID = "https://eid.townway.com.tw";
 
 // Site hoster
-SITE_HOSTERS = ["forus999@gmail.com", "secondhome2023.1@gmail.com", "mickeypeng@tpwl.org"]
+SITE_HOSTERS = ["david@damaie.com.tw"]
 
 // Site information
-SITE_TYPE = 0 // 0 or 1(公板)
-SITE_NAME = "TPLANET"
-COPYRIGHT = "TPLANET"
+SITE_TYPE = 1 // 0 or 1(公板)
+SITE_NAME = "Beyond School"
+COPYRIGHT = "Damaie"
 
 // Weight : SDGs, 人文地產景, 德智體群美
-WEIGHT = [1, 1, 1]
+WEIGHT = [1, 0, 0]
