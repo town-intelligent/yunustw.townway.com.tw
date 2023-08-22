@@ -321,7 +321,7 @@ export function cms_plan_add_parent_tasks(uuid_task) {
     }
   }
   // Redirect to add parent window
-  window.location.replace("/backend/cms_missions_display.html?uuid=" + uuid_plan + "&task=" + obj_task.task + "&gps=" + gps_flag);
+  window.location.replace("/backend/cms_missions_display.html?uuid=" + uuid_plan + "&task=" + uuid_task + "&gps=" + gps_flag);
 }
 
 // btn_cms_plan_add_form_task
@@ -350,7 +350,7 @@ $(function () {
     setLocalStorage("uuid_project", obj_project.uuid);
 
     // Redirect to add parent window
-    window.location.replace("/backend/cms_support_form.html?uuid=" + uuid_task + "&task=" + task);
+    window.location.replace("/backend/cms_support_form.html?uuid=" + obj_project.uuid + "&task=" + task);
   });
 });
 
