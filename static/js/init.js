@@ -3,6 +3,20 @@ import { set_page_info } from './set_page_info.js'
 function add_navbar() {
   $('#navbar').html(str_navbar)
 
+  // Visible
+  if (SITE_TYPE == 0) {
+    try {
+      $('#solution').css('display', 'block');
+      $('#contact_us').css('display', 'block');
+    } catch (e) { console.log(e) }
+  }
+
+  // Site Name
+  try {
+    $('#about_nav').text("關於 " + SITE_NAME)
+  } catch (e) { console.log(e) }
+
+
   // Set navbar
   var path = window.location.pathname;
   var page = path.split("/").pop().split(".html")[0]
@@ -16,6 +30,21 @@ function add_navbar() {
 function add_footer() {
   // str_footer
   $('#footer').html(str_footer)
+
+  // Site Name
+  try {
+    $('#about_fot1').html("關於 " + SITE_NAME)
+    $('#about_fot2').html("關於 " + SITE_NAME)
+    $('#copyright').html("Copyright © 2023 " + SITE_NAME)
+
+    // Visible
+    if (SITE_TYPE == 0) {
+      $('#solution_fot1').css('display', 'block');
+      $('#solution_fot2').css('display', 'block');
+      $('#contact_us_fot1').css('display', 'block');
+      $('#contact_us_fot2').css('display', 'block');
+    }
+  } catch (e) { console.log(e) }
 }
 
 function logout() {
