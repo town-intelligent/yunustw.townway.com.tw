@@ -489,13 +489,11 @@ export function set_page_info_cms_agent(uuid){
   for (let index = 0; index < list_project_uuids.length; index++) {
     // Get project info
     const obj_project = plan_info(list_project_uuids[index]);
-
     const root_container = $('<div />', {
       class: 'col-sm-12 col-md-6 col-lg-4 mb-5',
     })
       .appendTo($(obj_project_list))
       .get(0);
-
     const card_container = $('<div />', {
       class: 'project card mb-4',
     })
