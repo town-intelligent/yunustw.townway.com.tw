@@ -6,8 +6,8 @@ function add_navbar() {
   // Visible
   if (SITE_TYPE == 0) {
     try {
-      $('#solution').style.display = "block";
-      $('#contact_us').style.display = "block";
+      $('#solution').css('display', 'block');
+      $('#contact_us').css('display', 'block');
     } catch (e) { console.log(e) }
   }
 
@@ -37,8 +37,15 @@ function add_footer() {
     $('#about_fot1').html("關於 " + SITE_NAME)
     $('#about_fot2').html("關於 " + SITE_NAME)
     $('#copyright').html("Copyright © 2023 " + SITE_NAME)
-  } catch (e) { console.log(e) }
 
+    // Visible
+    if (SITE_TYPE == 0) {
+      $('#solution_fot1').css('display', 'block');
+      $('#solution_fot2').css('display', 'block');
+      $('#contact_us_fot1').css('display', 'block');
+      $('#contact_us_fot2').css('display', 'block');
+    }
+  } catch (e) { console.log(e) }
 }
 
 function logout() {
