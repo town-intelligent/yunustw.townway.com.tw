@@ -1,6 +1,11 @@
 import { mockup_get } from './mockup.js'
 
 export function set_page_info_contact_us () {
+  if(WEIGHT[1] == 1)
+    $('#five').css('display', 'block');
+  if(WEIGHT[2] == 1)
+    $('#community').css('display', 'block');
+
   var form = new FormData();
   form.append("email", SITE_HOSTERS[0]);
 

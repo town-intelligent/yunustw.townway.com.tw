@@ -21,6 +21,11 @@ export function set_page_info_project_counts(uuid_project) {
 }
 
 export function set_relate_people_and_project_counts(totalProjectWeight, list_project_uuids) {
+  if (WEIGHT[1] == 1)
+    $('#five_life_kpi').css('display', 'block');
+  if (WEIGHT[2] == 1)
+    $('#community_kpi').css('display', 'block');
+
   // 關係人口
   var total_sdgs_weight = 0;
   for (var index = 1; index < 28; index++) {
@@ -101,4 +106,18 @@ export function set_page_info_kpi() {
   // SDGS
   var totalProjectWeight_for_sdgs = Object.assign({}, totalProjectWeight);
   draw_sdgs_chart(totalProjectWeight_for_sdgs);
+
+  // 德智體群美
+  if (WEIGHT[1] == 1) {
+    var totalProjectWeight_for_five = Object.assign({}, totalProjectWeight)
+    $('#chart_weight_five').css('display', 'block');
+    draw_five_chart(totalProjectWeight_for_five);
+  }
+
+  // 人文地產景
+  if (WEIGHT[2] == 1) {
+    var totalProjectWeight_for_comm = Object.assign({}, totalProjectWeight)
+    $('#chart_weight_comm').css('display', 'block');
+    draw_comm_chart(totalProjectWeight_for_comm);
+  }
 }

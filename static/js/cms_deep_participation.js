@@ -500,6 +500,11 @@ function set_page_in_add_child_task_block_backup(obj_task) {
 }
 
 export function set_page_info_cms_deep_participation(){
+  if(WEIGHT[1] == 1)
+    $('#five').css('display', 'block');
+  if(WEIGHT[2] == 1)
+    $('#community').css('display', 'block');
+
   var index = 0;
   while (true) {
     if (document.getElementById("task_start_date_" + index) == null)
