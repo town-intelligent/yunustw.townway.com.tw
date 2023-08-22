@@ -186,7 +186,7 @@ const str_project_management_modal = `
                       <p class="mt-2 mb-0">熱區圖示</p>
                     </div>
                   </div>
-                  <a href="/backend/heat_map.html??uuid=UUID_PROJECT" class="stretched-link"></a>
+                  <a href="/backend/heat_map.html?uuid=UUID_PROJECT" class="stretched-link"></a>
                 </div>
               </div>
               <div class="col-6 mt-4">
@@ -353,13 +353,19 @@ const str_navbar = `    <nav class="navbar navbar-expand-xl navbar-light bg-navb
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li id="index" class="nav-item">
-        <a class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
+        <a id="about_nav" class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
       </li>
       <li id="kpi" class="nav-item">
         <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
       </li>
+      <li id="solution" class="nav-item" style="display:none">
+        <a class="nav-link fw-bold" href="/solution.html">解決方案</a>
+      </li>
       <li id="news_list" class="nav-item">
         <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
+      </li>
+      <li id="contact_us" class="nav-item" style="display:none">
+        <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
       </li>
       <li id="account_status" class="nav-item d-flex align-items-center">
         <img class="align-top" src="/static/imgs/user.svg" alt=""><a class="nav-link fw-bold px-0" href="/tplanet_signin.html">登入</a><span class="nav-link px-1 align-middle" style="margin-bottom:2px">/</span><a class="nav-link fw-bold px-0" href="/tplanet_signup.html">註冊</a>
@@ -374,9 +380,11 @@ const str_footer = `    <footer class="bg-footer">
   <div class="row justify-content-center pt-4">
     <div class="col-lg-9 d-none d-lg-block">
       <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
-        <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
+        <p class="mr-3 mb-0"><a id="about_fot1" href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
         <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
+        <p id="solution_fot1" style="display:none" class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
         <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
+        <p id="contact_us_fot1" style="display:none" class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
         <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
       </div>
     </div>
@@ -403,15 +411,17 @@ const str_footer = `    <footer class="bg-footer">
     </div>
     <!-- mobile -->
     <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
-      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
+      <p class="mr-3 mb-0"><a id="about_fot2" class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
       <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
+      <p id="solution_fot2" style="display:none" class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
       <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
+      <p id="contact_us_fot2" style="display:none" class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
       <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
     </div>
   </div>
   <div class="py-4">
     <div class="text-center">
-      <p class="fw-bold mb-0">Copyright &copy; 2022 SECOND HOME</p>
+      <p id="copyright" class="fw-bold mb-0">Copyright © 2023 SECOND HOME</p>
     </div>
   </div>
 </div>
