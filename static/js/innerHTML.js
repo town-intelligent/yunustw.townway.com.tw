@@ -375,53 +375,57 @@ const str_navbar = `    <nav class="navbar navbar-expand-xl navbar-light bg-navb
 </div>
 </nav>`
 
-const str_footer = `    <footer class="bg-footer">
-<div class="container-fluid">
-  <div class="row justify-content-center pt-4">
-    <div class="col-lg-9 d-none d-lg-block">
-      <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
-        <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
-        <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
-        <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
-        <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
-      </div>
-    </div>
-    <div class="col-lg-3 mb-4 mb-lg-0">
-      <div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
-        <div>
-          <a class="text-decoration-none" href="#" target="_blank">
-            <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
-          </a>
-          <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
-            <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
-          </a>
-          <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
-            <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
-          </a>
-          <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
-            <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
-          </a>
-          <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
-            <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
-          </a>
+const str_footer = `        <footer class="bg-footer">
+      <div class="container-fluid">
+        <div class="row justify-content-center pt-4">
+          <div class="col-lg-9 d-none d-lg-block">
+            <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
+              <p class="mr-3 mb-0"><a href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
+              <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
+              <p class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
+              <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
+              <p class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
+              <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
+            </div>
+          </div>
+          <div class="col-lg-3 mb-4 mb-lg-0">
+            <div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
+              <div>
+                <a class="text-decoration-none" href="#" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
+                  <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
+                </a>
+                <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
+                  <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- mobile -->
+          <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
+            <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
+            <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
+          </div>
+        </div>
+        <div class="py-4">
+          <div class="text-center">
+            <p class="fw-bold mb-0">Copyright &copy; 2022 SECOND HOME</p>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- mobile -->
-    <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
-      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
-      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
-      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
-      <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
-    </div>
-  </div>
-  <div class="py-4">
-    <div class="text-center">
-      <p class="fw-bold mb-0">Copyright &copy; 2022 SECOND HOME</p>
-    </div>
-  </div>
-</div>
-</footer>`
+    </footer>`
 
 const str_project_block_in_project_page = `<a class="text-dark" href="/cms_project_detail.html?uuid=PROJECT_UUID" style="display: block; text-decoration:none">
 
