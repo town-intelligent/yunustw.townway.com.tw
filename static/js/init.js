@@ -6,6 +6,7 @@ function add_navbar() {
   // Set navbar
   var path = window.location.pathname;
   var page = path.split("/").pop().split(".html")[0]
+
   if (page === "")
     page = "index"
 
