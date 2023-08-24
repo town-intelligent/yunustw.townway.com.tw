@@ -31,10 +31,10 @@ export function set_page_info_cms_project_detail (uuid) {
     var obj_a = document.createElement("p");
     obj_a.href = "#"
 
-    // <img class="w-100" src="/static/imgs/SDGs_04.svg" alt="">
+    // <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
     var obj_img = document.createElement("img");
     obj_img.className = "w-100";
-    obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".svg";
+    obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
     obj_img.alt = "";
 
     // Append
@@ -92,8 +92,8 @@ export function set_page_info_cms_project_detail (uuid) {
 
   // SDGs
   // <div class="row align-items-center mt-4">
-  //   <img class="col-3 col-md-1" src="/static/imgs/SDGs_04.svg" alt="">
-  //   <p class="col-9 col-md-11 col-form-label pr-md-0">支持，SDG 4 教育與學習，你的評論內容你的評論內容你的評論內容你的評論內容你的評論內容你的評論內容</p>
+  //   <img class="col-3 col-md-1" src="/static/imgs/SDGs_04.jpg" alt="">
+  //   <p class="col-9 col-md-11 col-form-label pr-md-0">支持，SDG 4 良質教育，你的評論內容你的評論內容你的評論內容你的評論內容你的評論內容你的評論內容</p>
   // </div>
 
   var obj_sdg_container = document.getElementById("project_sdg_container");
@@ -113,7 +113,7 @@ export function set_page_info_cms_project_detail (uuid) {
 
       var obj_img = document.createElement("img");
       obj_img.className = "col-3";
-      obj_img.src = "/static/imgs/SDGs_" + index + ".svg";
+      obj_img.src = "/static/imgs/SDGs_" + index + ".jpg";
       obj_img.alt = "";
 
       var obj_p = document.createElement("p");

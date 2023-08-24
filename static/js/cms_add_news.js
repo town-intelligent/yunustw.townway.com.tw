@@ -12,7 +12,6 @@ export function set_page_info_cms_add_news() {
   } catch (e) {
     console.log(e);
   }
-
   // Set date picker
   $("#news_start").datepicker();
   $("#news_end").datepicker();

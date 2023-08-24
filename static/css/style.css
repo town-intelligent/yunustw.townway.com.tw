@@ -41,7 +41,7 @@ body {
 }
 
 body {
-  padding-top: 135px;
+  padding-top: 94px;
 }
 
 section {
@@ -156,23 +156,25 @@ section {
 }
 
 .bg-navbar {
-    background-color: #E2E0D3 !important;
+    background-color: #FFF38D !important;
 }
 
 .bg-footer {
-    background-color: #E2E0D3 !important;
+    background-color: #FFF38D !important;
 }
 
 .fw-bold{
   font-weight: bold;
 }
 
+/* 320 */
 .logo-pc {
-  height: 90px;
+  height: 60px;
 }
 
+/* 150 */
 .logo-mobile{
-  height: 45px;
+  height: 30px;
 }
 
 .text-title{
@@ -328,10 +330,6 @@ section {
   .chart-container {
     height: 300px;
   }
-}
-
-.ck.ck-reset.ck-editor.ck-rounded-corners {
-  width: 100% !important;
 }
 
 .project.card {

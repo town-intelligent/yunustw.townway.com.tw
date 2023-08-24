@@ -50,11 +50,11 @@ $(function () {
       var obj_a = document.createElement("a");
       obj_a.className = "d-block";
 
-      // <img class="mr-3" src="/static/imgs/SDGs_04.svg" alt="" style="width:60px">
+      // <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
       var obj_img = document.createElement("img");
       obj_img.id = "target_sdgs_" + getLocalStorage("target_sdgs");
       obj_img.className = "mr-3";
-      obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".svg";
+      obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".jpg";
       obj_img.alt = "";
       obj_img.style = "width:50px";
 

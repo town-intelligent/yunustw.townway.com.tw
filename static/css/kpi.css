@@ -7,7 +7,7 @@
 /* index.html */
 #textarea1,#textarea2,#textarea3,#textarea4{
     white-space: pre-wrap;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 @media (max-width: 450px){

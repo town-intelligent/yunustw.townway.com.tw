@@ -105,7 +105,7 @@ const createSdgImages = () => {
   const images = [];
   for (var index = 1; index <= 17; index++) {
     images.push({
-      src: `/static/imgs/SDGs-${index}.svg`,
+      src: `/static/imgs/SDGs-${index}.png`,
       height: 25,
       width: 25,
     });

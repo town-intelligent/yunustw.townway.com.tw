@@ -394,8 +394,17 @@ const str_footer = `    <footer class="bg-footer">
           <a class="text-decoration-none" href="#" target="_blank">
             <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
           </a>
-          <a class="text-decoration-none" href="https://www.facebook.com/hellodamaie" target="_blank">
+          <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
             <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
+          </a>
+          <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
+            <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
+          </a>
+          <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
+            <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
+          </a>
+          <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
+            <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
           </a>
         </div>
       </div>
@@ -437,22 +446,22 @@ const str_project_block_in_project_page = `<a class="text-dark" href="/cms_proje
         <!--
           <div class="pl-2">
             <a href="#" class="stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%" src="/static/imgs/SDGs_01.svg" alt="">
+              <img style="width:13%" src="/static/imgs/SDGs_01.jpg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%" src="/static/imgs/SDGs_04.svg" alt="">
+              <img style="width:13%" src="/static/imgs/SDGs_04.jpg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%"  src="/static/imgs/SDGs_06.svg" alt="">
+              <img style="width:13%"  src="/static/imgs/SDGs_06.jpg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%"  src="/static/imgs/SDGs_09.svg" alt="">
+              <img style="width:13%"  src="/static/imgs/SDGs_09.jpg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%"  src="/static/imgs/SDGs_11.svg" alt="">
+              <img style="width:13%"  src="/static/imgs/SDGs_11.jpg" alt="">
             </a>
             <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-              <img style="width:13%"  src="/static/imgs/SDGs_13.svg" alt="">
+              <img style="width:13%"  src="/static/imgs/SDGs_13.jpg" alt="">
             </a>
 
 
@@ -466,12 +475,12 @@ const str_project_block_in_project_page = `<a class="text-dark" href="/cms_proje
 `
 
 const str_SDG_in_list_project_backup = `<a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-    <img class="pb-1" style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.svg" alt="">
+    <img class="pb-1" style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
   </a>`
 
   const str_SDG_in_list_project = `<div class="col-2 pr-0">
   <p href="#">
-    <img class="w-100" src="/static/imgs/SDGs_INDEX_SDG.svg" alt="">
+    <img class="w-100" src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
   </p>
 </div>`
 
