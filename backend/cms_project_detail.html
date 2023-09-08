@@ -23,6 +23,7 @@
     ></script>
     <script src="https://unpkg.com/chart.js@4.3.0/dist/chart.umd.js"></script>
     <script src="https://unpkg.com/chart.js-plugin-labels-dv@4.0.0/dist/chartjs-plugin-labels.min.js"></script>
+    <script src="https://s3.amazonaws.com/builds.handlebarsjs.com/handlebars.min-v4.7.8.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -41,6 +42,20 @@
     <script type="module" src="/static/js/set_page_info.js"></script>
     <script src="/static/js/qrcode.js"></script>
     <script type="module" src="/static/js/init.js"></script>
+    <script id="tpl-sdgs" type="text/x-handlebars-template">
+      {{#each sdgs_items as |sdg_item|}}
+        <div class="col-md-6">
+          <div class="row align-items-center justify-content-center mt-4">
+            <img
+              class="col-3"
+              src="/static/imgs/SDGs_{{sdg_item.index}}.jpg"
+              alt=""
+            />
+            <div class="col-7 col-form-label pr-md-0">{{{sdg_item.value}}}</div>
+          </div>
+        </div>
+      {{/each}}
+    </script>
   </head>
 
   <body class="bg-light">

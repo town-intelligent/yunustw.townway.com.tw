@@ -1,6 +1,7 @@
 import { draw_bar_chart, getMappedSdgData, allSdgImages } from './chart/bar.js';
 import { getProjectWeight, list_plan_tasks, plan_info } from './plan.js'
 import { get_task_info } from './tasks.js'
+import { renderHandlebars } from "./utils/handlebars.js";
 
 export function set_page_info_cms_project_detail (uuid) {
   var obj_project = plan_info(uuid);
@@ -98,34 +99,16 @@ export function set_page_info_cms_project_detail (uuid) {
 
   var obj_sdg_container = document.getElementById("project_sdg_container");
 
-  var list_weight = null;
-  try {
-    list_weight = JSON.parse(obj_project.weight_description);
-    Object.keys(list_weight).forEach(function(key) {
-      var index = parseInt(key) + 1;
-      index = ("0" + index).slice(-2);
+  var list_weight = JSON.parse(obj_project.weight_description);
+  const sdgs_items = Object.entries(list_weight).map(([key, value]) => {
+    let index = parseInt(key) + 1;
+    index = ("0" + index).slice(-2);
 
-      var obj_div = document.createElement("div");
-      obj_div.className = "row align-items-center justify-content-center mt-4";
+    return { index, value: list_weight[key] };
+  });
 
-      var obj_div_1 = document.createElement("div");
-      obj_div_1.className = "col-md-6";
-
-      var obj_img = document.createElement("img");
-      obj_img.className = "col-3";
-      obj_img.src = "/static/imgs/SDGs_" + index + ".jpg";
-      obj_img.alt = "";
-
-      var obj_p = document.createElement("p");
-      obj_p.className = "col-7 col-form-label pr-md-0";
-      obj_p.innerHTML = list_weight[key];
-
-      obj_div.append(obj_img);
-      obj_div.append(obj_p);
-      obj_div_1.append(obj_div);
-      obj_sdg_container.append(obj_div_1);
-    })
-  } catch(e) {}
+  const data = { sdgs_items };
+  renderHandlebars("project_sdg_container", "tpl-sdgs", data);
 
   // Bar chart
   const obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
