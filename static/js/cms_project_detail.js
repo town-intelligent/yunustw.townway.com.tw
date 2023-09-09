@@ -2,6 +2,7 @@ import { draw_bar_chart, getMappedSdgData, allSdgImages } from "./chart/bar.js";
 import { getProjectWeight, list_plan_tasks, plan_info } from "./plan.js";
 import { get_task_info } from "./tasks.js";
 import { renderHandlebars } from "./utils/handlebars.js";
+import { isOverflow } from "./utils/widgets.js";
 
 export function set_page_info_cms_project_detail(uuid) {
   var obj_project = plan_info(uuid);
@@ -101,14 +102,38 @@ export function set_page_info_cms_project_detail(uuid) {
 
   var list_weight = JSON.parse(obj_project.weight_description);
   const sdgs_items = Object.entries(list_weight).map(([key, value]) => {
+    const title = "SDGs-" + (parseInt(key) + 1);
     let index = parseInt(key) + 1;
     index = ("0" + index).slice(-2);
 
-    return { index, value: list_weight[key] };
+    return { title, index, value };
   });
 
   const data = { sdgs_items };
   renderHandlebars("project_sdg_container", "tpl-sdgs", data);
+
+  $("#project_sdg_container").on("click", ".read-more", (e) => {
+    e.preventDefault();
+    const sdg_text = $(e.target)
+      .parents(".sdg-text-container")
+      .find(".sdg-text");
+    $("#SDGsModal .modal-title").html(sdg_text.attr("data-title"));
+    $("#SDGsModal .modal-body").html(sdg_text.html());
+    $("#SDGsModal").modal("show");
+  });
+
+  $(window).resize(() => {
+    $("#project_sdg_container .sdg-text")
+      .filter((_, element) => isOverflow(element))
+      .map((_, element) => $(element).parent().find(".read-more"))
+      .map((_, element) => $(element).show());
+
+    $("#project_sdg_container .sdg-text")
+      .filter((_, element) => !isOverflow(element))
+      .map((_, element) => $(element).parent().find(".read-more"))
+      .map((_, element) => $(element).hide());
+  });
+  window.dispatchEvent(new Event("resize"));
 
   // Bar chart
   const obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
