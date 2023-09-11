@@ -1,4 +1,5 @@
 import { news_get } from "./news.js";
+import { wrapImagesWithLightbox } from "./utils/lightbox.js";
 
 export function set_page_info_news_content() {
   try {
@@ -20,19 +21,18 @@ export function set_page_info_news_content() {
     }
 
     var obj_banner = document.getElementById("banner");
-    obj_banner.style =
-      "background-image: url(" +
-      HOST_URL_TPLANET_DAEMON +
-      obj_news.content.static.banner +
-      "); height: 450px; background-repeat: no-repeat";
+    const src = HOST_URL_TPLANET_DAEMON + obj_news.content.static.banner;
+    obj_banner.style = `background-image: url(${src}); height: 450px; background-repeat: no-repeat`;
+    wrapImagesWithLightbox(`#banner`, { src, alias: `news` });
 
     for (var index = 0; index < 3; index++) {
-      var obj_img = document.getElementById("img_" + index.toString());
-      obj_img.style =
-        "background-image:url(" +
+      const id = "img_" + index.toString();
+      var obj_img = document.getElementById(id);
+      const src =
         HOST_URL_TPLANET_DAEMON +
-        obj_news.content.static["img_" + index.toString()] +
-        "); width:100% ;height:160px; background-repeat: no-repeat";
+        obj_news.content.static["img_" + index.toString()];
+      obj_img.style = `background-image:url(${src}); width:100% ;height:160px; background-repeat: no-repeat`;
+      wrapImagesWithLightbox(`#${id}`, { src, alias: `news` });
     }
   } catch (e) {
     console.log(e);

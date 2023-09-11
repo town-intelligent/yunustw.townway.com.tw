@@ -4,6 +4,7 @@ import {
   get_task_info,
 } from "./tasks.js";
 import { renderHandlebarsAppendTo } from "./utils/handlebars.js";
+import { wrapImagesWithLightbox } from "./utils/lightbox.js";
 
 const parse_task_weights = (obj_task_info) => {
   let result = [];
@@ -68,6 +69,8 @@ export function set_page_info_admin_project_check(uuid) {
     };
     renderHandlebarsAppendTo("tbody_task_comment", "tpl-task", data);
   });
+
+  wrapImagesWithLightbox("#tbody_task_comment img");
 }
 
 export function selectComment(element) {
