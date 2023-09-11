@@ -1,9 +1,16 @@
-import { get_task_comment, verify_task_on_tplanet, get_task_info } from './tasks.js'
+import {
+  get_task_comment,
+  verify_task_on_tplanet,
+  get_task_info,
+} from "./tasks.js";
 
-export function set_page_info_admin_project_check (uuid) {
+export function set_page_info_admin_project_check(uuid) {
   var obj_resp_task_comment = get_task_comment(uuid);
 
-  if (obj_resp_task_comment == false || obj_resp_task_comment.comment.lenght == 0)
+  if (
+    obj_resp_task_comment == false ||
+    obj_resp_task_comment.comment.lenght == 0
+  )
     return;
 
   // Get task comment list
@@ -23,10 +30,11 @@ export function set_page_info_admin_project_check (uuid) {
     var obj_div_checkbox = document.createElement("div");
     obj_div_checkbox.className = "form-check";
     var obj_input_checkbox = document.createElement("input");
-    obj_input_checkbox.className = "form-check-input position-static checkbox-1x";
+    obj_input_checkbox.className =
+      "form-check-input position-static checkbox-1x";
     obj_input_checkbox.type = "checkbox";
 
-    obj_input_checkbox.addEventListener("click", function(e) {
+    obj_input_checkbox.addEventListener("click", function (e) {
       selectComment(this);
     });
 
@@ -54,15 +62,15 @@ export function set_page_info_admin_project_check (uuid) {
     var content = null;
     try {
       content = JSON.parse(obj_task_info.content);
-      for (var index_sdg = 1; index_sdg<18; index_sdg++) {
+      for (var index_sdg = 1; index_sdg < 18; index_sdg++) {
         if (content["sdgs-" + index_sdg.toString()] == "1") {
-          obj_div_weight.innerHTML = obj_div_weight.innerHTML + "SDGs-" + index_sdg.toString() + "、";
+          obj_div_weight.innerHTML =
+            obj_div_weight.innerHTML + "SDGs-" + index_sdg.toString() + "、";
         }
       }
 
-      for (var index_sdg = 18; index_sdg<28; index_sdg++) {
+      for (var index_sdg = 18; index_sdg < 28; index_sdg++) {
         if (content["sdgs-" + index_sdg.toString()] == "1") {
-
           if (index_sdg == 18) {
             obj_div_weight.innerHTML = obj_div_weight.innerHTML + "德" + "、";
           } else if (index_sdg == 19) {
@@ -89,7 +97,10 @@ export function set_page_info_admin_project_check (uuid) {
     } catch (e) {}
     // Remove the last symbol (、)
     if (obj_div_weight.innerHTML.length != 0) {
-      obj_div_weight.innerHTML = obj_div_weight.innerHTML.substring(0, obj_div_weight.innerHTML.length-1);
+      obj_div_weight.innerHTML = obj_div_weight.innerHTML.substring(
+        0,
+        obj_div_weight.innerHTML.length - 1
+      );
     }
 
     // Append
@@ -123,40 +134,51 @@ export function selectComment(element) {
 
   // Loca old value
   try {
-    listCommentVerifiedEmail = JSON.parse(getLocalStorage("commentVerifiedEmail"));
-  } catch(e) {}
+    listCommentVerifiedEmail = JSON.parse(
+      getLocalStorage("commentVerifiedEmail")
+    );
+  } catch (e) {}
 
   // UnClicked - Remove data
   if (element.checked == false) {
     // Unselect select all checkbox
     document.getElementById("checkboxAll").checked = false;
 
-    listCommentVerifiedEmail = listCommentVerifiedEmail.filter(item => item !== element.getAttribute("id"));
+    listCommentVerifiedEmail = listCommentVerifiedEmail.filter(
+      (item) => item !== element.getAttribute("id")
+    );
   }
   // Clicked - check duplicate data and push
   if (element.checked == true) {
     // Unselect select all checkbox
     document.getElementById("checkboxAll").checked = false;
 
-    listCommentVerifiedEmail = listCommentVerifiedEmail.filter(item => item !== element.getAttribute("id"));
+    listCommentVerifiedEmail = listCommentVerifiedEmail.filter(
+      (item) => item !== element.getAttribute("id")
+    );
     listCommentVerifiedEmail.push(element.getAttribute("id"));
   }
 
-  setLocalStorage("commentVerifiedEmail", JSON.stringify(listCommentVerifiedEmail));
+  setLocalStorage(
+    "commentVerifiedEmail",
+    JSON.stringify(listCommentVerifiedEmail)
+  );
 }
 
-export function  selectCommentAll()
-{
+export function selectCommentAll() {
   // Get checkbox
   var objCheckboxAll = document.getElementById("checkboxAll");
 
   // Get UUID
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  var uuid = urlParams.get("uuid")
+  var uuid = urlParams.get("uuid");
 
   var obj_resp_task_comment = get_task_comment(uuid);
-  if (obj_resp_task_comment == false || obj_resp_task_comment.comment.lenght == 0)
+  if (
+    obj_resp_task_comment == false ||
+    obj_resp_task_comment.comment.lenght == 0
+  )
     return;
 
   // Get task comment list
@@ -177,10 +199,15 @@ export function  selectCommentAll()
   if (objCheckboxAll.checked == true) {
     var listCommentVerifiedEmail = [];
     for (var index = 0; index < list_task_comment.length; index++) {
-      var commentEmail = document.getElementById(list_task_comment[index].email);
+      var commentEmail = document.getElementById(
+        list_task_comment[index].email
+      );
       listCommentVerifiedEmail.push(commentEmail.id);
     }
-    setLocalStorage("commentVerifiedEmail", JSON.stringify(listCommentVerifiedEmail));
+    setLocalStorage(
+      "commentVerifiedEmail",
+      JSON.stringify(listCommentVerifiedEmail)
+    );
 
     for (var index = 0; index < list_task_comment.length; index++) {
       document.getElementById(list_task_comment[index].email).checked = true;
@@ -192,21 +219,26 @@ export function submitVerifiedTaskComment() {
   // Get UUID
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  var uuid = urlParams.get("uuid")
+  var uuid = urlParams.get("uuid");
 
   var listCommentVerifiedEmail = [];
 
   // Get comment verified email
   try {
-    listCommentVerifiedEmail = JSON.parse(getLocalStorage("commentVerifiedEmail"));
-  } catch(e) {
+    listCommentVerifiedEmail = JSON.parse(
+      getLocalStorage("commentVerifiedEmail")
+    );
+  } catch (e) {
     return;
   }
 
   // Change status on T-planet
-  var resultVerifyOnTplanet = verify_task_on_tplanet(uuid, getLocalStorage("commentVerifiedEmail"))
+  var resultVerifyOnTplanet = verify_task_on_tplanet(
+    uuid,
+    getLocalStorage("commentVerifiedEmail")
+  );
   if (resultVerifyOnTplanet.status == false) {
-    console.log("Verify on t-planet failed.")
+    console.log("Verify on t-planet failed.");
     return;
   }
 
