@@ -178,10 +178,17 @@
                 </a>
               </div>
               {{#each sdgs_indexes as |sdgs_index|}}
-                <a class="d-block">
+                <a class="sdgs-item d-block position-relative mx-2 mt-3 mb-3 mt-md-0">
+                  <button
+                    class="position-absolute close"
+                    type="button"
+                    style="top: 0; right: 0; width: 24px; color: white; background-color: black;"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                   <img
                     id="target_sdgs_{{sdgs_index}}"
-                    class="mx-2 mt-3 mb-3 mt-md-0"
+                    class=""
                     src="/static/imgs/SDGs_{{sdgs_index}}.jpg"
                     alt=""
                     style="width: 80px"

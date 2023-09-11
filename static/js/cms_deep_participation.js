@@ -130,6 +130,11 @@ $(function () {
 })
 
 $(function () {
+  $("body").on("click", ".sdgs-item .close", (e) => {
+    e.preventDefault();
+    $(e.target).parents(".sdgs-item").remove();
+  });
+
   $("#btn_add_sdg_into_task").on("click", function(e) {
 
     e.stopPropagation();
