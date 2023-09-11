@@ -21,6 +21,9 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://s3.amazonaws.com/builds.handlebarsjs.com/handlebars.min-v4.7.8.js"></script>
+
     <link
       rel="stylesheet"
       href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
@@ -71,6 +74,124 @@
     <script type="module">
       import { showDeleteModal } from "/static/js/cms_deep_participation.js";
       window.showDeleteModal = showDeleteModal;
+    </script>
+
+    <script id="tpl-sdgs-item" type="text/x-handlebars-template">
+      <a class="d-block">
+        <img
+          id="target_sdgs_{{index}}"
+          class="mx-2 mt-3 mb-3 mt-md-0"
+          src="/static/imgs/SDGs_{{index}}.jpg"
+          alt=""
+          style="width: 135px"
+        />
+      </a>
+    </script>
+
+    <script id="tpl-child-task" type="text/x-handlebars-template">
+      <div class="form-row col-10 border p-2 mb-4" id="outter_{{uuid}}">
+        <div
+          class="form-group col-md-12 mt-3 mt-md-0 d-flex flex-wrap align-items-center"
+        >
+          <div class="col-md-10 px-0">
+            <label class="d-flex">
+              <p id="uuid_name" style="margin-left: 26px">
+                活動名稱 UUID：{{uuid}}
+              </p>
+            </label>
+            <div class="form-group col-md-8 mt-3 mt-md-0">
+              <input
+                id="name_{{uuid}}"
+                type="text"
+                class="form-control"
+                value="{{name}}"
+              />
+            </div>
+          </div>
+          <div class="col-md-2 px-0">
+            <div class="d-flex justify-content-end">
+              <!-- data-toggle="modal"
+                data-target="#deleteModal_{{uuid}}"
+              -->
+              <button
+                id="remove_button"
+                type="button"
+                class="btn btn-danger rounded-pill btn-block"
+                style="width: 150px"
+                data-uuid="{{uuid}}"
+              >
+                刪除
+              </button>
+            </div>
+          </div>
+          <div class="col-md-8 mb-px">
+            <label>時間</label>
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group date" id="datetimepicker1">
+                  <input
+                    type="text"
+                    id="task_start_date_{{uuid}}"
+                    class="form-control datetimepicker-input"
+                    value="{{start_time}}"
+                  />
+                  <div
+                    class="input-group-append"
+                    data-target="#datetimepicker1"
+                    data-toggle="datetimepicker"
+                  >
+                    <div class="input-group-text">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="input-group date" id="datetimepicker1">
+                  <input
+                    type="text"
+                    id="task_due_date_{{uuid}}"
+                    class="form-control datetimepicker-input"
+                    value="{{end_time}}"
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-12">
+            <p></p>
+            <div class="d-flex flex-wrap" id="icon_container_{{uuid}}">
+              <div class="d-block">
+                <!-- data-target="#SDGsModal"
+                  data-toggle="modal" -->
+                <a
+                  id="icon_btn"
+                  class="btn btn-outline-dark rounded-0 participation-margin mt-md-0 mr-3 d-flex justify-content-center align-items-center"
+                  style="cursor: pointer; height: 135px; width: 135px"
+                >
+                  +
+                </a>
+              </div>
+              {{#each sdgs_indexes as |sdgs_index|}}
+                <a class="d-block">
+                  <img
+                    id="target_sdgs_{{sdgs_index}}"
+                    class="mx-2 mt-3 mb-3 mt-md-0"
+                    src="/static/imgs/SDGs_{{sdgs_index}}.jpg"
+                    alt=""
+                    style="width: 135px"
+                  />
+                </a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
     </script>
   </head>
   <body>
