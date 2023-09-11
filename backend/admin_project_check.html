@@ -21,6 +21,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://s3.amazonaws.com/builds.handlebarsjs.com/handlebars.min-v4.7.8.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -54,6 +55,39 @@
       window.selectComment = selectComment;
       window.selectCommentAll = selectCommentAll;
       window.submitVerifiedTaskComment = submitVerifiedTaskComment;
+    </script>
+    <script id="tpl-task" type="text/x-handlebars-template">
+      <tr>
+        <th scope="row" class="text-center align-middle">
+          <div class="form-check">
+            <input
+              class="form-check-input position-static checkbox-1x"
+              type="checkbox"
+              id="{{email}}"
+              value="{{email}}"
+            />
+          </div>
+        </th>
+        <td class="text-center align-middle">
+          {{email}}
+        </td>
+        <td class="text-center align-middle">
+          {{task_weights}}
+        </td>
+        <td class="text-center align-middle">
+          {{comment}}
+        </td>
+        <td class="text-center align-middle">
+          <a
+            href="{{img}}"
+          >
+            <img
+              src="{{img}}"
+              style="max-width: 60px;"
+            />
+          </a>
+        </td>
+      </tr>
     </script>
   </head>
 
