@@ -77,10 +77,19 @@
     </script>
 
     <script id="tpl-sdgs-item" type="text/x-handlebars-template">
-      <a class="d-block">
+      <a
+        class="sdgs-item d-block position-relative mx-2 mt-3 mb-3 mt-md-0"
+        data-index="{{index}}"
+      >
+        <button
+          class="position-absolute close"
+          type="button"
+          style="top: 0; right: 0; width: 24px; color: white; background-color: black;"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
         <img
           id="target_sdgs_{{index}}"
-          class="mx-2 mt-3 mb-3 mt-md-0"
           src="/static/imgs/SDGs_{{index}}.jpg"
           alt=""
           style="width: 80px"
@@ -165,7 +174,10 @@
           </div>
           <div class="form-group col-12">
             <p></p>
-            <div class="d-flex flex-wrap" id="icon_container_{{uuid}}">
+            <div
+              class="sdgs-container d-flex flex-wrap"
+              id="icon_container_{{uuid}}"
+            >
               <div class="d-block">
                 <!-- data-target="#SDGsModal"
                   data-toggle="modal" -->
@@ -178,7 +190,10 @@
                 </a>
               </div>
               {{#each sdgs_indexes as |sdgs_index|}}
-                <a class="sdgs-item d-block position-relative mx-2 mt-3 mb-3 mt-md-0">
+                <a
+                  class="sdgs-item d-block position-relative mx-2 mt-3 mb-3 mt-md-0"
+                  data-index="{{sdgs_index}}"
+                >
                   <button
                     class="position-absolute close"
                     type="button"
@@ -188,7 +203,6 @@
                   </button>
                   <img
                     id="target_sdgs_{{sdgs_index}}"
-                    class=""
                     src="/static/imgs/SDGs_{{sdgs_index}}.jpg"
                     alt=""
                     style="width: 80px"
@@ -348,7 +362,7 @@
     <div
       aria-hidden="true"
       aria-labelledby="staticBackdropLabel"
-      class="modal fade"
+      class="sdgs-modal modal fade"
       data-backdrop="static"
       data-keyboard="false"
       id="SDGsModal"
@@ -369,9 +383,9 @@
           </div>
           <div class="modal-body">
             <div class="p-3" style="height: 550px; overflow-y: auto">
-              <div class="card">
+              <div class="sdgs-modal-item card mt-2" data-index="01">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="01">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -382,9 +396,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="02">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="02">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -395,9 +409,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="03">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="03">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -408,9 +422,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="04">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="04">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -421,9 +435,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="05">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="05">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -434,9 +448,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="06">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="06">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -447,9 +461,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="07">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="07">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -460,9 +474,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="08">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="08">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -473,9 +487,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="09">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="09">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -486,9 +500,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="10">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="10">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -499,9 +513,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="11">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="11">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -512,9 +526,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="12">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="12">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -525,9 +539,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="13">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="13">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -538,9 +552,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="14">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="14">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -551,9 +565,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="15">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="15">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -564,9 +578,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="16">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="16">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -577,9 +591,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card mt-2">
+              <div class="sdgs-modal-item card mt-2" data-index="17">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center" id="btn_sdg" name="17">
+                  <div class="d-flex align-items-center">
                     <img
                       alt=""
                       class="mr-2"
@@ -592,13 +606,9 @@
               </div>
 
               <div style="display: none" id="five">
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="18">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="18"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -609,13 +619,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="19">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="19"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -626,13 +632,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="20">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="20"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -643,13 +645,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="21">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="21"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -660,13 +658,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="22">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="22"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -680,13 +674,9 @@
               </div>
 
               <div style="display: none" id="community">
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="23">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="23"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -697,13 +687,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="24">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="24"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -714,13 +700,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="25">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="25"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -731,13 +713,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="26">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="26"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -748,13 +726,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-2">
+                <div class="sdgs-modal-item card mt-2" data-index="27">
                   <div class="card-body p-2">
-                    <div
-                      class="d-flex align-items-center"
-                      id="btn_sdg"
-                      name="27"
-                    >
+                    <div class="d-flex align-items-center">
                       <img
                         alt=""
                         class="mr-2"
@@ -776,13 +750,7 @@
             >
               關閉
             </button>
-            <button
-              class="btn btn-primary"
-              id="btn_add_sdg_into_task"
-              type="button"
-            >
-              新增
-            </button>
+            <button class="btn btn-primary" type="button">新增</button>
           </div>
         </div>
       </div>
