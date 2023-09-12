@@ -8,6 +8,8 @@ import {
   getMappedSdgData,
   sdgImages,
 } from "./chart/bar.js";
+import { renderHandlebars } from "./utils/handlebars.js";
+import { parse_sdgs_items } from "./utils/transformers.js";
 
 export function draw_sdgs_chart(totalProjectWeight, elementID) {
   // Remove useless weight
@@ -204,54 +206,6 @@ function add_task_sdgs(obj_task) {
   return obj_sdg_div;
 }
 
-function add_project_sdgs_description(obj_project) {
-  var obj_weight_description = document.getElementById(
-    "project_weight_description"
-  );
-
-  var list_weight = null;
-  try {
-    list_weight = JSON.parse(obj_project.weight_description);
-    Object.keys(list_weight).forEach(function (key) {
-      var index = parseInt(key) + 1;
-      index = ("0" + index).slice(-2);
-
-      var obj_div = document.createElement("div");
-      /* obj_div.className = "col-md-12 ml-3"; */
-      obj_div.className = "col-md-6";
-
-      var d_flex = document.createElement("div");
-      d_flex.className =
-        "d-flex justify-content-center justify-content-md-start align-items-center";
-
-      var obj_p1 = document.createElement("p");
-      obj_p1.className = "mt-3";
-      /* obj_p.innerHTML = list_weight[key]; */
-      var obj_p2 = document.createElement("p");
-      obj_p2.className = "mt-3";
-
-      var obj_a = document.createElement("a");
-      obj_a.innerHTML = list_weight[key];
-
-      var obj_img = document.createElement("img");
-      obj_img.className = "mr-3";
-      obj_img.style = "width:90px";
-      obj_img.src = "/static/imgs/SDGs_" + index + ".jpg";
-      obj_img.alt = "";
-
-      obj_p1.append(obj_img);
-      obj_p2.append(obj_a);
-      d_flex.append(obj_p1);
-      d_flex.append(obj_p2);
-      obj_div.append(d_flex);
-
-      obj_weight_description.append(obj_div);
-    });
-  } catch (e) {
-    console.log(e);
-  }
-}
-
 function add_project_sdgs(obj_project) {
   var obj_sdgs_container = document.getElementById("project_sdg_container");
 
@@ -329,7 +283,18 @@ export function set_page_info_content() {
   add_project_sdgs(obj_project);
 
   // Project weight descriptio11n
-  add_project_sdgs_description(obj_project);
+  const sdgs_items = parse_sdgs_items(obj_project);
+  renderHandlebars("project_weight_description", "tpl-sdgs", { sdgs_items });
+
+  $("#project_weight_description").on("click", ".read-more", (e) => {
+    e.preventDefault();
+    const sdg_text = $(e.target)
+      .parents(".sdg-text-container")
+      .find(".sdg-text");
+    $("#SDGsModal .modal-title").html(sdg_text.attr("data-title"));
+    $("#SDGsModal .modal-body").html(sdg_text.html());
+    $("#SDGsModal").modal("show");
+  });
 
   // Task data
   var obj_tasks = list_plan_tasks(obj_project.uuid, 1);

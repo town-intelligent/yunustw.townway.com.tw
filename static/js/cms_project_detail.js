@@ -2,6 +2,7 @@ import { draw_bar_chart, getMappedSdgData, allSdgImages } from "./chart/bar.js";
 import { getProjectWeight, list_plan_tasks, plan_info } from "./plan.js";
 import { get_task_info } from "./tasks.js";
 import { renderHandlebars } from "./utils/handlebars.js";
+import { parse_sdgs_items } from "./utils/transformers.js";
 import { isOverflow } from "./utils/widgets.js";
 
 export function set_page_info_cms_project_detail(uuid) {
@@ -100,17 +101,8 @@ export function set_page_info_cms_project_detail(uuid) {
 
   var obj_sdg_container = document.getElementById("project_sdg_container");
 
-  var list_weight = JSON.parse(obj_project.weight_description);
-  const sdgs_items = Object.entries(list_weight).map(([key, value]) => {
-    const title = "SDGs-" + (parseInt(key) + 1);
-    let index = parseInt(key) + 1;
-    index = ("0" + index).slice(-2);
-
-    return { title, index, value };
-  });
-
-  const data = { sdgs_items };
-  renderHandlebars("project_sdg_container", "tpl-sdgs", data);
+  const sdgs_items = parse_sdgs_items(obj_project);
+  renderHandlebars("project_sdg_container", "tpl-sdgs", { sdgs_items });
 
   $("#project_sdg_container").on("click", ".read-more", (e) => {
     e.preventDefault();
