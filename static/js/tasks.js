@@ -288,19 +288,14 @@ export function child_task_submit(page){
       var pernet_task = {"task_parent_id": task}
       list_tasks.push(JSON.stringify(pernet_task))
 
-      var obj_icon_container = document.getElementById("icon_container_" + child_task_queue[index_child_task]);
-      var list_task_icon_container = obj_icon_container.childNodes;
-      list_task_icon_container.forEach(element => {
-        if ("A" == element.tagName){
-          var list_sdgs_icon_container = element.childNodes;
-          list_sdgs_icon_container.forEach(element => {
-
-            var sdg = parseInt(element.id.replace("target_sdgs_",""));
-            var dataJSON = {"sdg":sdg.toString(), "des":""};
-            list_tasks.push(JSON.stringify(dataJSON));
-          });
-        }
+      const container_id = "icon_container_" + child_task_queue[index_child_task];
+      const items = $(`#${container_id} [id^=target_sdgs_]`).toArray();
+      const task_data = items.map((item) => {
+        const sdg = parseInt($(item).attr('id').replace("target_sdgs_",""));
+        const data = {"sdg": sdg.toString(), "des": ""};
+        return JSON.stringify(data);
       });
+      list_tasks = [...list_tasks, ...task_data];
 
       form.append("tasks", list_tasks);
       form.append("email", getLocalStorage("email"));
