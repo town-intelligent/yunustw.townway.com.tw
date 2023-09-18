@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v6.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://unpkg.com/chart.js@4.3.0/dist/chart.umd.js"></script>
     <script src="https://unpkg.com/chart.js-plugin-labels-dv@4.0.0/dist/chartjs-plugin-labels.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/style.css" >
-    <link rel="stylesheet" href="/static/css/progress_bar.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <script src="https://s3.amazonaws.com/builds.handlebarsjs.com/handlebars.min-v4.7.8.js"></script>
+
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/progress_bar.css" />
     <script src="/static/js/config.js"></script>
     <script src="/static/js/innerHTML.js"></script>
     <script src="/static/js/localStorage.js"></script>
@@ -25,7 +41,36 @@
     <script type="module" src="/static/js/content.js"></script>
     <script type="module" src="/static/js/set_page_info.js"></script>
     <script type="module" src="/static/js/init.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@3/dist/inspector.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@3/dist/inspector.css"
+    />
+
+    <script id="tpl-sdgs" type="text/x-handlebars-template">
+      {{#each sdgs_items as |sdg_item|}}
+        <div class="col-12 col-lg-6">
+          <div class="row align-items-center justify-content-center mt-4">
+            <img
+              class="col-3"
+              src="/static/imgs/SDGs_{{sdg_item.index}}.jpg"
+              alt=""
+            />
+            <div
+              class="sdg-text-container col-7 col-form-label pr-md-0 m-2 p-0"
+            >
+              <div
+                class="sdg-text"
+                style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden;"
+                data-title="{{sdg_item.title}}"
+              >{{{sdg_item.value}}}
+              </div>
+              <p class="m-0 text-center"><a class="read-more" href="#">Read
+                  more...</a></p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </script>
   </head>
   <body class="d-flex flex-column">
     <!-- navbar -->
@@ -43,35 +88,54 @@
         </div>
         <div class="row justify-content-center mt-4 py-4 bg-white">
           <div class="col-10">
-            <img id="project_cover" class="img-fluid" src="" alt="">
+            <img id="project_cover" class="img-fluid" src="" alt="" />
             <div class="row mt-4 pb-4 border-bottom">
               <div class="col-md-6">
                 <p class="h4 text-title" id="project_name"></p>
               </div>
               <div class="col-md-6">
-                <div class="row justify-content-md-end pr-md-3" id="project_sdg_container">
-                </div>
+                <div
+                  class="row justify-content-md-end pr-md-3"
+                  id="project_sdg_container"
+                ></div>
               </div>
             </div>
             <!-- project description -->
             <div class="row mt-4 border-bottom">
               <div class="col-md-6">
-                <div class="d-flex flex-column h-100 justify-content-center justify-content-md-start">
-                  <p class="mb-3">計畫期間:<span class="pl-2" id="project_period"></span></p>
+                <div
+                  class="d-flex flex-column h-100 justify-content-center justify-content-md-start"
+                >
+                  <p class="mb-3">
+                    計畫期間:<span class="pl-2" id="project_period"></span>
+                  </p>
                   <p class="mb-3" id="project_uuid">計畫編號:</p>
                   <p>
-                    <img class="mr-2" src="/static/imgs/place_marker.svg" alt="" style="width:20px">
+                    <img
+                      class="mr-2"
+                      src="/static/imgs/place_marker.svg"
+                      alt=""
+                      style="width: 20px"
+                    />
                     <a id="location"></a>
                   </p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="d-flex flex-column">
-                  <p class="mb-3">永續企業:<span class="pl-2" id="project_a"></span></p>
-                  <p class="mb-3">專案負責人:<span class="pl-2" id="hoster"></span></p>
-                  <p class="mb-3">地方團隊:<span class="pl-2" id="project_b"></span></p>
+                  <p class="mb-3">
+                    永續企業:<span class="pl-2" id="project_a"></span>
+                  </p>
+                  <p class="mb-3">
+                    專案負責人:<span class="pl-2" id="hoster"></span>
+                  </p>
+                  <p class="mb-3">
+                    地方團隊:<span class="pl-2" id="project_b"></span>
+                  </p>
 
-                  <p class="mb-3">電子郵件:<span class="pl-2" id="email"></span></p>
+                  <p class="mb-3">
+                    電子郵件:<span class="pl-2" id="email"></span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -81,19 +145,35 @@
                 <p class="mt-3 mb-2" id="philosophy"></p>
               </div>
             </div>
-            <div class="row mt-5 pb-4 border-bottom" id="project_weight_description">
-            </div>
+            <div
+              class="row mt-5 pb-4 border-bottom"
+              id="project_weight_description"
+            ></div>
             <div class="row mt-4 pb-4 border-bottom">
               <div class="col-md-6">
-                <div class="d-md-flex flex-column justify-content-center h-100 ">
-                  <p class="font-weight-bold text-center mb-md-2 text-blue" style="font-size: 96px; font-family: Rozha One;" id="relate_people">0</p>
+                <div class="d-md-flex flex-column justify-content-center h-100">
+                  <p
+                    class="font-weight-bold text-center mb-md-2 text-blue"
+                    style="font-size: 96px; font-family: Rozha One"
+                    id="relate_people"
+                  >
+                    0
+                  </p>
                   <p class="text-center small mb-md-2">關係人口</p>
-                  <p class="font-weight-bold text-center mb-md-2 text-blue" style="font-size: 96px; font-family: Rozha One;" id="budget">0</p>
+                  <p
+                    class="font-weight-bold text-center mb-md-2 text-blue"
+                    style="font-size: 96px; font-family: Rozha One"
+                    id="budget"
+                  >
+                    0
+                  </p>
                   <p class="text-center small">計畫金額</p>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="d-flex h-100 align-items-center justify-content-center">
+                <div
+                  class="d-flex h-100 align-items-center justify-content-center"
+                >
                   <div class="w-100" id="obj_digital_fp_chart1">
                     <!-- <img class="w-100" src="/static/imgs/chart_2.jpg" alt="">-->
                     <!-- <p class="text-center small">專案指標累積</p> -->
@@ -106,7 +186,7 @@
                 <p class="h5 fw-bold">成果展現</p>
               </div>
               <div id="tasks_container">
-<!--                 <div id="beta_task_container">
+                <!--                 <div id="beta_task_container">
                   <div class="row mt-4">
                     <div class="col-md-6">
                       <div class="text-center">
@@ -204,5 +284,42 @@
     </section>
     <!-- footer -->
     <div id="footer"></div>
+    <div
+      aria-hidden="true"
+      aria-labelledby="staticBackdropLabel"
+      class="modal fade"
+      data-backdrop="static"
+      data-keyboard="false"
+      id="SDGsModal"
+      tabindex="-1"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">新增 SDGs 指標</h5>
+            <button
+              class="close"
+              type="button"
+              aria-label="Close"
+              data-dismiss="modal"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="p-3"></div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              type="button"
+            >
+              關閉
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

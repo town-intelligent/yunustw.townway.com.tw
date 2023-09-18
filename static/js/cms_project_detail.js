@@ -1,8 +1,11 @@
-import { draw_bar_chart, getMappedSdgData, allSdgImages } from './chart/bar.js';
-import { getProjectWeight, list_plan_tasks, plan_info } from './plan.js'
-import { get_task_info } from './tasks.js'
+import { draw_bar_chart, getMappedSdgData, allSdgImages } from "./chart/bar.js";
+import { getProjectWeight, list_plan_tasks, plan_info } from "./plan.js";
+import { get_task_info } from "./tasks.js";
+import { renderHandlebars } from "./utils/handlebars.js";
+import { parse_sdgs_items } from "./utils/transformers.js";
+import { isOverflow } from "./utils/widgets.js";
 
-export function set_page_info_cms_project_detail (uuid) {
+export function set_page_info_cms_project_detail(uuid) {
   var obj_project = plan_info(uuid);
 
   /* Set DOM */
@@ -18,33 +21,33 @@ export function set_page_info_cms_project_detail (uuid) {
   } catch (e) {}
 
   for (var index = 0; index < list_weight.length; index++) {
-  // Append to DOM
-  if (parseInt(list_weight[index]) == 1) {
+    // Append to DOM
+    if (parseInt(list_weight[index]) == 1) {
+      // <div class="col-2 col-md-1 pr-0">
+      var obj_div = document.createElement("div");
+      // obj_div.className = "col-md-1 px-1";
+      obj_div.className = "col-2 col-md-1 pr-0";
 
-    // <div class="col-2 col-md-1 pr-0">
-    var obj_div = document.createElement("div");
-    // obj_div.className = "col-md-1 px-1";
-    obj_div.className = "col-2 col-md-1 pr-0";
+      // <a href="#">
+      // var obj_a = document.createElement("a");
+      var obj_a = document.createElement("p");
+      obj_a.href = "#";
 
-    // <a href="#">
-    // var obj_a = document.createElement("a");
-    var obj_a = document.createElement("p");
-    obj_a.href = "#"
+      // <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
+      var obj_img = document.createElement("img");
+      obj_img.className = "w-100";
+      obj_img.src =
+        "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
+      obj_img.alt = "";
 
-    // <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
-    var obj_img = document.createElement("img");
-    obj_img.className = "w-100";
-    obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
-    obj_img.alt = "";
+      // Append
+      obj_a.append(obj_img);
+      obj_div.append(obj_a);
+      obj_sdg_container.append(obj_div);
+    }
 
-    // Append
-    obj_a.append(obj_img);
-    obj_div.append(obj_a);
-    obj_sdg_container.append(obj_div);
-  }
-
-  // Period
-  document.getElementById("period_project").innerHTML = obj_project.period;
+    // Period
+    document.getElementById("period_project").innerHTML = obj_project.period;
   }
 
   // Location
@@ -60,11 +63,11 @@ export function set_page_info_cms_project_detail (uuid) {
     if (parseInt(list_location[index]) == 1) {
       if (index == 0) {
         obj_location.innerHTML = obj_location.innerHTML + "<br> @ 台北 <br>";
-      } else if (index == 1){
+      } else if (index == 1) {
         obj_location.innerHTML = obj_location.innerHTML + "<br> @ 竹山 <br>";
-      } else if (index == 2){
+      } else if (index == 2) {
         obj_location.innerHTML = obj_location.innerHTML + "<br> @ 高雄 <br>";
-      } else if (index == 3){
+      } else if (index == 3) {
         obj_location.innerHTML = obj_location.innerHTML + "<br> @ 花蓮 <br>";
       } else {
         obj_location.innerHTML = obj_location.innerHTML + "<br> @ 馬祖 <br>";
@@ -98,39 +101,64 @@ export function set_page_info_cms_project_detail (uuid) {
 
   var obj_sdg_container = document.getElementById("project_sdg_container");
 
-  var list_weight = null;
-  try {
-    list_weight = JSON.parse(obj_project.weight_description);
-    Object.keys(list_weight).forEach(function(key) {
-      var index = parseInt(key) + 1;
-      index = ("0" + index).slice(-2);
+  const sdgs_items = parse_sdgs_items(obj_project);
+  renderHandlebars("project_sdg_container", "tpl-sdgs", { sdgs_items });
 
-      var obj_div = document.createElement("div");
-      obj_div.className = "row align-items-center justify-content-center mt-4";
+  $("#project_sdg_container").on("click", ".read-more", (e) => {
+    e.preventDefault();
+    const sdg_text = $(e.target)
+      .parents(".sdg-text-container")
+      .find(".sdg-text");
+    $("#SDGsModal .modal-title").html(sdg_text.attr("data-title"));
+    $("#SDGsModal .modal-body").html(sdg_text.html());
+    $("#SDGsModal").modal("show");
+  });
 
-      var obj_div_1 = document.createElement("div");
-      obj_div_1.className = "col-md-6";
+  $(window).resize(() => {
+    $("#project_sdg_container .sdg-text")
+      .filter((_, element) => isOverflow(element))
+      .map((_, element) => $(element).parent().find(".read-more"))
+      .map((_, element) => $(element).show());
 
-      var obj_img = document.createElement("img");
-      obj_img.className = "col-3";
-      obj_img.src = "/static/imgs/SDGs_" + index + ".jpg";
-      obj_img.alt = "";
-
-      var obj_p = document.createElement("p");
-      obj_p.className = "col-7 col-form-label pr-md-0";
-      obj_p.innerHTML = list_weight[key];
-
-      obj_div.append(obj_img);
-      obj_div.append(obj_p);
-      obj_div_1.append(obj_div);
-      obj_sdg_container.append(obj_div_1);
-    })
-  } catch(e) {}
+    $("#project_sdg_container .sdg-text")
+      .filter((_, element) => !isOverflow(element))
+      .map((_, element) => $(element).parent().find(".read-more"))
+      .map((_, element) => $(element).hide());
+  });
+  window.dispatchEvent(new Event("resize"));
 
   // Bar chart
   const obj_parent_tasks = list_plan_tasks(obj_project.uuid, 1);
   const weight = getProjectWeight(obj_parent_tasks.tasks);
-  const array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"]
+  const array_weight_colors = [
+    "#e5243b",
+    "#DDA63A",
+    "#4C9F38",
+    "#C5192D",
+    "#FF3A21",
+    "#26BDE2",
+    "#FCC30B",
+    "#A21942",
+    "#FD6925",
+    "#DD1367",
+    "#FD9D24",
+    "#BF8B2E",
+    "#3F7E44",
+    "#0A97D9",
+    "#56C02B",
+    "#00689D",
+    "#19486A",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+  ];
   const chart = draw_bar_chart({
     elementId: "cms_project_detail_chart",
     title: "專案指標累積",
@@ -138,16 +166,16 @@ export function set_page_info_cms_project_detail (uuid) {
     backgroundColor: array_weight_colors,
     images: allSdgImages,
     skipZero: true,
-  })
+  });
 
   // sometime missing label when resizing window
   // use it to force render after window resized
-  $(window).resize(function() {
+  $(window).resize(function () {
     chart.render();
   });
 
   // Set tasks
-  var obj_tasks = list_plan_tasks(uuid ,1);
+  var obj_tasks = list_plan_tasks(uuid, 1);
 
   var list_tasks = obj_tasks.tasks;
   var obj_tasks_container = document.getElementById("tasks_container");
@@ -171,13 +199,13 @@ export function set_page_info_cms_project_detail (uuid) {
       </div>
     </div>
     */
-    var obj_div_root = document.createElement("div")
+    var obj_div_root = document.createElement("div");
     obj_div_root.className = "row mt-4 mt-md-5 mb-3";
 
-    var obj_div_product = document.createElement("div")
+    var obj_div_product = document.createElement("div");
     obj_div_product.className = "col-md-5";
 
-    var obj_img_product = document.createElement("img")
+    var obj_img_product = document.createElement("img");
     obj_img_product.className = "img-fluid";
 
     if (obj_task.thumbnail == "") {
@@ -191,31 +219,38 @@ export function set_page_info_cms_project_detail (uuid) {
 
     obj_img_product.alt = "";
 
-    var obj_div_qrocde = document.createElement("div")
-    obj_div_qrocde.className = "col-md-3 text-center d-md-block align-self-center";
+    var obj_div_qrocde = document.createElement("div");
+    obj_div_qrocde.className =
+      "col-md-3 text-center d-md-block align-self-center";
 
     var obj_qrcode = document.createElement("qrcode");
     obj_tasks_container.append(obj_qrcode);
 
     var qrcode = new QRCode(obj_qrcode, {
-      width : 120,
-      height : 120
+      width: 120,
+      height: 120,
     });
 
     qrcode.style = "width:100px; height:100px; margin-top:15px;";
-    qrcode.makeCode(location.protocol + "//" + window.location.host + "/tasks/" + obj_task.uuid);
+    qrcode.makeCode(
+      location.protocol +
+        "//" +
+        window.location.host +
+        "/tasks/" +
+        obj_task.uuid
+    );
 
-    var obj_div_des = document.createElement("div")
+    var obj_div_des = document.createElement("div");
     obj_div_des.className = "col-md-4 mt-4 mt-md-0";
-    var obj_p_name = document.createElement("p")
+    var obj_p_name = document.createElement("p");
     obj_p_name.innerHTML = "活動設計名稱: ";
     var obj_span_name = document.createElement("span");
     obj_span_name.innerHTML = obj_task.name;
-    var obj_p_period = document.createElement("p")
-    obj_p_period.innerHTML = "日期: "
-    var obj_span_period = document.createElement("span")
+    var obj_p_period = document.createElement("p");
+    obj_p_period.innerHTML = "日期: ";
+    var obj_span_period = document.createElement("span");
     obj_span_period.innerHTML = obj_task.period;
-    var obj_p_idea = document.createElement("p")
+    var obj_p_idea = document.createElement("p");
     obj_p_idea.className = "small";
 
     obj_p_idea.innerHTML = obj_task.overview;
@@ -237,9 +272,11 @@ export function set_page_info_cms_project_detail (uuid) {
   // Set cover
 
   if (obj_project.img != null) {
-    var path_cover = HOST_URL_TPLANET_DAEMON +
-    "/static/project/" + uuid +
-    "/media/cover/cover.png";
+    var path_cover =
+      HOST_URL_TPLANET_DAEMON +
+      "/static/project/" +
+      uuid +
+      "/media/cover/cover.png";
     var obj_cover = document.getElementById("project_cover");
     obj_cover.src = path_cover;
   }
@@ -247,13 +284,13 @@ export function set_page_info_cms_project_detail (uuid) {
 }
 
 $(function () {
-  $("#btn_send_mail").on("click", function(e) {
+  $("#btn_send_mail").on("click", function (e) {
     e.stopPropagation();
 
     // Params
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
-    var uuid = urlParams.get("uuid")
+    var uuid = urlParams.get("uuid");
     var obj_project = plan_info(uuid);
 
     var mail_content = "";
@@ -261,12 +298,12 @@ $(function () {
     mail_content = mail_content.replace("TITLE", obj_project.name);
 
     document.getElementById("send_mail").innerHTML = mail_content;
-    $("#send_mail_modal").modal("show")
+    $("#send_mail_modal").modal("show");
   });
 });
 
 $(function () {
-  $("#submit_send_mail").on("click", function(e) {
+  $("#submit_send_mail").on("click", function (e) {
     e.stopPropagation();
 
     // URL
@@ -275,10 +312,10 @@ $(function () {
     // Params
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
-    var uuid = urlParams.get("uuid")
+    var uuid = urlParams.get("uuid");
     var obj_project = plan_info(uuid);
 
-    var content = `<p>您有一個新的專案，請到 <a href="${url}?uuid=${uuid}">網址</a> 詳閱細節。</p>`
+    var content = `<p>您有一個新的專案，請到 <a href="${url}?uuid=${uuid}">網址</a> 詳閱細節。</p>`;
 
     var form = new FormData();
     form.append("receiver", getLocalStorage("email"));
@@ -287,6 +324,6 @@ $(function () {
 
     var result = plan_send(form);
 
-    $("#send_mail_modal").modal("hide")
+    $("#send_mail_modal").modal("hide");
   });
 });
