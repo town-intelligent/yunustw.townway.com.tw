@@ -258,7 +258,6 @@ export const draw_bar_chart = ({
     data = filtered.data;
     backgroundColor = filtered.backgroundColor;
     images = filtered.images;
-    console.log(filtered.images);
   }
 
   const chart = new Chart(ctx, {
