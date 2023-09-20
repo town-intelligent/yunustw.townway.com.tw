@@ -10,6 +10,7 @@ import {
 } from "./chart/bar.js";
 import { renderHandlebars } from "./utils/handlebars.js";
 import { parse_sdgs_items } from "./utils/transformers.js";
+import { isOverflow } from "./utils/widgets.js";
 
 export function draw_sdgs_chart(totalProjectWeight, elementID) {
   // Remove useless weight
@@ -295,6 +296,19 @@ export function set_page_info_content() {
     $("#SDGsModal .modal-body").html(sdg_text.html());
     $("#SDGsModal").modal("show");
   });
+
+  $(window).resize(() => {
+    $("#project_weight_description .sdg-text")
+      .filter((_, element) => isOverflow(element))
+      .map((_, element) => $(element).parent().find(".read-more"))
+      .map((_, element) => $(element).show());
+
+    $("#project_weight_description .sdg-text")
+      .filter((_, element) => !isOverflow(element))
+      .map((_, element) => $(element).parent().find(".read-more"))
+      .map((_, element) => $(element).hide());
+  });
+  window.dispatchEvent(new Event("resize"));
 
   // Task data
   var obj_tasks = list_plan_tasks(obj_project.uuid, 1);
