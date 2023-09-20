@@ -1,44 +1,107 @@
-import { draws, draws_task_weight_chart } from './app.js'
-import { plan_info, list_plan_tasks, getProjectWeight } from './plan.js'
-import { getTaskWeight, get_task_info, list_children_tasks } from './tasks.js'
-import { append_chart_container, draw_bar, draw_bar_chart, getMappedSdgData, sdgImages } from './chart/bar.js'
-
+import { draws, draws_task_weight_chart } from "./app.js";
+import { plan_info, list_plan_tasks, getProjectWeight } from "./plan.js";
+import { getTaskWeight, get_task_info, list_children_tasks } from "./tasks.js";
+import {
+  append_chart_container,
+  draw_bar,
+  draw_bar_chart,
+  getMappedSdgData,
+  sdgImages,
+} from "./chart/bar.js";
+import { renderHandlebars } from "./utils/handlebars.js";
+import { parse_sdgs_items } from "./utils/transformers.js";
+import { isOverflow } from "./utils/widgets.js";
 
 export function draw_sdgs_chart(totalProjectWeight, elementID) {
   // Remove useless weight
-/*   Object.keys(totalProjectWeight).forEach(function(key){
+  /*   Object.keys(totalProjectWeight).forEach(function(key){
     if (parseInt(key.substring(5,7)) > 17){
       delete totalProjectWeight[key];
     }
   }); */
 
   // Draw
-  var array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"];
+  var array_weight_colors = [
+    "#e5243b",
+    "#DDA63A",
+    "#4C9F38",
+    "#C5192D",
+    "#FF3A21",
+    "#26BDE2",
+    "#FCC30B",
+    "#A21942",
+    "#FD6925",
+    "#DD1367",
+    "#FD9D24",
+    "#BF8B2E",
+    "#3F7E44",
+    "#0A97D9",
+    "#56C02B",
+    "#00689D",
+    "#19486A",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+  ];
   draw_bar_chart({
     elementId: elementID,
     title: "專案指標累積",
     data: getMappedSdgData(totalProjectWeight),
     backgroundColor: array_weight_colors,
     skipZero: true,
-    titlePosition: 'bottom',
+    titlePosition: "bottom",
     titleFontSize: 16,
   });
 }
 
 export function draw_project_chart(uuid, canvasId) {
   var weight_task = getTaskWeight(uuid);
-  var array_weight_colors = ["#e5243b", "#DDA63A", "#4C9F38", "#C5192D", "#FF3A21", "#26BDE2", "#FCC30B", "#A21942", "#FD6925", "#DD1367", "#FD9D24", "#BF8B2E", "#3F7E44", "#0A97D9", "#56C02B", "#00689D", "#19486A", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1", "#0075A1"]
+  var array_weight_colors = [
+    "#e5243b",
+    "#DDA63A",
+    "#4C9F38",
+    "#C5192D",
+    "#FF3A21",
+    "#26BDE2",
+    "#FCC30B",
+    "#A21942",
+    "#FD6925",
+    "#DD1367",
+    "#FD9D24",
+    "#BF8B2E",
+    "#3F7E44",
+    "#0A97D9",
+    "#56C02B",
+    "#00689D",
+    "#19486A",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+    "#0075A1",
+  ];
   draw_bar_chart({
     elementId: canvasId,
     title: "永續指標",
     data: getMappedSdgData(weight_task),
     backgroundColor: array_weight_colors,
     skipZero: true,
-    titlePosition: 'bottom',
+    titlePosition: "bottom",
     titleFontSize: 16,
   });
 }
-
 
 function project_weight_chart(obj_project) {
   const id = "observablehq-chart-" + obj_project.uuid;
@@ -55,10 +118,12 @@ function project_weight_chart(obj_project) {
 function task_weight_chart(obj_task) {
   var obj_digital_fp_chart1_img = document.createElement("div");
   obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_task.uuid;
-  document.getElementById("obj_digital_fp_chart1").append(obj_digital_fp_chart1_img);
+  document
+    .getElementById("obj_digital_fp_chart1")
+    .append(obj_digital_fp_chart1_img);
 
   // Draw
-  draws_task_weight_chart(obj_task.uuid)
+  draws_task_weight_chart(obj_task.uuid);
 }
 
 function set_location(obj_project) {
@@ -71,15 +136,15 @@ function set_location(obj_project) {
 
   // Location
   var obj_location = document.getElementById("location");
-  for (var index = 0; index < list_location.length; index ++) {
+  for (var index = 0; index < list_location.length; index++) {
     if (parseInt(list_location[index]) == 1) {
       if (index == 0) {
         obj_location.innerHTML = obj_location.innerHTML + "T-Planet @ 台北";
-      } else if (index == 1){
+      } else if (index == 1) {
         obj_location.innerHTML = "T-Planet @ 竹山";
-      } else if (index == 2){
+      } else if (index == 2) {
         obj_location.innerHTML = obj_location.innerHTML + "T-Planet @ 高雄";
-      } else if (index == 3){
+      } else if (index == 3) {
         obj_location.innerHTML = obj_location.innerHTML + "T-Planet @ 花蓮";
       } else {
         obj_location.innerHTML = obj_location.innerHTML + "T-Planet @ 馬祖";
@@ -94,7 +159,7 @@ function relate_people(obj_tasks) {
   var list_weight = getProjectWeight(obj_tasks.tasks);
 
   var total_weight = 0;
-  for(var key in list_weight){
+  for (var key in list_weight) {
     total_weight = total_weight + parseInt(list_weight[key]);
   }
 
@@ -142,49 +207,6 @@ function add_task_sdgs(obj_task) {
   return obj_sdg_div;
 }
 
-function add_project_sdgs_description(obj_project) {
-  var obj_weight_description = document.getElementById("project_weight_description");
-
-  var list_weight = null;
-  try {
-    list_weight = JSON.parse(obj_project.weight_description);
-    Object.keys(list_weight).forEach(function(key) {
-      var index = parseInt(key) + 1;
-      index = ("0" + index).slice(-2);
-
-      var obj_div = document.createElement("div");
-      /* obj_div.className = "col-md-12 ml-3"; */
-      obj_div.className = "col-md-6";
-
-      var d_flex = document.createElement("div");
-      d_flex.className = "d-flex justify-content-center justify-content-md-start align-items-center";
-
-      var obj_p1 = document.createElement("p");
-      obj_p1.className = "mt-3";
-      /* obj_p.innerHTML = list_weight[key]; */
-      var obj_p2 = document.createElement("p");
-      obj_p2.className = "mt-3";
-
-      var obj_a = document.createElement("a");
-      obj_a.innerHTML = list_weight[key];
-
-      var obj_img = document.createElement("img");
-      obj_img.className = "mr-3";
-      obj_img.style = "width:90px";
-      obj_img.src = "/static/imgs/SDGs_" + index + ".jpg";
-      obj_img.alt = "";
-
-      obj_p1.append(obj_img);
-      obj_p2.append(obj_a);
-      d_flex.append(obj_p1);
-      d_flex.append(obj_p2);
-      obj_div.append(d_flex);
-
-      obj_weight_description.append(obj_div);
-    })
-  } catch(e) { console.log(e); }
-}
-
 function add_project_sdgs(obj_project) {
   var obj_sdgs_container = document.getElementById("project_sdg_container");
 
@@ -197,19 +219,19 @@ function add_project_sdgs(obj_project) {
   for (var index = 0; index < list_weight.length; index++) {
     // Append to DOM
     if (parseInt(list_weight[index]) == 1) {
-
       // <div class="col-2 col-md-1 pr-0">
       var obj_div = document.createElement("div");
       obj_div.className = "col-2 col-md-1 pr-0";
 
       // <a href="#">
       var obj_a = document.createElement("p");
-      obj_a.href = "#"
+      obj_a.href = "#";
 
       // <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
       var obj_img = document.createElement("img");
       obj_img.className = "w-100";
-      obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
+      obj_img.src =
+        "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
       obj_img.alt = "";
 
       // Append
@@ -220,15 +242,14 @@ function add_project_sdgs(obj_project) {
   }
 }
 
-export function set_page_info_content()
-{
+export function set_page_info_content() {
   // Get path
   var path = window.location.pathname;
 
   // Get parent uuid
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  var uuid = urlParams.get("uuid")
+  var uuid = urlParams.get("uuid");
 
   var obj_project = plan_info(uuid);
 
@@ -236,16 +257,19 @@ export function set_page_info_content()
 
   // Set cover
   if (obj_project.img != null) {
-    var path_cover = HOST_URL_TPLANET_DAEMON +
-    "/static/project/" + uuid +
-    "/media/cover/cover.png";
+    var path_cover =
+      HOST_URL_TPLANET_DAEMON +
+      "/static/project/" +
+      uuid +
+      "/media/cover/cover.png";
     var obj_cover = document.getElementById("project_cover");
     obj_cover.src = path_cover;
   }
 
   document.getElementById("project_name").innerHTML = obj_project.name;
   document.getElementById("project_period").innerHTML = obj_project.period;
-  document.getElementById("project_uuid").innerHTML = "計畫編號: " + obj_project.uuid;
+  document.getElementById("project_uuid").innerHTML =
+    "計畫編號: " + obj_project.uuid;
   document.getElementById("hoster").innerHTML = obj_project.hoster;
   document.getElementById("project_a").innerHTML = obj_project.project_a;
   document.getElementById("project_b").innerHTML = obj_project.project_b;
@@ -260,10 +284,34 @@ export function set_page_info_content()
   add_project_sdgs(obj_project);
 
   // Project weight descriptio11n
-  add_project_sdgs_description(obj_project);
+  const sdgs_items = parse_sdgs_items(obj_project);
+  renderHandlebars("project_weight_description", "tpl-sdgs", { sdgs_items });
+
+  $("#project_weight_description").on("click", ".read-more", (e) => {
+    e.preventDefault();
+    const sdg_text = $(e.target)
+      .parents(".sdg-text-container")
+      .find(".sdg-text");
+    $("#SDGsModal .modal-title").html(sdg_text.attr("data-title"));
+    $("#SDGsModal .modal-body").html(sdg_text.html());
+    $("#SDGsModal").modal("show");
+  });
+
+  $(window).resize(() => {
+    $("#project_weight_description .sdg-text")
+      .filter((_, element) => isOverflow(element))
+      .map((_, element) => $(element).parent().find(".read-more"))
+      .map((_, element) => $(element).show());
+
+    $("#project_weight_description .sdg-text")
+      .filter((_, element) => !isOverflow(element))
+      .map((_, element) => $(element).parent().find(".read-more"))
+      .map((_, element) => $(element).hide());
+  });
+  window.dispatchEvent(new Event("resize"));
 
   // Task data
-  var obj_tasks = list_plan_tasks(obj_project.uuid ,1);
+  var obj_tasks = list_plan_tasks(obj_project.uuid, 1);
 
   // Relate people
   relate_people(obj_tasks);
@@ -277,16 +325,16 @@ export function set_page_info_content()
     var obj_task = get_task_info(list_tasks[index]);
 
     // Task container
-    var obj_div_root = document.createElement("div")
+    var obj_div_root = document.createElement("div");
     obj_div_root.className = "row mt-4";
 
-    var obj_div_product = document.createElement("div")
+    var obj_div_product = document.createElement("div");
     obj_div_product.className = "col-md-6";
 
-    var obj_div_text_center = document.createElement("div")
+    var obj_div_text_center = document.createElement("div");
     obj_div_text_center.className = "text-center";
 
-    var obj_img_product = document.createElement("img")
+    var obj_img_product = document.createElement("img");
     obj_img_product.className = "w-100";
 
     if (obj_task.thumbnail == "") {
@@ -301,13 +349,14 @@ export function set_page_info_content()
     obj_img_product.alt = "";
 
     var obj_div_img_root = document.createElement("div");
-    obj_div_img_root.className =  "col-md-6 mt-4 mt-md-0"
+    obj_div_img_root.className = "col-md-6 mt-4 mt-md-0";
 
     var obj_div_img_text_center = document.createElement("div");
     obj_div_img_text_center.className = "text-center";
 
     var obj_div_img = document.createElement("div");
-    obj_div_img.className = "h-100 d-flex align-items-center justify-content-center mt-4 mt-md-0 flex-column";
+    obj_div_img.className =
+      "h-100 d-flex align-items-center justify-content-center mt-4 mt-md-0 flex-column";
     var obj_img = document.createElement("img");
     obj_img.className = "w-100 h-100";
 
@@ -341,12 +390,12 @@ export function set_page_info_content()
     var obj_span_name = document.createElement("span");
     obj_span_name.className = "pl-2";
     obj_span_name.innerHTML = obj_task.name;
-    var obj_p_period = document.createElement("p")
+    var obj_p_period = document.createElement("p");
     obj_p_period.className = "small";
     obj_p_period.innerHTML = "日期: ";
-    var obj_span_period = document.createElement("span")
+    var obj_span_period = document.createElement("span");
     obj_span_period.innerHTML = obj_task.period;
-    var obj_p_idea = document.createElement("p")
+    var obj_p_idea = document.createElement("p");
     obj_p_idea.className = "small";
     obj_p_idea.innerHTML = obj_task.overview;
     var obj_sdg_div = add_task_sdgs(obj_task);
@@ -372,11 +421,12 @@ export function set_page_info_content()
 
     var obj_span_nft = document.createElement("span");
     obj_span_nft.className = "fw-bold";
-    obj_span_nft.innerText = "NFT: "
+    obj_span_nft.innerText = "NFT: ";
 
     var obj_span_nft_hash = document.createElement("span");
     obj_span_nft_hash.className = "word-wrap";
-    obj_span_nft_hash.innerHTML = "<a href='https://testnets.opensea.io/assets/mumbai/0x63818f1dd00287d70a9e8e976618471a3659d30a/17' target=_blank>0x63818f1dd00287d70a9e8e976618471a3659d30a</a>";
+    obj_span_nft_hash.innerHTML =
+      "<a href='https://testnets.opensea.io/assets/mumbai/0x63818f1dd00287d70a9e8e976618471a3659d30a/17' target=_blank>0x63818f1dd00287d70a9e8e976618471a3659d30a</a>";
 
     obj_p_nft.append(obj_span_nft);
     obj_p_nft.append(obj_span_nft_hash);
@@ -387,9 +437,8 @@ export function set_page_info_content()
     obj_div_root.append(obj_div_img_root);
     // obj_flex_column.append(obj_div_des);
 
-
     obj_div_root.append(obj_div_des);
-    obj_div_root.append(obj_p_nft)
+    obj_div_root.append(obj_p_nft);
     obj_tasks_container.append(obj_div_root);
 
     // Draw task weight
