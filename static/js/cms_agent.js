@@ -1,7 +1,7 @@
 import { draws } from './app.js'
 import { list_plans, plan_info, append_plan_submit_data, plan_submit, delete_plan, list_plan_tasks, getProjectWeight } from './plan.js'
 import { task_submit, child_task_submit } from './tasks.js'
-import { draw_bar } from './chart/bar.js'
+import { mintNFT, make_attrubute } from './nft.js'
 
 const cms_project_submit_pages = ["cms_plan_info.html", "cms_sdgs_setting.html", "cms_impact.html", "cms_contact_person.html"];
 const cms_support_format = ["cms_missions_display.html", "cms_support_form.html", "cms_deep_participation.html"]
@@ -163,6 +163,32 @@ $(function () {
           var obj_task = task_submit(form);
         } catch(e) {
           console.log(e)
+        }
+
+        // Create NFT
+        var parent_task_name = "";
+        var raw_description = "";
+        var doc = "";
+        var description = "";
+        var attribute = "";
+
+        try {
+          parent_task_name = document.getElementById("parent_task_name_" + list_parent_tasks[index_task]).value;
+          raw_description = document.getElementById("parent_task_overview_" + list_parent_tasks[index_task]).value;
+          var parser = new DOMParser();
+          doc = parser.parseFromString(raw_description, "text/html");
+          description = doc.body.firstChild.innerText;
+          attribute = make_attrubute();
+
+          const obj_input = {"uuid_project":uuid,
+            "uuid_task":list_parent_tasks[index_task],
+            "name":parent_task_name,
+            "description": description, // "社會影響力足跡: " + parent_task_name,
+            "attribute":attribute};
+
+          mintNFT(obj_input);
+        } catch (e) {
+            console.log(e);
         }
       }
     }
