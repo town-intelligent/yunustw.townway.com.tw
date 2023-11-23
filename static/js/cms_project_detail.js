@@ -243,6 +243,7 @@ export function set_page_info_cms_project_detail(uuid) {
 
     var obj_div_des = document.createElement("div");
     obj_div_des.className = "col-md-4 mt-4 mt-md-0";
+    obj_div_des.style=" word-wrap: break-word;"
     var obj_p_name = document.createElement("p");
     obj_p_name.innerHTML = "活動設計名稱: ";
     var obj_span_name = document.createElement("span");

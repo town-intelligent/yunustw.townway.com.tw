@@ -146,11 +146,12 @@ export function append_plan_submit_data(page, form) {
     }
 
     // Additional SDGs data
-    for(var index = 17; index <= 27; index++) {
-      if (document.getElementById("sdg_" + index.toString()).checked.toString() == "true") {
-        list_sdg[index - 1] = 1;
-      }
-    }
+    try {
+      for(var index = 17; index <= 27; index++) {
+        if (document.getElementById("sdg_" + index.toString()).checked.toString() == "true") {
+          list_sdg[index - 1] = 1;
+        }
+    } } catch(e) { console.log(e) }
 
     // Set local storage
     form.append("list_sdg", list_sdg);

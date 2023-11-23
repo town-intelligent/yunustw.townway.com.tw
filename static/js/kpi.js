@@ -29,7 +29,7 @@ export function set_relate_people_and_project_counts(totalProjectWeight, list_pr
 
   // 關係人口
   var total_sdgs_weight = 0;
-  for (var index = 1; index < 28; index++) {
+  for (var index = 1; index < 26; index++) { //28
     try {
       total_sdgs_weight = total_sdgs_weight + parseInt(totalProjectWeight["sdgs-" + index]);
       document.getElementById("rp_" + index.toString()).innerText = totalProjectWeight["sdgs-" + index.toString()];
@@ -95,7 +95,7 @@ export function draw_five_chart(totalProjectWeight) {
     elementId: "weight_five",
     title: "人文地產景",
     data: getMappedSdgData(totalProjectWeight),
-    backgroundColor: "#0075A1",
+    backgroundColor: "#28a745", // 0075A1
     images: fiveImges,
   });
 }
@@ -103,16 +103,16 @@ export function draw_five_chart(totalProjectWeight) {
 export function draw_comm_chart(totalProjectWeight) {
   // Remove useless weight
   Object.keys(totalProjectWeight).forEach(function(key){
-    if (23 > parseInt(key.substring(5,7)) || parseInt(key.substring(5,7)) > 28) {
+    if (23 > parseInt(key.substring(5,7)) || parseInt(key.substring(5,7)) > 25) { //28
       delete totalProjectWeight[key];
     }
   });
 
   draw_bar_chart({
     elementId: "weight_comm",
-    title: "德智體群美",
+    title: "三零指標",
     data: getMappedSdgData(totalProjectWeight),
-    backgroundColor: "#28a745",
+    backgroundColor: "#0075A1", // 28a745
     images: commonImages,
   });
 }

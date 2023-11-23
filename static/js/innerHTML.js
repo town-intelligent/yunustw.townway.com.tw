@@ -356,14 +356,16 @@ const str_navbar = `    <nav class="navbar navbar-expand-xl navbar-light bg-navb
         <a id="about_nav" class="nav-link fw-bold" href="/index.html">關於 Second Home </a>
       </li>
       <li id="kpi" class="nav-item">
-        <a class="nav-link fw-bold" href="/kpi.html">永續專案</a>
+        <a class="nav-link fw-bold" href="/kpi.html">三零專案</a>
       </li>
       <li id="solution" class="nav-item" style="display:none">
         <a class="nav-link fw-bold" href="/solution.html">解決方案</a>
       </li>
+      <!--
       <li id="news_list" class="nav-item">
         <a class="nav-link fw-bold" href="/news_list.html">最新消息</a>
       </li>
+      -->
       <li id="contact_us" class="nav-item" style="display:none">
         <a class="nav-link fw-bold" href="/contact_us.html">聯絡我們</a>
       </li>
@@ -381,9 +383,9 @@ const str_footer = `    <footer class="bg-footer">
     <div class="col-lg-9 d-none d-lg-block">
       <div class="h-100 d-flex align-items-center justify-content-center justify-content-lg-start mt-2 mt-lg-0 fz-18">
         <p class="mr-3 mb-0"><a id="about_fot1" href="/index.html" class="text-dark nav-link px-0 fw-bold">關於 Second Home</a></p>
-        <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">永續專案</a></p>
+        <p class="mr-3 mb-0"><a href="/kpi.html" class="text-dark nav-link px-0 fw-bold">三零專案</a></p>
         <p id="solution_fot1" style="display:none" class="mr-3 mb-0"><a href="/solution.html" class="text-dark nav-link px-0 fw-bold">解決方案</a></p>
-        <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p>
+        <!-- <p class="mr-3 mb-0"><a href="/news_list.html" class="text-dark nav-link px-0 fw-bold">最新消息</a></p> -->
         <p id="contact_us_fot1" style="display:none" class="mr-3 mb-0"><a href="/contact_us.html" class="text-dark nav-link px-0 fw-bold">聯絡我們</a></p>
         <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
       </div>
@@ -391,19 +393,13 @@ const str_footer = `    <footer class="bg-footer">
     <div class="col-lg-3 mb-4 mb-lg-0">
       <div class="d-flex h-100 align-items-center justify-content-center justify-content-lg-end">
         <div>
-          <a class="text-decoration-none" href="#" target="_blank">
+          <a class="text-decoration-none" href="https://www.yunustw.org/" target="_blank">
             <img class="mr-1 footer_images" src="/static/imgs/townWay-icon.svg" alt="" style="height: 35px;">
           </a>
-          <a class="text-decoration-none" href="https://www.facebook.com/townway104" target="_blank">
+          <a class="text-decoration-none" href="https://www.facebook.com/YunusSocialBusinessTaiwan" target="_blank">
             <img class="mr-1 footer_images" src="/static/imgs/fb-icon.svg" alt="" style="height: 25px;">
           </a>
-          <a class="text-decoration-none" href="https://www.linkedin.com/company/townintelligent" target="_blank">
-            <img class="mr-1 footer_images" src="/static/imgs/linkedin-icon.svg" alt="" style="height: 25px;">
-          </a>
-          <a class="text-decoration-none" href="https://www.instagram.com/townway104" target="_blank">
-            <img class="mr-1 footer_images" src="/static/imgs/instagram-icon.svg" alt="" style="height: 25px;">
-          </a>
-          <a class="text-decoration-none" href="https://www.youtube.com/user/forus999" target="_blank">
+          <a class="text-decoration-none" href="https://www.youtube.com/@user-dn1qp5pv8d" target="_blank">
             <img class="footer_images" src="/static/imgs/youtube-icon.svg" alt="" style="height: 25px;">
           </a>
         </div>
@@ -412,9 +408,9 @@ const str_footer = `    <footer class="bg-footer">
     <!-- mobile -->
     <div class="d-flex flex-wrap justify-content-center d-lg-none fz-18">
       <p class="mr-3 mb-0"><a id="about_fot2" class="text-dark nav-link px-0 fw-bold" href="/index.html">關於 Second Home</a></p>
-      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">永續專案</a></p>
+      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/kpi.html">三零專案</a></p>
       <p id="solution_fot2" style="display:none" class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/solution.html">解決方案</a></p>
-      <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p>
+      <!-- <p class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/news_list.html">最新消息</a></p> -->
       <p id="contact_us_fot2" style="display:none" class="mr-3 mb-0"><a class="text-dark nav-link px-0 fw-bold" href="/contact_us.html">聯絡我們</a></p>
       <p class="mb-0"><a class="text-dark nav-link px-0 fw-bold" href="https://privacy.townway.com.tw/">隱私權條款</a></p>
     </div>
