@@ -36,12 +36,25 @@
     <div id="navbar"></div>
     <!-- content -->
     <section>
-      <div class="jumbotron jumbotron-fluid bg-cover mb-0 bg-img-height-l d-none d-md-block"
+    <!--       <div class="jumbotron jumbotron-fluid bg-cover mb-0 bg-img-height-l d-none d-md-block"
       style="background-image:url(/static/imgs/csr-project.png); height:350px">
       </div>
       <div class="jumbotron jumbotron-fluid bg-cover mb-0 bg-img-height-l d-md-none"
       style="background-image:url(/static/imgs/csr-project.png); height:200px">
+    </div> -->
+
+    <style>
+      .responsive-image img {
+          width: 100%; /* 使圖片寬度適應容器 */
+          height: auto; /* 保留原始圖片高度 */
+          object-fit: cover; /* 裁剪圖片以填滿容器，同時保持高度 */
+      }
+      </style>
+
+      <div class="responsive-image">
+          <img src="/static/imgs/csr-project.png" alt="Project page banner">
       </div>
+
       <div class="bg-light py-4">
         <div class="container">
           <!-- kpi -->
