@@ -5,7 +5,7 @@ HOST_URL_TPLANET_DAEMON = "https://tplanet-backend.townway.com.tw";
 HOST_URL_EID = "https://eid-yunustw.townway.com.tw";
 
 // Site hoster
-SITE_HOSTERS = ["yunuscentre@yunustw.org"]
+SITE_HOSTERS = ["yunuscentre@yunustw.org", "tengmj@ncut.edu.tw"]
 
 // Site information
 SITE_TYPE = 1 // 0 or 1(公板)
